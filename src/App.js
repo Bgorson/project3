@@ -8,12 +8,14 @@ import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
 
+
 class App extends Component {
   constructor() {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      enableNav:true
     }
 
     this.getUser = this.getUser.bind(this)
@@ -49,16 +51,29 @@ class App extends Component {
       }
     })
   }
+toggleNav(){
+  this.setState({
+    enableNav:!(this.state.enableNav)
+  })
+}
 
   render() {
     return (
       <div className="App">
-   
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+      {
+        (this.state.enableNav)
+        ?<Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} /> : <div></div>
+      }
+
+
         {/* greet user if logged in: */}
+      {/* {(this.state.loggedIn)? 
+     <Main></Main>: <div> "You're not logged in"</div>  
+    } */}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }
+
         
         {/* Routes to different components */}
         <Route
@@ -84,6 +99,11 @@ class App extends Component {
         path="/main"
         render={()=>
         <Main/>}
+        />
+                <Route
+        exact path="/minigame1"
+        render={()=>
+        <h1 >This is the first game</h1>}
         />
 
       </div>

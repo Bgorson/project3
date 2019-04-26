@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import '../App.css';
 import axios from 'axios'
 
 class Navbar extends Component {
-    state= {
-        toHome:false
-    }
     constructor() {
         super()
         this.logout = this.logout.bind(this)
+        this.routeChange = this.routeChange.bind(this);
+    }
+    routeChange() {
+        let path = "/";
+        this.props.history.push(path)
     }
     //function for when the logout button is pressed
     logout(event) {
@@ -28,9 +30,8 @@ class Navbar extends Component {
           }
         }).catch(error => {
             console.log('Logout error')
-        }).then( ()=> this.setState(()=> ({
-            toHome:true
-        })))
+        }).then( ()=> this.routeChange()
+        )
 
       }
 
@@ -39,9 +40,6 @@ class Navbar extends Component {
         const loggedIn = this.props.loggedIn;
         console.log('navbar render, props: ')
         console.log(this.props);
-        if (this.state.toHome === true) {
-            <Redirect to='/login'/>
-        }
         return (
             <div>
 
@@ -83,4 +81,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withRouter(Navbar)
