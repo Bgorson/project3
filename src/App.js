@@ -5,7 +5,8 @@ import { Route, Link } from 'react-router-dom'
 import Signup from './components/sign-up'
 import LoginForm from './components/login-form'
 import Navbar from './components/navbar'
-import Home from './components/home'
+import Login from './components/login'
+import Main from './components/mainHub'
 
 class App extends Component {
   constructor() {
@@ -58,14 +59,19 @@ class App extends Component {
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }
+        
         {/* Routes to different components */}
         <Route
           exact path="/"
-          component={Home} />
+          render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />}
+        />
         <Route
           path="/login"
           render={() =>
-            <LoginForm
+            <Login
               updateUser={this.updateUser}
             />}
         />
@@ -73,6 +79,11 @@ class App extends Component {
           path="/signup"
           render={() =>
             <Signup/>}
+        />
+        <Route
+        path="/main"
+        render={()=>
+        <Main/>}
         />
 
       </div>

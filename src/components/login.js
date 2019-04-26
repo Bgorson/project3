@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
-class LoginForm extends Component {
+class Login extends Component {
     constructor() {
         super()
-        //creates state to be able to post on submit
         this.state = {
             username: '',
             password: '',
@@ -15,17 +15,13 @@ class LoginForm extends Component {
         this.handleChange = this.handleChange.bind(this)
   
     }
-    //update state with value of text boxes depending on user or password
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    handleSignup(){
-        this.setState({
-            redirectTo: '/signup'
-        })
-    }
+
     handleSubmit(event) {
         event.preventDefault()
         console.log('handleSubmit')
@@ -46,7 +42,7 @@ class LoginForm extends Component {
                     })
                     // update the state to redirect to home
                     this.setState({
-                        redirectTo: '/'
+                        redirectTo: '/main'
                     })
                 }
             }).catch(error => {
@@ -57,7 +53,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        //if the redirect state is filled, go to it
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
@@ -102,11 +97,10 @@ class LoginForm extends Component {
                                 onClick={this.handleSubmit}
                                 type="submit">Login</button>
 
-                                <button
-                                className="btn btn-primary col-1 col-mr-auto"
-                               
-                                onClick={this.handleSignup}
-                                type="submit">Signup</button>
+                                
+                                <Link to="/signup" className="btn btn-link">
+                                    <button className= "btn btn-primary">Sign Up</button>
+				                </Link>
                         </div>
                     </form>
                 </div>
@@ -114,5 +108,5 @@ class LoginForm extends Component {
         }
     }
 }
-
-export default LoginForm
+ 
+export default Login;

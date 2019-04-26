@@ -6,37 +6,48 @@ import '../App.css';
 import axios from 'axios'
 
 class Navbar extends Component {
+    state= {
+        toHome:false
+    }
     constructor() {
         super()
         this.logout = this.logout.bind(this)
     }
-
+    //function for when the logout button is pressed
     logout(event) {
         event.preventDefault()
         console.log('logging out')
+        //makes Axios post to /logout route 
         axios.post('/user/logout').then(response => {
-          console.log(response.data)
+          console.log("this is the data",response.data)
           if (response.status === 200) {
             this.props.updateUser({
               loggedIn: false,
-              username: null
+              username: null,
             })
           }
         }).catch(error => {
             console.log('Logout error')
-        })
+        }).then( ()=> this.setState(()=> ({
+            toHome:true
+        })))
+
       }
 
     render() {
+        //loggin is set to property of login status
         const loggedIn = this.props.loggedIn;
         console.log('navbar render, props: ')
         console.log(this.props);
-        
+        if (this.state.toHome === true) {
+            <Redirect to='/login'/>
+        }
         return (
             <div>
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
+                    {/* checks if user is logged in and changes nav links to reflect status */}
                         {loggedIn ? (
                             <section className="navbar-section">
                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
@@ -45,17 +56,19 @@ class Navbar extends Component {
                             </section>
                         ) : (
                                 <section className="navbar-section">
+                                {/* Matches links to app Routes */}
                                     <Link to="/" className="btn btn-link text-secondary">
                                         <span className="text-secondary">home</span>
                                         </Link>
-                                    <Link to="/login" className="btn btn-link text-secondary">
+                                    {/* <Link to="/login" className="btn btn-link text-secondary">
                                     <span className="text-secondary">login</span>
 				</Link>
                                     <Link to="/signup" className="btn btn-link">
                                     <span className="text-secondary">sign up</span>
-				</Link>
+				</Link> */}
                                 </section>
                             )}
+
                     </div>
                     <div className="col-4 col-mr-auto">
                     <div id="top-filler"></div>
