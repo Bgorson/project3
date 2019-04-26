@@ -8,6 +8,7 @@ import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
 import Minigame1 from "./components/minigame1/components/Clickygame"
+import StatInfo from './components/statinfo'
 
 
 class App extends Component {
@@ -16,7 +17,12 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: null,
-      enableNav:true
+      enableNav:true,
+      stats: {
+        strength:1,
+        HP:200,
+        magic:100
+      }
     }
 
     this.getUser = this.getUser.bind(this)
@@ -99,7 +105,12 @@ toggleNav(){
         <Route
         path="/main"
         render={()=>
-        <Main/>}
+          <React.Fragment>
+        <StatInfo
+        stats = {this.state.stats}
+        />
+        <Main/>
+        </React.Fragment>}
         />
                 <Route
         exact path="/minigame1"
