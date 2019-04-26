@@ -7,6 +7,7 @@ import LoginForm from './components/login-form'
 import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
+import Minigame1 from "./components/minigame1/components/Clickygame"
 
 
 class App extends Component {
@@ -103,7 +104,7 @@ toggleNav(){
                 <Route
         exact path="/minigame1"
         render={()=>
-        <h1 >This is the first game</h1>}
+       <Minigame1/>}
         />
 
       </div>
