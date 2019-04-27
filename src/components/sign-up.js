@@ -7,6 +7,7 @@ class Signup extends Component {
 		this.state = {
 			username: '',
 			password: '',
+			stats: [{'strength':100, 'magic':100, 'hp':200}],
 			confirmPassword: '',
 			redirectTo: null
 
@@ -16,7 +17,7 @@ class Signup extends Component {
 	}
 	handleChange(event) {
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.name]: event.target.value,
 		})
 	}
 	handleSubmit(event) {
@@ -27,7 +28,8 @@ class Signup extends Component {
 		//request to server to add a new username/password
 		axios.post('/user/', {
 			username: this.state.username,
-			password: this.state.password
+			password: this.state.password,
+			stats:this.state.stats
 		})
 			.then(response => {
 				console.log(response)

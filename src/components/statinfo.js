@@ -5,7 +5,7 @@ class StatInfo extends Component {
         return ( 
         <React.Fragment>
         <h1>Stats will go here</h1>
-        <div>HP: {this.props.stats.HP}</div>
+        <div>HP: {this.props.stats.hp}</div>
         <div>Strength: {this.props.stats.strength}</div>
         <div>Magic: {this.props.stats.magic}</div>
         </React.Fragment>

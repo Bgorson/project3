@@ -18,11 +18,7 @@ class App extends Component {
       loggedIn: false,
       username: null,
       enableNav:true,
-      stats: {
-        strength:1,
-        HP:200,
-        magic:100
-      }
+      stats: []
     }
 
     this.getUser = this.getUser.bind(this)
@@ -32,6 +28,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser()
+    this.getStats()
   }
 
   updateUser (userObject) {
@@ -44,10 +41,10 @@ class App extends Component {
       console.log(response.data)
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
-
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          stats: response.data
         })
       } else {
         console.log('Get user: no user');
@@ -56,6 +53,15 @@ class App extends Component {
           username: null
         })
       }
+    })
+  }
+  getStats(){
+    axios.get("/user/stats").then(response =>{
+      console.log("new response")
+      console.log(response.data)
+      this.setState({
+        stats: response.data
+      })
     })
   }
 toggleNav(){
