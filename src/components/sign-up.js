@@ -7,7 +7,7 @@ class Signup extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			stats: [{'strength':100, 'magic':100, 'hp':200}],
+			stat: {'strength':100, 'magic':100, 'hp':200},
 			confirmPassword: '',
 			redirectTo: null
 
@@ -29,7 +29,7 @@ class Signup extends Component {
 		axios.post('/user/', {
 			username: this.state.username,
 			password: this.state.password,
-			stats:this.state.stats
+			stat:this.state.stat
 		})
 			.then(response => {
 				console.log(response)

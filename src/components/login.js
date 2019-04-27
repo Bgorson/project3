@@ -9,7 +9,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            redirectTo: null
+            redirectTo: null,
+            stats:null
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -38,7 +39,8 @@ class Login extends Component {
                     // update App.js state
                     this.props.updateUser({
                         loggedIn: true,
-                        username: response.data.username
+                        username: response.data.username,
+                        stat:response.data.stat
                     })
                     // update the state to redirect to home
                     this.setState({

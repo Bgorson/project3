@@ -6,7 +6,7 @@ const passport = require('../passport')
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { username, password, stats } = req.body
+    const { username, password, stat } = req.body
     // ADD VALIDATION
     User.findOne({ username: username }, (err, user) => {
         if (err) {
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
             const newUser = new User({
                 username: username,
                 password: password,
-                stats: stats
+                stat: stat
             })
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)
@@ -43,7 +43,7 @@ router.post(
         console.log('logged in', req.user);
         var userInfo = {
             username: req.user.username,
-            stats:req.user.stats
+            stat: req.user.stat
         };
         res.send(userInfo);
     }
@@ -53,6 +53,7 @@ router.get('/', (req, res, next) => {
     console.log('===== user!!======')
     console.log(req.user)
     console.log("above")
+    console.log(req.body)
     if (req.user) {
         res.json({ user: req.user })
     } else {
@@ -69,12 +70,6 @@ router.post('/logout', (req, res) => {
     }
 })
 
-router.get('/stats', (req,res)=>{
-    console.log('hitting stats route')
-    User.find({}).then(function(result){
-        console.log(result[0].stats[0])
-        res.send(result[0].stats[0]) 
-    })
-})
+
 
 module.exports = router
