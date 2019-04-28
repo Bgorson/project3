@@ -7,6 +7,10 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
 const app = express()
 const PORT = 8080
+const SOCKETPORT = 9090
+const socketio = require ('socket.io');
+const http = require('http');
+
 // Route requires
 const user = require('./routes/user')
 const User = require('./database/models/user')
@@ -34,6 +38,17 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
+// SocketIO 
+const server = http.createServer(app);
+const io = socketio(server);
+io.on('connection', socket => {
+  console.log('New client connected', socket.id)
+  socket.on('SEND_MESSAGE', function(data){
+	  io.emit('RECEIVE_MESSAGE', data)
+  })
+
+  })
+  
 
 // Routes
 app.get('/stats/:id', (req,res)=>{
@@ -54,3 +69,7 @@ app.use('/user', user)
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+server.listen(SOCKETPORT, () => {
+	console.log(`Socket listening on PORT: ${SOCKETPORT}`)
+})
+

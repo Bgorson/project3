@@ -123,7 +123,9 @@ class App extends Component {
         <Route
         exact path="/tower"
         render={()=>
-       <Tower/>}
+       <Tower
+       userName = {this.state.username}
+       />}
         />
 
       </div>
