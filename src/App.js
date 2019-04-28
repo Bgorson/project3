@@ -8,7 +8,7 @@ import Login from './components/login'
 import Main from './components/mainHub'
 import Minigame1 from "./components/minigame1/components/Clickygame"
 import StatInfo from './components/statinfo'
-
+import Tower from "./components/tower/tower"
 
 class App extends Component {
   constructor() {
@@ -118,6 +118,12 @@ class App extends Component {
         exact path="/minigame1"
         render={()=>
        <Minigame1/>}
+        />
+{/* ===================================== */}
+        <Route
+        exact path="/tower"
+        render={()=>
+       <Tower/>}
         />
 
       </div>
