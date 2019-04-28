@@ -37,9 +37,9 @@ app.use(passport.session()) // calls the deserializeUser
 
 // Routes
 app.get('/stats/:id', (req,res)=>{
-	const username=req.params.id
-	console.log(username)
-	User.findOne({ username:username}, (err,data)=> {
+	const id = req.params.id
+	console.log("This is the username we are searching",id)
+	User.findOne({ username:id}, (err,data)=> {
 		if (err) {
 			console.log("Some kind of err",err)
 		}

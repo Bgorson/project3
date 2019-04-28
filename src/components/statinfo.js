@@ -7,31 +7,21 @@ class StatInfo extends Component {
             stat: [],
             userId: null,
           }
-
-    this.getStats = this.getStats.bind(this)
     }
 
     componentDidMount() {
-        this.getStats()
+        this.props.getStats()
      }
 
-getStats(){
-        axios.get("/stats/test").then(response =>{
-          console.log(response.data,"new response")
-          this.setState({
-              stat:response.data.stat
-          })
-        })
-      }
+
 
     render() { 
-        console.log(this.props)
         return ( 
         <React.Fragment>
         <h1>Stats will go here</h1>
-        <div>HP: {this.state.stat.hp}</div>
-        <div>Strength: {this.state.stat.strength}</div>
-        <div>Magic: {this.state.stat.magic}</div>
+        <div>HP: {this.props.hp}</div>
+        <div>Strength: {this.props.strength}</div>
+        <div>Magic: {this.props.magic}</div>
         </React.Fragment>
          );
     }

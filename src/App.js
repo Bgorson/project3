@@ -23,6 +23,7 @@ class App extends Component {
     this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.updateUser = this.updateUser.bind(this)
+    this.getStats = this.getStats.bind(this)
     
   }
 
@@ -58,11 +59,23 @@ class App extends Component {
     })
   }
 
-
+  getStats(){
+    console.log("Should be looking for this",this.state.username)
+    axios.get("/stats/"+ this.state.username).then(response =>{
+      console.log(response.data,"new response")
+      this.setState({
+          stat:response.data.stat
+      })
+    })
+  }
 
   render() {
     return (
       <div className="App">
+                 <Navbar
+            updateUser={this.updateUser}
+            loggedIn={this.state.loggedIn}
+            />
     {this.state.loggedIn &&
     <p>Join the party, {this.state.username}!</p>
     }
@@ -72,10 +85,7 @@ class App extends Component {
           exact path="/"
           render={() =>
             <React.Fragment>
-            <Navbar
-            updateUser={this.updateUser}
-            loggedIn={this.state.loggedIn}
-            />
+ 
             <Login
               updateUser={this.updateUser}
             />
@@ -94,8 +104,11 @@ class App extends Component {
           <React.Fragment>
         <StatInfo
         // Send the current state of stats to be read by the block
+        userId= {this.state.userId}
         getStats= {this.getStats}
-        stat = {this.state.stat}
+        hp= {this.state.stat.hp}
+        strength= {this.state.stat.strength}
+        magic= {this.state.stat.magic}
         />
         <Main/>
         </React.Fragment>}
