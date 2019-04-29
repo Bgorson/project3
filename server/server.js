@@ -37,18 +37,35 @@ app.use(
 // Passport
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
-
+//=============================================
 // SocketIO 
+let waitingPlayer = null;
 const server = http.createServer(app);
 const io = socketio(server);
-io.on('connection', socket => {
-  console.log('New client connected', socket.id)
-  socket.on('SEND_MESSAGE', function(data){
-	  io.emit('RECEIVE_MESSAGE', data)
-  })
+io.on('connection',onConnection);
 
-  })
-  
+function onConnection(socket) {
+	console.log('New client connected', socket.id)
+	socket.on('SEND_MESSAGE', function(data){
+		io.emit('RECEIVE_MESSAGE', data)
+	})
+
+	if (waitingPlayer) {
+		socket.emit("msg", "match starts")
+		waitingPlayer = null;
+	  } else {
+		  console.log("not ready")
+		waitingPlayer = socket;
+		socket.emit('msg', 'Waiting for an opponent');
+	  }
+
+
+}
+
+
+
+
+//=============================================
 
 // Routes
 app.get('/stats/:id', (req,res)=>{

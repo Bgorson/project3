@@ -8,16 +8,20 @@ class Tower extends Component {
         this.state = {
             username: '',
             message: '',
-            messages: []
+            messages: [],
         };
         this.socket = io('localhost:9090');
 
         this.socket.on("RECEIVE_MESSAGE", function(data){
             addMessage(data);
         })
+        this.socket.on("msg", function(data){
+            console.log(data)
+            addMessage(data);
+        })
 
         const addMessage = data => {
-            console.log(data);
+            console.log("this is data "+ data);
             this.setState({messages: [...this.state.messages,data]})
             console.log(this.state.messages)
         }
@@ -30,9 +34,14 @@ class Tower extends Component {
             })
             this.setState({message:''})
         }
-    }
-    render() { 
 
+        this.buttonListener = (name) => {
+        console.log(name.target.id)
+        this.socket.emit('turn', name.target.id);
+    }
+}
+
+    render() { 
         return ( 
             <div className="container">
                 <div className="row">
@@ -54,6 +63,11 @@ class Tower extends Component {
                                     <br/>
                                     <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                                 </div>
+                                <div className="button-wrapper">
+          <button onClick= {this.buttonListener} id="rock" className="turn">Rock</button>
+          <button onClick= {this.buttonListener} id="paper" className="turn">Paper</button>
+          <button onClick = {this.buttonListener} id="scissors" className="turn">Scissors</button>
+        </div>
                             </div>
                         </div>
                     </div>
