@@ -10,6 +10,7 @@ const PORT = 8080
 const SOCKETPORT = 9090
 const socketio = require ('socket.io');
 const http = require('http');
+const RpsGame = require("./towerLogic")
 
 // Route requires
 const user = require('./routes/user')
@@ -49,17 +50,15 @@ function onConnection(socket) {
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
-
 	if (waitingPlayer) {
-		socket.emit("msg", "match starts")
+		new RpsGame(waitingPlayer,socket)
+		// notifyMatchStarts(waitingPlayer,socket)
 		waitingPlayer = null;
 	  } else {
-		  console.log("not ready")
+		console.log("not ready")
 		waitingPlayer = socket;
-		socket.emit('msg', 'Waiting for an opponent');
+		socket.emit('msg', {message:'Waiting for an opponent'});
 	  }
-
-
 }
 
 
