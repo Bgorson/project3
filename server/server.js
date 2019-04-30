@@ -40,35 +40,39 @@ app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 //=============================================
 // SocketIO 
+
+
 let waitingPlayer = null;
+var currentId2;
 const server = http.createServer(app);
 const io = socketio(server);
 io.on('connection',onConnection);
-
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
 	if (waitingPlayer) {
-		new RpsGame(waitingPlayer,socket)
+		//connect waiting player to player ID
+		new RpsGame(waitingPlayer,currentId,socket,currentId2)
 		// notifyMatchStarts(waitingPlayer,socket)
 		waitingPlayer = null;
 	  } else {
+		currentId2= currentId
 		console.log("not ready")
+		//connect socket to player ID
 		waitingPlayer = socket;
 		socket.emit('msg', {message:'Waiting for an opponent'});
 	  }
 }
 
 
-
-
 //=============================================
-
+let currentId;
 // Routes
 app.get('/stats/:id', (req,res)=>{
 	const id = req.params.id
+	currentId= req.params.id
 	console.log("This is the username we are searching",id)
 	User.findOne({ username:id}, (err,data)=> {
 		if (err) {
@@ -79,7 +83,8 @@ app.get('/stats/:id', (req,res)=>{
 		}
 	})
 })
-app.use('/user', user)
+
+app.use('/user', user.router)
 
 // Starting Server 
 app.listen(PORT, () => {

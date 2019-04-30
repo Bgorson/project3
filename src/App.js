@@ -39,10 +39,7 @@ class App extends Component {
   getUser() {
     axios.get('/user/').then(response => {
       console.log('Get user response: ')
-      console.log(response)
-      console.log(response.data)
       if (response.data.user) {
-        console.log('Get User: There is a user saved in the server session: ')
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -50,7 +47,6 @@ class App extends Component {
           userId: response.data.user._id
         })
       } else {
-        console.log('Get user: no user');
         this.setState({
           loggedIn: false,
           username: null
@@ -62,7 +58,6 @@ class App extends Component {
   getStats(){
     console.log("Should be looking for this",this.state.username)
     axios.get("/stats/"+ this.state.username).then(response =>{
-      console.log(response.data,"new response")
       this.setState({
           stat:response.data.stat
       })

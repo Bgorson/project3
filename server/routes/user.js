@@ -58,7 +58,7 @@ router.get('/', (req, res, next) => {
         res.json({ user: req.user })
     } else {
         res.json({ user: null })
-    }
+    }  
 })
 
 router.post('/logout', (req, res) => {
@@ -72,4 +72,5 @@ router.post('/logout', (req, res) => {
 
 
 
-module.exports = router
+module.exports = {
+    router:router}

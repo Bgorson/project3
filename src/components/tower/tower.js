@@ -2,28 +2,26 @@ import React, { Component } from 'react';
 import io from 'socket.io-client'
 
 class Tower extends Component {
+
     constructor(props){
         super(props);
-
         this.state = {
             username: '',
             message: '',
             messages: [],
         };
         this.socket = io('localhost:9090');
+        
 
         this.socket.on("RECEIVE_MESSAGE", function(data){
             addMessage(data);
         })
         this.socket.on("msg", function(data){
-            console.log(data)
             addMessage(data);
         })
 
         const addMessage = data => {
-            console.log("this is data "+ data);
             this.setState({messages: [...this.state.messages,data]})
-            console.log(this.state.messages)
         }
 
         this.sendMessage= event => {
@@ -36,13 +34,13 @@ class Tower extends Component {
         }
 
         this.buttonListener = (name) => {
-        console.log(name.target.id)
         this.socket.emit('turn', name.target.id);
     }
 }
 
+
     render() { 
-        return ( 
+        return (
             <div className="container">
                 <div className="row">
                     <div className="col-4">
@@ -51,11 +49,11 @@ class Tower extends Component {
                                 <div className="card-title">Global Chat</div>
                                 <hr/>
                                 <div className="messages">
-{this.state.messages.map(message => {
-    return (
-        <div>{message.author}: {message.message}</div>
-    )
-})}
+                                    {this.state.messages.map(message => {
+                                        return (
+                                            <div>{message.author}: {message.message}</div>
+                                        )
+                                    })}
                                 </div>
                                 <div className="footer">
                                     <br/>

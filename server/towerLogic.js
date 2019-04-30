@@ -1,8 +1,8 @@
 class RpsGame {
-  constructor(p1,p2) {
+  constructor(p1,p1Id,p2,p2Id) {
     this._players= [p1,p2];
     this._turns= [null, null];
-    this._sendToPlayers('Starting RPS');
+    this._sendToPlayers('Starting RPS with' + p1Id+ ' vs ' +p2Id);
 
     this._players.forEach((player, idx)=> {
       player.on('turn', (turn)=> {
