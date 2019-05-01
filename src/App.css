@@ -1,11 +1,10 @@
 .App {
   text-align: center;
+  margin-top: 50px;
 }
 
 .navbar {
- 
   margin-top: auto;
-  
 }
 #top-filler {
   margin-bottom: auto;

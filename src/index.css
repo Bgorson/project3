@@ -4,4 +4,6 @@ body {
   font-family: sans-serif;
   background: url('bg.svg') no-repeat center center fixed;
   background-size: cover;
+  font-family: Roboto;
+  letter-spacing: 3px;
 }

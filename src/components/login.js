@@ -62,7 +62,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
-                    <h4>Login</h4>
+                    <h2>WILDLYFE</h2>
                     <form className="form-horizontal">
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
@@ -73,7 +73,7 @@ class Login extends Component {
                                     type="text"
                                     id="username"
                                     name="username"
-                                    placeholder="Username"
+                                    placeholder="username"
                                     value={this.state.username}
                                     onChange={this.handleChange}
                                 />
