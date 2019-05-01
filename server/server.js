@@ -56,6 +56,7 @@ function onConnection(socket) {
 		//connect waiting player to player ID
 		new RpsGame(waitingPlayer,currentId,socket,currentId2)
 		// notifyMatchStarts(waitingPlayer,socket)
+		console.log(RpsGame)
 		waitingPlayer = null;
 	  } else {
 		currentId2= currentId
@@ -83,6 +84,7 @@ app.get('/stats/:id', (req,res)=>{
 		}
 	})
 })
+
 
 app.use('/user', user.router)
 

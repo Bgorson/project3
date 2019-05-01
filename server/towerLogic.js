@@ -1,22 +1,53 @@
+const User = require('./database/models/user')
+
+
 class RpsGame {
   constructor(p1,p1Id,p2,p2Id) {
     this._players= [p1,p2];
     this._turns= [null, null];
-    this._sendToPlayers('Starting RPS with' + p1Id+ ' vs ' +p2Id);
-
+    this.player1Stats = this.findStats(p1Id)
+    this.player2Stats  = this.findStats(p2Id)
+    this._sendToPlayers('Starting RPS with' + p1Id + ' vs ' +p2Id);
     this._players.forEach((player, idx)=> {
       player.on('turn', (turn)=> {
         this._onTurn(idx,turn)
       })
     })
-      }
+
+  }
 
     _sendToPlayer(playerIndex, msg) {
+      if(playerIndex==0){
+        console.log(this.findStats(p1))
+      } 
+      else {
+        console.log(this.findStats(p2))
+      }
+      
       this._players[playerIndex].emit("msg",{message:msg})
     }
       //function to send a message to each player.
   _sendToPlayers(msg){
     this._players.forEach((player) => {player.emit("msg",{message: msg})
+  })
+}
+    //function to get stats
+  findStats(username) {
+  console.log("Searching for this name:",username)
+  User.findOne({username:username}, (err,data)=> {
+    if (err) {
+      console.log("some error",err)
+    }
+    else {
+      //why does data.stat crash the server?
+      try {
+        console.log(data.stat)
+      }
+      catch(err) {
+        console.log("No data")
+      }
+      return data
+    }
   })
 }
 
