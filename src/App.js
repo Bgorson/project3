@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: null,
-      stat: [],
+      stat: {},
       userId: null,
     }
 
@@ -67,6 +67,10 @@ class App extends Component {
           stat:response.data.stat
       })
     })
+  }
+
+  updatedStats(){
+    axios.get("/stats/")
   }
 
   render() {
