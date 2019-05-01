@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
+import './login.css';
+
 class Login extends Component {
     constructor() {
         super()
@@ -64,7 +66,7 @@ class Login extends Component {
                     <form className="form-horizontal">
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="username">Username</label>
+                                <label className="form-label" htmlFor="username"></label>
                             </div>
                             <div className="col-3 col-mr-auto">
                                 <input className="form-input"
@@ -79,7 +81,7 @@ class Login extends Component {
                         </div>
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="password">Password: </label>
+                                <label className="form-label" htmlFor="password"></label>
                             </div>
                             <div className="col-3 col-mr-auto">
                                 <input className="form-input"
