@@ -61,6 +61,11 @@ function onConnection(socket) {
 		console.log(data)
 		io.emit('hp',data)
 	})
+	socket.on("lost", function(data){
+		io.emit("msg", {message: data.username+ " has lost!"} )
+		io.emit("lost")
+		console.log("loser detected",data.username)
+	})
 	if (waitingPlayer) {
 		//connect waiting player to player ID
 		// new RpsGame(waitingPlayer,socket)

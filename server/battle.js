@@ -42,7 +42,7 @@ class Battle {
     //turn = what you are doing
 _onTurn(playerIndex, turn){
   this._turns[playerIndex] = turn;
-  this._sendToPlayer(playerIndex, `you selected ${turn}`)
+  this._sendToPlayer(playerIndex, `you are going to use ${turn}`)
   this._checkGameOver();
 }
 
@@ -54,6 +54,7 @@ _checkGameOver(){
     // this._sendToPlayers('Game Over ' + turns.join(' : '))
     this._getGameResult();
     this._turns = [null, null]
+    
     this._sendToPlayers('New Turn!')
   }
 }
@@ -73,18 +74,15 @@ _getGameResult(){
     this.playerTwoDefense= (this.playerTwoDefense-1)
 
     if(this.playerOneDefense >0){
-      p1= (p1.damage/2)
-      this._damagePlayer(0,p1)
+      p1.damage= (p1.damage/2)
     }
     if(this.playerTwoDefense >0){
-      p0= (p0.damage/2)
-      this._damagePlayer(1,p0)
+      p0.damage= (p0.damage/2)
     }
-else {
     this._damagePlayer(0,p1.damage)
     this._damagePlayer(1,p0.damage)
-}
-    this._sendToPlayers("Player 1: "+ p0.name + " Player 2: " + p1.name)
+
+    this._sendToPlayers("Player 1 uses "+ p0.name + " Player 2 uses " + p1.name)
 
     //Reduce hitpoints based on damage
     //Check if anyone is at 0 and end game, assign win, assign lose
@@ -110,13 +108,12 @@ _decodeTurn(turn){
         damage:0};
     case 'special':
       return {
-        name:"spacial",
+        name:"special",
         damage:50};
     default:
     throw new Error (' Could not decode' + turn)
   }
 }
-
 
 }
 
