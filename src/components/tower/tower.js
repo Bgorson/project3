@@ -40,8 +40,8 @@ class Tower extends Component {
                 error
             }
         })
-        this.socket.on('lost', function(){
-            console.log("toggleing lost buttons")
+        this.socket.on('lost', function(data){
+            console.log("toggling lost buttons",data)
             toggleButton();
         })
         const addMessage = data => {

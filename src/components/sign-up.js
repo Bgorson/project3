@@ -29,7 +29,11 @@ class Signup extends Component {
 		axios.post('/user/', {
 			username: this.state.username,
 			password: this.state.password,
-			stat:this.state.stat
+			stat:this.state.stat,
+			ratio: {
+				win:0,
+				lose:0
+			}
 		})
 			.then(response => {
 				console.log(response)
