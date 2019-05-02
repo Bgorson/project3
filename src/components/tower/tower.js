@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
+import "./tower.css"
 
 class Tower extends Component {
 
@@ -12,6 +13,7 @@ class Tower extends Component {
             hp:'',
             mp:5,
             enemyHp:'',
+            visible:''
         };
         this.socket = io('localhost:9090');
 
@@ -28,7 +30,6 @@ class Tower extends Component {
         this.socket.on('hp', function(data){
             console.log(data.username)
             console.log(data.hp)
-            console.log(props.userName)
             try {
             if (data.username != props.userName){
             console.log("new data")
@@ -39,7 +40,10 @@ class Tower extends Component {
                 error
             }
         })
-
+        this.socket.on('lost', function(){
+            console.log("toggleing lost buttons")
+            toggleButton();
+        })
         const addMessage = data => {
             this.setState({messages: [...this.state.messages,data]})
         }
@@ -69,7 +73,9 @@ class Tower extends Component {
     const damageCounter= (damage)=>{
         this.setState({hp: (this.state.hp-damage) })
         if (this.state.hp <=0) {
-            this.socket.emit("lost",{username:this.props.userName} )
+            this.socket.emit("lost",{username:this.props.userName}
+            //disable buttons, display game over screen
+            )
         }
         this.socket.emit('hp',{
             username:this.props.userName,
@@ -83,6 +89,9 @@ class Tower extends Component {
     const specialMove = ()=>{
         this.setState({mp: this.state.mp-1})
     }
+    const toggleButton=()=>{
+        this.setState({visible: "disable"})
+    }
 }
 
 
@@ -93,15 +102,14 @@ class Tower extends Component {
         })
     }
 
-
     render() { 
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="card-title">Global Chat</div>
+                        <div className>
+                            <div className="">
+
                                 <hr/>
                                 <div className= "hp">
                                 {this.state.hp} HP
@@ -109,31 +117,20 @@ class Tower extends Component {
                                 <div className="mp">
                                 {this.state.mp} MP
                                 </div>
-                                <div className="messages">
-                                    {this.state.messages.map(message => {
-                                        return (
-                                            <div>{message.author}: {message.message}</div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="footer">
-                                    <br/>
-                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                                    <br/>
-                                    <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
-                                </div>
+                                <div className= {this.state.visible}>
                                 <div className="button-wrapper">
                                     <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
                                     <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
                                     <button onClick = {this.buttonListener} id="special" className="turn">Special</button>
                                     </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
                         <div className="col-sm-6">
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="card-title">Enemy HP</div>
+                            <div className="">
+                                <div className="">
+                                    <div className="">Enemy HP</div>
                                     <hr/>
                                     <div className= "enemyHp">
                                     {this.state.enemyHp}
@@ -143,7 +140,23 @@ class Tower extends Component {
                                 </div>
                             </div>
                     </div>
-                    
+                    <div className = "row justify-content-center">
+                            <div className="">Global Chat
+                            <div className="messages col-12">
+                                    {this.state.messages.map(message => {
+                                        return (
+                                            <div>{message.author} {message.message}</div>
+                                        )
+                                    })}
+                                </div>
+                                <div className="footer">
+                                    <br/>
+                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                    <br/>
+                                    <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                                </div>
+                                </div>
+                                </div>
                 </div>
                 
         );
