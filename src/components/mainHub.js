@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 
+import './main.css';
+import logo from '../logo.svg';
 
 class Main extends Component {
     state = { 
@@ -13,21 +15,38 @@ class Main extends Component {
                 You're logged in!
             </h1>
             <h4>Choose a mini game here</h4>
-            <Link to = "/miniGame1">
-            <button>MiniGame 1</button>
-            </Link>
-            <Link to = "/miniGame2">
-            <button>MiniGame 2</button>
-            </Link>
-            <Link to = "/miniGame3">
-            <button>MiniGame 3</button>
-            </Link>
-            <Link to = "/miniGame4">
-            <button>MiniGame 4</button>
-            </Link>
-            <Link to = "/tower">
-            <button>The Tower</button>
-            </Link>
+            <div className = "row">
+                <div className = "colm">
+                
+                    <Link to = "/miniGame1">
+                    <img src={logo} className="wildlyfe-logo" alt="logo" />
+                    </Link>
+               </div>
+
+               <div className = "colm">
+                    <Link to = "/miniGame2">
+                    <button>MiniGame 2</button>
+                    </Link>
+                </div>
+
+                <div className = "colm">
+                    <Link to = "/miniGame3">
+                    <button>MiniGame 3</button>
+                    </Link>
+                </div>
+
+                <div className = "colm">
+                    <Link to = "/miniGame4">
+                    <button>MiniGame 4</button>
+                    </Link>
+                </div>
+
+                <div className = "colm">
+                    <Link to = "/tower">
+                    <button>The Tower</button>
+                    </Link>
+                </div>
+            </div>
             </React.Fragment>
           );
     }

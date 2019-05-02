@@ -64,7 +64,7 @@ class App extends Component {
     axios.get("/stats/"+ this.state.username).then(response =>{
       console.log(response.data,"new response")
       this.setState({
-          stat:response.data.stat
+          // stat:response.data.stat
       })
     })
   }
@@ -106,7 +106,7 @@ class App extends Component {
         // Send the current state of stats to be read by the block
         userId= {this.state.userId}
         getStats= {this.getStats}
-        hp= {this.state.stat.hp}
+        // hp= {this.state.stat.hp}
         strength= {this.state.stat.strength}
         magic= {this.state.stat.magic}
         />

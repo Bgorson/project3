@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
+import logo from '../logo.svg'
 import './login.css';
 
 class Login extends Component {
@@ -45,9 +46,9 @@ class Login extends Component {
                         stat:response.data.stat
                     })
                     // update the state to redirect to home
-                    this.setState({
-                        redirectTo: '/main'
-                    })
+                    // this.setState({
+                    //     redirectTo: '/main'
+                    // })
                 }
             }).catch(error => {
                 console.log('login error: ')
@@ -62,6 +63,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
+                     <img src={logo} className="wildlyfe-logo" alt="logo" />
                     <h2>WILDLYFE</h2>
                     <form className="form-horizontal">
                         <div className="form-group">
