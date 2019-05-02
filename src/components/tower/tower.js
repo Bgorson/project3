@@ -9,15 +9,18 @@ class Tower extends Component {
             username: '',
             message: '',
             messages: [],
+            hp:''
         };
         this.socket = io('localhost:9090');
-        
 
         this.socket.on("RECEIVE_MESSAGE", function(data){
             addMessage(data);
         })
         this.socket.on("msg", function(data){
             addMessage(data);
+        })
+        this.socket.on("damage", function(data){
+            damageCounter(data.damage)
         })
 
         const addMessage = data => {
@@ -36,8 +39,18 @@ class Tower extends Component {
         this.buttonListener = (name) => {
         this.socket.emit('turn', name.target.id);
     }
+    const damageCounter= (damage)=>{
+        this.setState({hp: (this.state.hp-damage) })
+        }
 }
 
+
+    componentDidMount(){
+        this.socket.emit('name',this.props.username)
+        this.setState({
+            hp:this.props.hp
+        })
+    }
 
     render() { 
         return (
@@ -48,6 +61,9 @@ class Tower extends Component {
                             <div className="card-body">
                                 <div className="card-title">Global Chat</div>
                                 <hr/>
+                                <div className= "hp">
+                                {this.state.hp} HP
+                                </div>
                                 <div className="messages">
                                     {this.state.messages.map(message => {
                                         return (
@@ -62,9 +78,9 @@ class Tower extends Component {
                                     <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                                 </div>
                                 <div className="button-wrapper">
-          <button onClick= {this.buttonListener} id="rock" className="turn">Rock</button>
-          <button onClick= {this.buttonListener} id="paper" className="turn">Paper</button>
-          <button onClick = {this.buttonListener} id="scissors" className="turn">Scissors</button>
+          <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
+          <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
+          <button onClick = {this.buttonListener} id="special" className="turn">Special</button>
         </div>
                             </div>
                         </div>

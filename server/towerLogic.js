@@ -2,12 +2,10 @@ const User = require('./database/models/user')
 
 
 class RpsGame {
-  constructor(p1,p1Id,p2,p2Id) {
+  constructor(p1,p2) {
     this._players= [p1,p2];
     this._turns= [null, null];
-    this.player1Stats = this.findStats(p1Id)
-    this.player2Stats  = this.findStats(p2Id)
-    this._sendToPlayers('Starting RPS with' + p1Id + ' vs ' +p2Id);
+    this._sendToPlayers('Starting RPS with');
     this._players.forEach((player, idx)=> {
       player.on('turn', (turn)=> {
         this._onTurn(idx,turn)

@@ -11,6 +11,7 @@ const SOCKETPORT = 9090
 const socketio = require ('socket.io');
 const http = require('http');
 const RpsGame = require("./towerLogic")
+const BattleLogic = require( "./battle")
 
 // Route requires
 const user = require('./routes/user')
@@ -43,39 +44,39 @@ app.use(passport.session()) // calls the deserializeUser
 
 
 let waitingPlayer = null;
-var currentId2;
+var username
+
 const server = http.createServer(app);
 const io = socketio(server);
+
 io.on('connection',onConnection);
+
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
+
 	if (waitingPlayer) {
 		//connect waiting player to player ID
-		new RpsGame(waitingPlayer,currentId,socket,currentId2)
+		// new RpsGame(waitingPlayer,socket)
+		    // function to get stats
+		new BattleLogic(waitingPlayer,socket)
 		// notifyMatchStarts(waitingPlayer,socket)
-		console.log(RpsGame)
 		waitingPlayer = null;
 	  } else {
-		currentId2= currentId
-		console.log("not ready")
 		//connect socket to player ID
 		waitingPlayer = socket;
 		socket.emit('msg', {message:'Waiting for an opponent'});
 	  }
-}
-
-
+	}
 //=============================================
-let currentId;
+
 // Routes
 app.get('/stats/:id', (req,res)=>{
-	const id = req.params.id
-	currentId= req.params.id
-	console.log("This is the username we are searching",id)
-	User.findOne({ username:id}, (err,data)=> {
+	username= req.params.id
+	console.log("This is the username we are searching",username)
+	User.findOne({ username:username}, (err,data)=> {
 		if (err) {
 			console.log("Some kind of err",err)
 		}

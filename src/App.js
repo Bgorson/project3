@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 // components
 import Signup from './components/sign-up'
 import Navbar from './components/navbar'
@@ -21,25 +21,28 @@ class App extends Component {
     }
 
     this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
+    // this.componentDidMount = this.componentDidMount.bind(this)
     this.updateUser = this.updateUser.bind(this)
     this.getStats = this.getStats.bind(this)
     
   }
 
-  componentDidMount() {
-    this.getUser()
-  }
+  // componentDidMount() {
+  //   this.getUser()
+  // }
 
   updateUser (userObject) {
     this.setState(userObject)
+    this.getUser()
   }
 
   //WHY IS THIS NOT GETTING STATS FROM AXIOS CALL?!
   getUser() {
     axios.get('/user/').then(response => {
       console.log('Get user response: ')
+    
       if (response.data.user) {
+        console.log(response.data.user._id)
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -47,9 +50,11 @@ class App extends Component {
           userId: response.data.user._id
         })
       } else {
+        console.log("no user")
         this.setState({
           loggedIn: false,
-          username: null
+          username: null,
+          userId: null
         })
       }
     })
@@ -57,12 +62,17 @@ class App extends Component {
 
   getStats(){
     console.log("Should be looking for this",this.state.username)
+    if (this.state.username){
     axios.get("/stats/"+ this.state.username).then(response =>{
       this.setState({
           stat:response.data.stat
       })
     })
   }
+  else {
+    return null
+  }
+}
 
   render() {
     return (
@@ -119,7 +129,11 @@ class App extends Component {
         exact path="/tower"
         render={()=>
        <Tower
+       userId= {this.state.userId}
        userName = {this.state.username}
+       hp= {this.state.stat.hp}
+       strength= {this.state.stat.strength}
+       magic= {this.state.stat.magic}
        />}
         />
 
