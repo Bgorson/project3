@@ -51,7 +51,7 @@ const io = socketio(server);
 
 io.on('connection',onConnection);
 
-
+//Dealing with more than 2 connections
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('SEND_MESSAGE', function(data){

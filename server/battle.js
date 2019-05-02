@@ -9,6 +9,8 @@ class Battle {
         this._onTurn(idx,turn)
       })
     })
+    this.playerOneDefense=0;
+    this.playerTwoDefense=0;
   }
   //sending a message to one player.
     _sendToPlayer(playerIndex, msg) {
@@ -25,9 +27,19 @@ class Battle {
     
   })
 }
+  //activate shield
+  shield(player){
+    if (player===0){
+      this.playerOneDefense=4;
+    }
+    else {
+      this.playerTwoDefense=4
+    }
+  }
 
     // on a player's turn, they select the move they want to make and check if the other player
     // has made a turn yet
+    //turn = what you are doing
 _onTurn(playerIndex, turn){
   this._turns[playerIndex] = turn;
   this._sendToPlayer(playerIndex, `you selected ${turn}`)
@@ -47,11 +59,33 @@ _checkGameOver(){
 }
     //game logic for moves
 _getGameResult(){
-  const p0 = this._decodeTurn(this._turns[0])
-  const p1 = this._decodeTurn(this._turns[1])
-    this._damagePlayer(0,p1)
-    this._damagePlayer(1,p0)
-    this._sendToPlayers("Player 1: "+ p0 + " Player 2: " + p1)
+  let p0 = this._decodeTurn(this._turns[0])
+  let p1 = this._decodeTurn(this._turns[1])
+  //check for shield
+  if(p0.name=='defend'){
+    this.shield(0)
+    console.log(this.playerOneDefense)
+  }
+  if (p1.name=='defend'){
+    this.shield(1)
+  }
+    this.playerOneDefense= (this.playerOneDefense-1)
+    this.playerTwoDefense= (this.playerTwoDefense-1)
+
+    if(this.playerOneDefense >0){
+      p1= (p1.damage/2)
+      this._damagePlayer(0,p1)
+    }
+    if(this.playerTwoDefense >0){
+      p0= (p0.damage/2)
+      this._damagePlayer(1,p0)
+    }
+else {
+    this._damagePlayer(0,p1.damage)
+    this._damagePlayer(1,p0.damage)
+}
+    this._sendToPlayers("Player 1: "+ p0.name + " Player 2: " + p1.name)
+
     //Reduce hitpoints based on damage
     //Check if anyone is at 0 and end game, assign win, assign lose
 
@@ -66,11 +100,18 @@ _sendWinMessage(winner, loser) {
 _decodeTurn(turn){
   switch(turn) {
     case 'attack':
-      return 20;
+      return {
+        name:'attack',
+        damage:20}
+        ;
     case 'defend':
-      return "Defend";
+      return {
+        name:"defend",
+        damage:0};
     case 'special':
-      return 50;
+      return {
+        name:"spacial",
+        damage:50};
     default:
     throw new Error (' Could not decode' + turn)
   }

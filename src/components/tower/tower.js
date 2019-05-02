@@ -10,7 +10,8 @@ class Tower extends Component {
             message: '',
             messages: [],
             hp:'',
-            enemyHp:''
+            mp:5,
+            enemyHp:'',
         };
         this.socket = io('localhost:9090');
 
@@ -53,10 +54,23 @@ class Tower extends Component {
         }
 
         this.buttonListener = (name) => {
+            if(name.target.id == "special" && this.state.mp >0) {
+                specialMove()
+                this.socket.emit('turn', name.target.id);
+            }
+            else if (name.target.id == "special" && this.state.mp <=0){
+                alert("No mp left!")
+                return null
+            }
+            else {
         this.socket.emit('turn', name.target.id);
+            }
     }
     const damageCounter= (damage)=>{
         this.setState({hp: (this.state.hp-damage) })
+        if (this.state.hp <=0) {
+            this.socket.emit("lost",{username:this.props.userName} )
+        }
         this.socket.emit('hp',{
             username:this.props.userName,
             hp:this.state.hp
@@ -65,6 +79,9 @@ class Tower extends Component {
     const updateEnemyHp= (eHp)=>{
         console.log("Receiving",eHp)
         this.setState({enemyHp: eHp.hp})
+    }
+    const specialMove = ()=>{
+        this.setState({mp: this.state.mp-1})
     }
 }
 
@@ -88,6 +105,9 @@ class Tower extends Component {
                                 <hr/>
                                 <div className= "hp">
                                 {this.state.hp} HP
+                                </div>
+                                <div className="mp">
+                                {this.state.mp} MP
                                 </div>
                                 <div className="messages">
                                     {this.state.messages.map(message => {
