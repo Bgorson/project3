@@ -9,7 +9,8 @@ class Tower extends Component {
             username: '',
             message: '',
             messages: [],
-            hp:''
+            hp:'',
+            enemyHp:''
         };
         this.socket = io('localhost:9090');
 
@@ -21,6 +22,21 @@ class Tower extends Component {
         })
         this.socket.on("damage", function(data){
             damageCounter(data.damage)
+        })
+
+        this.socket.on('hp', function(data){
+            console.log(data.username)
+            console.log(data.hp)
+            console.log(props.userName)
+            try {
+            if (data.username != props.userName){
+            console.log("new data")
+            updateEnemyHp(data)
+            }
+            }
+            catch(error){
+                error
+            }
         })
 
         const addMessage = data => {
@@ -41,7 +57,15 @@ class Tower extends Component {
     }
     const damageCounter= (damage)=>{
         this.setState({hp: (this.state.hp-damage) })
+        this.socket.emit('hp',{
+            username:this.props.userName,
+            hp:this.state.hp
+        })
         }
+    const updateEnemyHp= (eHp)=>{
+        console.log("Receiving",eHp)
+        this.setState({enemyHp: eHp.hp})
+    }
 }
 
 
@@ -52,11 +76,12 @@ class Tower extends Component {
         })
     }
 
+
     render() { 
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-sm-6">
                         <div className="card">
                             <div className="card-body">
                                 <div className="card-title">Global Chat</div>
@@ -78,15 +103,29 @@ class Tower extends Component {
                                     <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                                 </div>
                                 <div className="button-wrapper">
-          <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
-          <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
-          <button onClick = {this.buttonListener} id="special" className="turn">Special</button>
-        </div>
+                                    <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
+                                    <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
+                                    <button onClick = {this.buttonListener} id="special" className="turn">Special</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
+                        <div className="col-sm-6">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="card-title">Enemy HP</div>
+                                    <hr/>
+                                    <div className= "enemyHp">
+                                    {this.state.enemyHp}
+                                    
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    
                 </div>
-            </div>
+                
         );
     }
 }

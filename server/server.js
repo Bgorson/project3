@@ -51,12 +51,16 @@ const io = socketio(server);
 
 io.on('connection',onConnection);
 
+
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
-
+	socket.on('hp',function(data){
+		console.log(data)
+		io.emit('hp',data)
+	})
 	if (waitingPlayer) {
 		//connect waiting player to player ID
 		// new RpsGame(waitingPlayer,socket)
@@ -85,8 +89,6 @@ app.get('/stats/:id', (req,res)=>{
 		}
 	})
 })
-
-
 app.use('/user', user.router)
 
 // Starting Server 

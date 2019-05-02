@@ -22,6 +22,7 @@ class Battle {
       //function to send a message to each player.
   _sendToPlayers(msg){
     this._players.forEach((player) => {player.emit("msg",{message: msg})
+    
   })
 }
 
@@ -74,6 +75,7 @@ _decodeTurn(turn){
     throw new Error (' Could not decode' + turn)
   }
 }
+
 
 }
 
