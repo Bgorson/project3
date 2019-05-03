@@ -118,6 +118,7 @@ class App extends Component {
         hp= {this.state.stat.hp}
         strength= {this.state.stat.strength}
         magic= {this.state.stat.magic}
+        agility= {this.state.stat.agility}
         win= {this.state.win}
         lose= {this.state.lose}
         />

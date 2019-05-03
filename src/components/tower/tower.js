@@ -96,7 +96,7 @@ class Tower extends Component {
 
 
     componentDidMount(){
-        this.socket.emit('name',this.props.username)
+        this.socket.emit('name',this.props.userName)
         this.setState({
             hp:this.props.hp
         })

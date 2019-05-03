@@ -7,7 +7,7 @@ class Signup extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			stat: {'strength':100, 'magic':100, 'hp':200},
+			stat: {'strength':100, 'magic':100, 'hp':200, "agility":100},
 			confirmPassword: '',
 			redirectTo: null
 

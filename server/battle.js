@@ -1,4 +1,5 @@
 axios = require('axios')
+const User = require('./database/models/user')
 class Battle {
   constructor(p1,p1Name,p2,p2Name) {
     this._players= [p1,p2];
@@ -12,6 +13,8 @@ class Battle {
     })
     this.playerOneDefense=0;
     this.playerTwoDefense=0;
+    this.player1Name= p1Name;
+    this.player2Name= p2Name;
   }
   //sending a message to one player.
     _sendToPlayer(playerIndex, msg) {
@@ -31,12 +34,25 @@ class Battle {
   //activate shield
   shield(player){
     if (player===0){
-      this.playerOneDefense=4;
+
+        this.playerOneDefense=5
     }
     else {
-      this.playerTwoDefense=4
+      this.playerTwoDefense=5
     }
   }
+  _getStats(userName){
+    User.findOne({username:userName}, (err, data)=>{
+      if (err){
+        console.log("an err here",err)
+      }
+      if (data){
+        console.log("data here", data.stat.agility)
+        return data.stat.agility
+      }
+    })
+  }
+  
 
     // on a player's turn, they select the move they want to make and check if the other player
     // has made a turn yet
@@ -111,6 +127,7 @@ _decodeTurn(turn){
       return {
         name:"special",
         damage:50};
+        
     default:
     throw new Error (' Could not decode' + turn)
   }

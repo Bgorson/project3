@@ -44,17 +44,32 @@ app.use(passport.session()) // calls the deserializeUser
 
 
 let waitingPlayer = null;
-var username
-var username1
+
 
 const server = http.createServer(app);
 const io = socketio(server);
-
+var username;
+var username1;
 io.on('connection',onConnection);
 
 //Dealing with more than 2 connections
 function onConnection(socket) {
+
 	console.log('New client connected', socket.id)
+	socket.on('name',function(data){
+		username= data
+		console.log(username)
+		if (waitingPlayer) {
+			new BattleLogic(waitingPlayer,username1,socket,username)
+			waitingPlayer = null;
+		  } else {
+			//connect socket to player ID
+			username1 = username
+			waitingPlayer = socket;
+			socket.emit('msg', {message:'Waiting for an opponent'+username1});
+		  }
+	})
+
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
@@ -96,26 +111,13 @@ function onConnection(socket) {
 			})
 		}
 	})
-	
+
 	socket.on("winner",function(data){
 		console.log("active")
 
 	})
 
-	if (waitingPlayer) {
 
-		//connect waiting player to player ID
-		// new RpsGame(waitingPlayer,socket)
-				// function to get stats
-		new BattleLogic(waitingPlayer,username,socket,username1)
-		// notifyMatchStarts(waitingPlayer,socket)
-		waitingPlayer = null;
-	  } else {
-		//connect socket to player ID
-		username1=username
-		waitingPlayer = socket;
-		socket.emit('msg', {message:'Waiting for an opponent'});
-	  }
 	}
 //=============================================
 
