@@ -1,9 +1,10 @@
 axios = require('axios')
 class Battle {
-  constructor(p1,p2) {
+  constructor(p1,p1Name,p2,p2Name) {
     this._players= [p1,p2];
     this._turns= [null, null];
-    this._sendToPlayers('Starting Battle');
+    this._sendToPlayers('Starting Battle'+ p1Name + p2Name);
+    this._sendToPlayers(p1Name +" VS "+ p2Name);
     this._players.forEach((player, idx)=> {
       player.on('turn', (turn)=> {
         this._onTurn(idx,turn)

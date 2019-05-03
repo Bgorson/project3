@@ -18,6 +18,8 @@ class App extends Component {
       username: null,
       stat: [],
       userId: null,
+      win:null,
+      lose:null
     }
 
     this.getUser = this.getUser.bind(this)
@@ -65,7 +67,9 @@ class App extends Component {
     if (this.state.username){
     axios.get("/stats/"+ this.state.username).then(response =>{
       this.setState({
-          stat:response.data.stat
+          stat:response.data.stat,
+          win:response.data.ratio.win,
+          lose:response.data.ratio.lose
       })
     })
   }
@@ -114,6 +118,8 @@ class App extends Component {
         hp= {this.state.stat.hp}
         strength= {this.state.stat.strength}
         magic= {this.state.stat.magic}
+        win= {this.state.win}
+        lose= {this.state.lose}
         />
         <Main/>
         </React.Fragment>}

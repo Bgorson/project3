@@ -45,6 +45,7 @@ app.use(passport.session()) // calls the deserializeUser
 
 let waitingPlayer = null;
 var username
+var username1
 
 const server = http.createServer(app);
 const io = socketio(server);
@@ -63,18 +64,55 @@ function onConnection(socket) {
 	})
 	socket.on("lost", function(data){
 		io.emit("msg", {message: data.username+ " has lost!"} )
+		User.findOneAndUpdate({username:data.username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
+			if (err) {
+				(err);
+			} else {
+				(response)
+			}
+		})
 		io.emit("lost")
 		console.log("loser detected",data.username)
+		if (data.username != username1){
+			io.emit("winner", {username:username1})
+			console.log(username1 + " won")
+			User.findOneAndUpdate({username:username1}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+				if (err) {
+					(err);
+				} else {
+					(response)
+				}
+			})
+		}
+		else{
+			io.emit("winner", {username:username})
+			console.log(username + " won")
+			User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+				if (err) {
+					(err);
+				} else {
+					(response)
+				}
+			})
+		}
 	})
+	
+	socket.on("winner",function(data){
+		console.log("active")
+
+	})
+
 	if (waitingPlayer) {
+
 		//connect waiting player to player ID
 		// new RpsGame(waitingPlayer,socket)
-		    // function to get stats
-		new BattleLogic(waitingPlayer,socket)
+				// function to get stats
+		new BattleLogic(waitingPlayer,username,socket,username1)
 		// notifyMatchStarts(waitingPlayer,socket)
 		waitingPlayer = null;
 	  } else {
 		//connect socket to player ID
+		username1=username
 		waitingPlayer = socket;
 		socket.emit('msg', {message:'Waiting for an opponent'});
 	  }

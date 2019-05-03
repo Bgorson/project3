@@ -40,6 +40,7 @@ class Tower extends Component {
                 error
             }
         })
+        
         this.socket.on('lost', function(data){
             console.log("toggling lost buttons",data)
             toggleButton();
@@ -63,7 +64,6 @@ class Tower extends Component {
                 this.socket.emit('turn', name.target.id);
             }
             else if (name.target.id == "special" && this.state.mp <=0){
-                alert("No mp left!")
                 return null
             }
             else {
@@ -121,7 +121,7 @@ class Tower extends Component {
                                 <div className="button-wrapper">
                                     <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
                                     <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
-                                    <button onClick = {this.buttonListener} id="special" className="turn">Special</button>
+                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0}className="turn">Special</button>
                                     </div>
                                     </div>
                             </div>
