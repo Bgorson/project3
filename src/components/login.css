@@ -1,5 +1,7 @@
 .btn.btn-primary {
-    background: green;
+    background: #0E1226;
+    color: #FFFFFF;
+    opacity: .65;
     border: none;
     margin: 10px;
     padding: 10px 25px;
@@ -17,4 +19,9 @@
 .wildlyfe-logo {
     width: 90px;
 }
+
+svg {
+    stroke-dasharray: 10;
+}
+
 

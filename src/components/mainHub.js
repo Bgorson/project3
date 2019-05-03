@@ -11,9 +11,6 @@ class Main extends Component {
     render() { 
         return (
             <React.Fragment>
-            <h1>
-                You're logged in!
-            </h1>
             <h4>Choose a mini game here</h4>
             <div className = "row">
                 <div className = "colm">
@@ -25,19 +22,19 @@ class Main extends Component {
 
                <div className = "colm">
                     <Link to = "/miniGame2">
-                    <button>MiniGame 2</button>
+                    <img src={logo} className="wildlyfe-logo" alt="logo" />
                     </Link>
                 </div>
 
                 <div className = "colm">
                     <Link to = "/miniGame3">
-                    <button>MiniGame 3</button>
+                    <img src={logo} className="wildlyfe-logo" alt="logo" />
                     </Link>
                 </div>
 
                 <div className = "colm">
                     <Link to = "/miniGame4">
-                    <button>MiniGame 4</button>
+                    <img src={logo} className="wildlyfe-logo" alt="logo" />
                     </Link>
                 </div>
 

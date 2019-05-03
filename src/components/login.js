@@ -4,7 +4,10 @@ import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import logo from '../logo.svg'
+import wildlyfe from '../wildlyfe.svg'
+
 import './login.css';
+
 
 class Login extends Component {
     constructor() {
@@ -63,7 +66,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
-                     <img src={logo} className="wildlyfe-logo" alt="logo" />
+                    <img src={logo} className="wildlyfe-logo" alt="wildlyfe" />
                     <h2>WILDLYFE</h2>
                     <form className="form-horizontal">
                         <div className="form-group">
