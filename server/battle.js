@@ -16,6 +16,7 @@ class Battle {
     this.player1Name= p1Name;
     this.player2Name= p2Name;
   }
+
   //sending a message to one player.
     _sendToPlayer(playerIndex, msg) {
       this._players[playerIndex].emit("msg",{message:msg})
@@ -32,26 +33,46 @@ class Battle {
   })
 }
   //activate shield
+  
   shield(player){
+    let self = this;
     if (player===0){
-
-        this.playerOneDefense=5
+      User.findOne({username:this.player1Name}, (err, data)=>{
+        if (err){
+          console.log("an err here",err)
+        }
+        if (data){
+          console.log("data here", data.stat.agility)
+          return data.stat.agility
+        }
+      }).then(function(data){
+        console.log("data on this line",data.stat.agility)
+        console.log(self)
+        self.playerOneDefense= data.stat.agility
+        console.log("This is te players defense",self.playerOneDefense)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      
     }
     else {
       this.playerTwoDefense=5
     }
   }
-  _getStats(userName){
-    User.findOne({username:userName}, (err, data)=>{
-      if (err){
-        console.log("an err here",err)
-      }
-      if (data){
-        console.log("data here", data.stat.agility)
-        return data.stat.agility
-      }
-    })
-  }
+  // _getStats(userName){
+  //   User.findOne({username:userName}, (err, data)=>{
+  //     if (err){
+  //       console.log("an err here",err)
+  //     }
+  //     if (data){
+  //       console.log("data here", data.stat.agility)
+  //       return data.stat.agility
+  //     }
+  //   }).then(function(agility){
+  //     this.playerOneDefense= agility
+  //   })
+  // }
   
 
     // on a player's turn, they select the move they want to make and check if the other player
