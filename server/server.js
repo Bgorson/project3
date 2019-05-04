@@ -58,13 +58,14 @@ io.on('connection',onConnection);
 // join and empty the key
 //socket.join(math.random)
 function onConnection(socket) {
+let localBattle;
 
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data
 		console.log(username)
 		if (waitingPlayer) {
-			new BattleLogic(waitingPlayer,username1,socket,username)
+			localBattle= new BattleLogic(waitingPlayer,username1,socket,username)
 			waitingPlayer = null;
 		  } else {
 			//connect socket to player ID
@@ -120,6 +121,8 @@ function onConnection(socket) {
 		console.log("active")
 
 	})
+
+
 
 
 	}
