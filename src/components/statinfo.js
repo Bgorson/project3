@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 class StatInfo extends Component {
     constructor() {
         super()
@@ -18,12 +17,14 @@ class StatInfo extends Component {
     render() { 
         return ( 
         <React.Fragment>
+
         <h4>Stats</h4>
-        <div>
-            HP: {this.props.hp}
-            Strength: {this.props.strength}
-            Magic: {this.props.magic}
-        </div>
+        <h1>Stats will go here</h1>
+        <div>HP: {this.props.hp}</div>
+        <div>Strength: {this.props.strength}</div>
+        <div>Magic: {this.props.magic}</div>
+        <div>Wins: {this.props.win} Loses: {this.props.lose}</div>
+
         </React.Fragment>
          );
     }
