@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import MainButtons from './mainButtons'
 
 import './main.css';
-import logo from '../logo.svg';
+import logo from '../images/logo.svg';
 
 class Main extends Component {
     state = { 

@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
-import logo from '../logo.svg'
-import wildlyfe from '../wildlyfe.svg'
+import logo from '../images/logo.svg'
+
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
