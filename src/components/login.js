@@ -51,9 +51,9 @@ class Login extends Component {
                         stat:response.data.stat
                     })
                     // update the state to redirect to home
-                    // this.setState({
-                    //     redirectTo: '/main'
-                    // })
+                    this.setState({
+                        redirectTo: '/main'
+                    })
                 }
             }).catch(error => {
                 console.log('login error: ')
