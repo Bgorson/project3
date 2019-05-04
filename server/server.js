@@ -53,6 +53,10 @@ var username1;
 io.on('connection',onConnection);
 
 //Dealing with more than 2 connections
+//Use a Math.random to create a key. 
+// join the key, after wiating player = true
+// join and empty the key
+//socket.join(math.random)
 function onConnection(socket) {
 
 	console.log('New client connected', socket.id)

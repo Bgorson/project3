@@ -15,6 +15,8 @@ class Tower extends Component {
             enemyHp:'',
             visible:''
         };
+        //share a special key and make it-
+        //this.socket = io(key)
         this.socket = io('localhost:9090');
 
         this.socket.on("RECEIVE_MESSAGE", function(data){
