@@ -6,6 +6,7 @@ import axios from 'axios'
 import logo from '../logo.svg'
 import wildlyfe from '../wildlyfe.svg'
 
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 // import './login.css';
 
@@ -74,30 +75,37 @@ class Login extends Component {
                             <div className="col-1 col-ml-auto">
                                 <label className="form-label" htmlFor="username"></label>
                             </div>
-                            <div className="col-3 col-mr-auto">
-                                <input className="form-input"
-                                    type="text"
-                                    id="username"
-                                    name="username"
-                                    placeholder="username"
-                                    value={this.state.username}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
+                           <div className="col-3 col-mr-auto">
+                            <TextField
+                                id="username-input"
+                                label="username"
+                                type="username"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                                margin="normal"
+                            />
+                           </div>
+
+
                         </div>
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
                                 <label className="form-label" htmlFor="password"></label>
                             </div>
                             <div className="col-3 col-mr-auto">
-                                <input className="form-input"
-                                    placeholder="password"
-                                    type="password"
-                                    name="password"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
+                                <TextField
+                                id="password-input"
+                                label="password"
+                                name="password"
+                                type="password"
+                                autoComplete="current-password"
+                                margin="normal"
+                                value={this.state.password}
+                                onChange={this.handleChange}
                                 />
                             </div>
+
                         </div>
                         <div className="form-group ">
                             <div className="col-7"></div>
