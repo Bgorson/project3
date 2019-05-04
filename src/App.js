@@ -7,8 +7,11 @@ import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
 import Minigame1 from "./components/minigame1/components/Clickygame"
+import Minigame4 from "./components/minigame4/components/MiniGame4"
 import StatInfo from './components/statinfo'
 import Tower from "./components/tower/tower"
+
+
 
 class App extends Component {
   constructor() {
@@ -115,7 +118,7 @@ class App extends Component {
         // Send the current state of stats to be read by the block
         userId= {this.state.userId}
         getStats= {this.getStats}
-        hp= {this.state.stat.hp}
+        // hp= {this.state.stat.hp}
         strength= {this.state.stat.strength}
         magic= {this.state.stat.magic}
         win= {this.state.win}
@@ -130,6 +133,14 @@ class App extends Component {
         render={()=>
        <Minigame1/>}
         />
+
+{/* ===================================== */}
+        <Route
+        exact path="/minigame4"
+        render={()=>
+       <Minigame4 />}
+        />
+        
 {/* ===================================== */}
         <Route
         exact path="/tower"
