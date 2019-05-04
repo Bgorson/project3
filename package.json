@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "animejs": "^3.0.1",
     "axios": "^0.17.1",
     "bcryptjs": "^2.4.3",

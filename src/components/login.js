@@ -6,7 +6,8 @@ import axios from 'axios'
 import logo from '../logo.svg'
 import wildlyfe from '../wildlyfe.svg'
 
-import './login.css';
+import Button from '@material-ui/core/Button';
+// import './login.css';
 
 
 class Login extends Component {
@@ -100,16 +101,18 @@ class Login extends Component {
                         </div>
                         <div className="form-group ">
                             <div className="col-7"></div>
-                            <button
-                                className="btn btn-primary col-1 col-mr-auto"
+                            <Button
+                                variant="contained" color="primary"
                                
                                 onClick={this.handleSubmit}
-                                type="submit">Login</button>
+                                type="submit">Login
+                            </Button>
 
-                                
+                            <Button variant="contained" color="primary">    
                                 <Link to="/signup" className="btn btn-link">
-                                    <button className= "btn btn-primary">Sign Up</button>
+                                    Sign Up 
 				                </Link>
+                            </Button>    
                         </div>
                     </form>
                 </div>
