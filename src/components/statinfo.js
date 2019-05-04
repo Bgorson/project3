@@ -17,12 +17,15 @@ class StatInfo extends Component {
     render() { 
         return ( 
         <React.Fragment>
+
+        <h4>Stats</h4>
         <h1>Stats will go here</h1>
         <div>HP: {this.props.hp}</div>
         <div>Strength: {this.props.strength}</div>
         <div>Magic: {this.props.magic}</div>
         <div>Agility: {this.props.agility}</div>
         <div>Wins: {this.props.win} Loses: {this.props.lose}</div>
+
         </React.Fragment>
          );
     }

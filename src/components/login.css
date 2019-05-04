@@ -1,0 +1,23 @@
+.btn.btn-primary {
+    background: #0E1226;
+    color: #FFFFFF;
+    opacity: .65;
+    border: none;
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 14px;
+}
+
+.form-input{
+    margin: 5px;
+    border: none;
+    padding: 10px 45px;
+    opacity: .65;
+    font-size: 14px;
+}
+
+.wildlyfe-logo {
+    width: 90px;
+}
+
+

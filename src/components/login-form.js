@@ -64,18 +64,18 @@ class LoginForm extends Component {
         } else {
             return (
                 <div>
-                    <h4>Login</h4>
+                    <h2>Login</h2>
                     <form className="form-horizontal">
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="username">Username</label>
+                                <label className="form-label" htmlFor="username"></label>
                             </div>
                             <div className="col-3 col-mr-auto">
                                 <input className="form-input"
                                     type="text"
                                     id="username"
                                     name="username"
-                                    placeholder="Username"
+                                    placeholder="username"
                                     value={this.state.username}
                                     onChange={this.handleChange}
                                 />
@@ -83,7 +83,7 @@ class LoginForm extends Component {
                         </div>
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="password">Password: </label>
+                                <label className="form-label" htmlFor="password"></label>
                             </div>
                             <div className="col-3 col-mr-auto">
                                 <input className="form-input"
@@ -105,7 +105,7 @@ class LoginForm extends Component {
 
                                 <button
                                 className="btn btn-primary col-1 col-mr-auto"
-                               
+                
                                 onClick={this.handleSignup}
                                 type="submit">Signup</button>
                         </div>
