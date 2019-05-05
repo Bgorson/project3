@@ -1,33 +1,57 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Route, Link } from 'react-router-dom'
 
-import './login.css';
+// material-ui
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+
+// css styles
+import './pet.css';
+
+const styles = theme => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing.unit * 2,
+    },
+  });
 
 class PetChoice extends Component {
 
     constructor() {
 		super()
 		this.state = {
-			petName: 'fluffy',
-			petType: 'dog',
-			petColor: 'white',
-			petAccess: 'bandana'
+			petName: '',
+			petType: '',
+			petColor: '',
+			petAccess: ''
 
 		}
         this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
-	}
+    }
+    
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value,
 		})
 	}
     handleSubmit(event) {
-		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
 		event.preventDefault()
 
-		//request to server to add a new username/password
+		//request to server to add a pet to user
 		axios.post('/pets/', {
 			petname: this.state.petName,
 			petType: this.state.petType,
@@ -52,60 +76,71 @@ class PetChoice extends Component {
     }
     
     render() {
+        const { classes } = this.props;
         //if the redirect state is filled, go to it
-        if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
+        // if (this.state.redirectTo) {
+        //     return <Redirect to={{ pathname: this.state.redirectTo }} />
+        // } else {
 return (
-    <div className="SignupForm">
-        <h2>Sign up</h2>
-        <form className="form-horizontal">
-            <div className="form-group">
-                <div className="col-1 col-ml-auto">
-                    <label className="form-label" htmlFor="username"></label>
-                </div>
-                <div className="col-3 col-mr-auto">
-                    <input className="form-input"
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
-                </div>
-            </div>
-            <div className="form-group">
-                <div className="col-1 col-ml-auto">
-                    <label className="form-label" htmlFor="password"></label>
-                </div>
-                <div className="col-3 col-mr-auto">
-                    <input className="form-input"
-                        placeholder="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                    />
-                </div>
-            </div>
-            <div className="form-group ">
-                <div className="col-7"></div>
-                <button
-                    className="btn btn-primary col-1 col-mr-auto"
-                    onClick={this.handleSubmit}
-                    type="submit"
-                >Sign up</button>
-            </div>
-        </form>
-    </div>
+    <div className="petSelect">
+    <h2>PET SELECTION</h2>
+    <form className="petForm">
+        <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="pet-type">Type</InputLabel> 
+                <Select
+                    value={this.state.petType}
+                    onChange={this.handleChange}
+                    inputProps={{
+                    name: 'petType',
+                    id: 'type-pet',
+                    }}
+                >
+                    <MenuItem value='dog'>dog</MenuItem>
+                    <MenuItem value='cat'>cat</MenuItem>
+                </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="pet-color">Color</InputLabel> 
+                <Select
+                    value={this.state.petColor}
+                    onChange={this.handleChange}
+                    inputProps={{
+                    name: 'petColor',
+                    id: 'color-pet',
+                    }}
+                >
+                    <MenuItem value='white'>white</MenuItem>
+                    <MenuItem value='orange'>orange</MenuItem>
+                </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="pet-access">Accessory</InputLabel> 
+                <Select
+                    value={this.state.petAccess}
+                    onChange={this.handleChange}
+                    inputProps={{
+                    name: 'petAccess',
+                    id: 'access-pet',
+                    }}
+                >
+                    <MenuItem value='bandana'>bandanda</MenuItem>
+                    <MenuItem value='bell'>bell</MenuItem>
+                </Select>
+        </FormControl> 
+        <Button variant="contained" color="primary" onClick={this.handleSubmit}>    
+            <Link to="/main" className="btn btn-link">
+                Confirm
+            </Link>
+        </Button>   
+    </form>
+</div>
 
 )
-        }
+    }
 }
-}
-    
 
-
-
-export default PetChoice;
+PetChoice.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+  export default withStyles(styles)(PetChoice);
