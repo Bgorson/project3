@@ -230,3 +230,9 @@ class Tower extends Component {
 
  
 export default Tower;
+
+//REMAINING ISSUES:
+// MULTIPLE MESSAGES OF GAME OVER
+//server crashes
+//Third person issues. 
+//Need seperate rooms
