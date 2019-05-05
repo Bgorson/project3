@@ -6,8 +6,6 @@ import { Redirect } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import './login.css';
-
 class Signup extends Component {
 	constructor() {
 		super()
@@ -17,7 +15,6 @@ class Signup extends Component {
 			stat: {'strength':100, 'magic':100, 'hp':200, "agility":100},
 			confirmPassword: '',
 			redirectTo: null
-
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -69,35 +66,40 @@ class Signup extends Component {
 			<div className="SignupForm">
 				<h2>Sign up</h2>
 				<form className="signup-form">
-					<TextField className="form-input"
-						type="text"
-						id="username"
-						label="username"
-						name="username"
-						placeholder="username"
-						value={this.state.username}
-						onChange={this.handleChange}
-					/>
-					<div className="col-3 col-mr-auto">
-					<TextField c
-						className="form-input"
-						placeholder="password"
-						type="password"
-						label="password"
-						name="password"
-						value={this.state.password}
-						onChange={this.handleChange}
-					/>
+					<div className="form-group">	
+						<TextField 
+							className="form-input"
+							type="text"
+							id="username"
+							label="username"
+							name="username"
+							placeholder="username"
+							value={this.state.username}
+							onChange={this.handleChange}
+							margin="normal"
+						/>
+						</div>
+					<div className="form-group">
+						<TextField
+							className="form-input"
+							placeholder="password"
+							type="password"
+							label="password"
+							name="password"
+							value={this.state.password}
+							onChange={this.handleChange}
+							margin="normal"
+						/>
 					</div>
-					<div className="form-group ">
-					<Button 
-						variant="contained" 
-						color="primary"
-						onClick={this.handleSubmit}
-						type="submit" 
-						>
-						Sign up
-					</Button>
+					<div className="form-group">
+						<Button 
+							variant="contained" 
+							color="primary"
+							onClick={this.handleSubmit}
+							type="submit" 
+							>
+							Sign up
+						</Button>
 					</div>
 				</form>
 			</div>
