@@ -44,84 +44,89 @@ app.use(passport.session()) // calls the deserializeUser
 
 
 let waitingPlayer = null;
-
+let roomKey= null;
 
 const server = http.createServer(app);
 const io = socketio(server);
 var username;
 var username1;
+
+
+
+
 io.on('connection',onConnection);
-
-//Dealing with more than 2 connections
-//Use a Math.random to create a key. 
-// join the key, after wiating player = true
-// join and empty the key
-//socket.join(math.random)
 function onConnection(socket) {
-let localBattle;
-
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data
-		console.log(username)
 		if (waitingPlayer) {
-			localBattle= new BattleLogic(waitingPlayer,username1,socket,username)
+			socket.emit('room',roomKey)
+			socket.join(roomKey)
+			io.to(roomKey).emit('msg', {message:'Waiting?!?'});
+			io.to(roomKey).emit('enemy',[username,username1])
+			new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
 			waitingPlayer = null;
+			roomKey = null
 		  } else {
-			//connect socket to player ID
+			roomKey = username
+			socket.join(roomKey)
 			username1 = username
 			waitingPlayer = socket;
 			socket.emit('msg', {message:'Waiting for an opponent'+username1});
+			socket.emit('room',roomKey)
 		  }
 	})
-
+	
 	socket.on('SEND_MESSAGE', function(data){
 		io.emit('RECEIVE_MESSAGE', data)
 	})
-	socket.on('hp',function(data){
-		console.log(data)
-		io.emit('hp',data)
+	socket.on("gameover", function(data){
+		console.log(data,"winner")
+		io.emit("win", data)
 	})
-	socket.on("lost", function(data){
-		io.emit("msg", {message: data.username+ " has lost!"} )
-		User.findOneAndUpdate({username:data.username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
-			if (err) {
-				(err);
-			} else {
-				(response)
-			}
-		})
-		io.emit("lost")
-		console.log("loser detected",data.username)
-		if (data.username != username1){
-			io.emit("winner", {username:username1})
-			console.log(username1 + " won")
-			User.findOneAndUpdate({username:username1}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
-				if (err) {
-					(err);
-				} else {
-					(response)
-				}
-			})
-		}
-		else{
-			io.emit("winner", {username:username})
-			console.log(username + " won")
-			User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
-				if (err) {
-					(err);
-				} else {
-					(response)
-				}
-			})
-		}
-	})
+	// socket.on('hp',function(data){
+	// 	console.log(data)
+	// 	io.to("test").emit('hp',data)
+	// })
+	// socket.on("lost", function(data){
+	// 	io.to("test").emit("msg", {message: data.username+ " has lost!"} )
+	// 	User.findOneAndUpdate({username:data.username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
+	// 		if (err) {
+	// 			(err);
+	// 		} else {
+	// 			(response)
+	// 		}
+	// 	})
+	// 	io.to("test").emit(roomKey,"lost")
+	// 	console.log("loser detected",data.username)
+	// 	if (data.username != username1){
+	// 		io.to("test").emit("winner", {username:username1})
+	// 		console.log(username1 + " won")
+	// 		User.findOneAndUpdate({username:username1}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+	// 			if (err) {
+	// 				(err);
+	// 			} else {
+	// 				(response)
+	// 			}
+	// 		})
+	// 	}
+	// 	else{
+	// 		io.to("test").emit("winner", {username:username})
+	// 		console.log(username + " won")
+			// User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+			// 	if (err) {
+			// 		(err);
+			// 	} else {
+			// 		(response)
+			// 	}
+			// })
+	// 	}
+	// })
 
-	socket.on("winner",function(data){
-		console.log("active")
+	// socket.on("winner",function(data){
+	// 	console.log("active")
 
-	})
-
+	// })
 
 
 
@@ -138,6 +143,29 @@ app.get('/stats/:id', (req,res)=>{
 		}
 		else {
 			res.json(data)
+		}
+	})
+})
+
+app.post('/tower/win/:id', (req,res)=>{
+	username= req.params.id
+	console.log("hitting win route for:" + username)
+	User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
+		}
+	})
+})
+app.post('/tower/lose/:id', (req,res)=>{
+	username= req.params.id
+	console.log("hitting lose route for:" + username)
+	User.findOneAndUpdate({username:username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
 		}
 	})
 })

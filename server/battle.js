@@ -1,7 +1,7 @@
 axios = require('axios')
 const User = require('./database/models/user')
 class Battle {
-  constructor(p1,p1Name,p2,p2Name) {
+  constructor(p1,p1Name,p2,p2Name, roomKey) {
     this._players= [p1,p2];
     this._turns= [null, null];
     this._sendToPlayers('Starting Battle'+ p1Name + p2Name);
@@ -15,6 +15,7 @@ class Battle {
     this.playerTwoDefense=0;
     this.player1Name= p1Name;
     this.player2Name= p2Name;
+    this.roomKey=roomKey
   }
 
   //sending a message to one player.
@@ -147,12 +148,13 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:50};
+        damage:200};
         
     default:
     throw new Error (' Could not decode' + turn)
   }
 }
+
 
 }
 
