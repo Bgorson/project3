@@ -16,7 +16,19 @@ class Battle {
     this.player1Name= p1Name;
     this.player2Name= p2Name;
     this.roomKey=roomKey
+    // this.startup()
+
+    // this._players.forEach((player, idx)=> {
+    //   player.on('hp', (turn)=> {
+    //     this._hpEmit(idx,turn)
+    //   })
+    // })
   }
+
+  // startup() {
+  //   this._sendToPlayers("you're in room"+ this.roomKey)
+  //   console.log("I think this worked?")
+  // }
 
   //sending a message to one player.
     _sendToPlayer(playerIndex, msg) {
@@ -99,6 +111,11 @@ _onTurn(playerIndex, turn){
   this._sendToPlayer(playerIndex, `you are going to use ${turn}`)
   this._checkGameOver();
 }
+// _hpEmit(playerIndex, turn){
+//   this._turns[playerIndex] = turn;
+//   this._sendToPlayer(playerIndex, `your hp ${turn}`)
+
+// }
 
     //Once both players made a turn, reset game and display results
 _checkGameOver(){
@@ -209,11 +226,11 @@ if(p1.name == "special") {
   })
 }
     //calculate damages
-    else {
-    this._damagePlayer(0,p1.damage)
+  //   else {
+  //   this._damagePlayer(0,p1.damage)
 
-    this._damagePlayer(1,p0.damage)
-  }
+  //   this._damagePlayer(1,p0.damage)
+  // }
     this._sendToPlayers("Player 1 uses "+ p0.name + " Player 2 uses " + p1.name)
    
 }
@@ -239,14 +256,22 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:50};
+        damage:400};
+    // case 'heal':
+    // return {
+    //   name:"heal",
+    //   damage:0
+    // }
         
     default:
     throw new Error (' Could not decode' + turn)
   }
+  
+}
+
 }
 
 
-}
+
 
 module.exports = Battle
