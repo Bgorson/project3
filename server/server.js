@@ -81,10 +81,15 @@ function onConnection(socket) {
 		io.emit('RECEIVE_MESSAGE', data)
 	})
 	socket.on("gameover", function(data){
+		console.log("game is over")
 		console.log(data,"winner")
 		io.emit("win", data)
 	})
+	socket.on("hp", function(data){
+		io.emit("hp",data)
+	})
 	}
+
 //=============================================
 
 // Routes

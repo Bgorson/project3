@@ -49,17 +49,16 @@ class Tower extends Component {
             }
         })
 
-        this.socket.on('hp',function(data){
-            console.log(data)
-            io.to(this.state.roomKey).emit('hp',data)
-        })
-
-        this.socket.on("win", function(data){
+       	    this.socket.on("win", function(data){
             console.log(data)
             if(data == props.userName){
-                toggleButton();
+            toggleButton();
             }
-                
+        })
+  
+        this.socket.on("gameover", function(data){
+            console.log(data)
+                toggleButton();
         })
     
         const addMessage = data => {
@@ -92,8 +91,8 @@ class Tower extends Component {
         this.setState({hp: (this.state.hp-damage) })
         if (this.state.hp <=0) {
             handleLoseEmit(this.state.opponent)
-            handleLose(this.props.userName)
             handleWin(this.state.opponent)
+            handleLose(this.props.userName)
 
         }
         else {this.socket.emit('hp',{
@@ -101,14 +100,15 @@ class Tower extends Component {
             hp:this.state.hp
         })
     }
-        }
+    }
+
     const handleLoseEmit =(opponent)=> {
-        console.log('hitting emit route')
-        this.socket.emit('SEND_MESSAGE', {
-            author: '',
-            message: "Game Over " +opponent+ " won!"
-        })
-        this.socket.emit("gameover", opponent)
+           console.log('hitting emit route')
+             this.socket.emit('SEND_MESSAGE', {
+             author: '',
+             message: "Game Over " +opponent+ " won!"
+             })
+            this.socket.emit("gameover", opponent)
     }
     const handleLose = (username)=>{
         axios.post("/tower/lose/"+ username)
@@ -126,8 +126,21 @@ class Tower extends Component {
     const specialMove = ()=>{
         this.setState({mp: this.state.mp-1})
     }
+    // const heal = ()=>{
+    //     this.setState({
+    //         mp: this.state.mp-1,
+    //         hp: this.state.hp+10
+    //     })
+    
+    // }
+
     const toggleButton=()=>{
         this.setState({visible: "disable"})
+        this.socket.emit("SEND_MESSAGE", {
+            author: '',
+            message: "Game Over"
+        }
+        )
     }
     const setRoomKey=(key)=>{
         this.setState({roomKey:key})
@@ -145,7 +158,7 @@ class Tower extends Component {
     }
 
     }
-
+    
     componentDidMount(){
         this.socket.emit('name',this.props.userName)
         this.setState({
@@ -173,6 +186,7 @@ class Tower extends Component {
                                     <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
                                     <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
                                     <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0}className="turn">Special</button>
+                                    {/* <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0}className="turn">Heal</button> */}
                                     </div>
                                     </div>
                             </div>

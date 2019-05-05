@@ -239,14 +239,25 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:50};
+        damage:400};
+    // case 'heal':
+    // return {
+    //   name:"heal",
+    //   damage:0
+    // }
         
     default:
     throw new Error (' Could not decode' + turn)
   }
+  
 }
 
-
+}
+try {this.p1.to(roomKey).emit('msg', {message:'Is this working??????!?'});
+console.log("I think this worked?")
+}
+catch (err){
+  console.log("no")
 }
 
 module.exports = Battle
