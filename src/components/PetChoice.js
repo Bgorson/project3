@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 // css styles
 import './pet.css';
@@ -86,7 +87,18 @@ return (
     <h2>PET SELECTION</h2>
     <form className="petForm">
         <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="pet-type">Type</InputLabel> 
+        <TextField
+                id="petname-input"
+                label="pet name"
+                type="petname"
+                name="petname"
+                value={this.state.petName}
+                onChange={this.handleChange}
+                margin="normal"
+        />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="pet-type">type</InputLabel> 
                 <Select
                     value={this.state.petType}
                     onChange={this.handleChange}
@@ -100,7 +112,7 @@ return (
                 </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="pet-color">Color</InputLabel> 
+        <InputLabel htmlFor="pet-color">color</InputLabel> 
                 <Select
                     value={this.state.petColor}
                     onChange={this.handleChange}
@@ -114,7 +126,7 @@ return (
                 </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="pet-access">Accessory</InputLabel> 
+        <InputLabel htmlFor="pet-access">accessory</InputLabel> 
                 <Select
                     value={this.state.petAccess}
                     onChange={this.handleChange}
