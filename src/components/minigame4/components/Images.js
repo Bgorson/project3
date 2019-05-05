@@ -31,7 +31,7 @@ class Images extends Component {
                   y={Math.random() * window.innerHeight}
                   numPoints={5}
                   innerRadius={20}
-                  outerRadius={40}
+                  outerRadius={35}
                   fill="ffffff"
                   opacity={0.8}
                   draggable
