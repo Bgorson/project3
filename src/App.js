@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Route } from 'react-router-dom'
 // components
 import Signup from './components/sign-up'
+import PetChoice from "./components/PetChoice"
 import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
@@ -113,6 +114,14 @@ class App extends Component {
           render={() =>
             <Signup/>}
         />
+
+{/* ===================================== */}
+        <Route
+          path="/petChoice"
+          render={() =>
+            <PetChoice />}
+        />
+
 {/* ===================================== */}
         <Route
         path="/main"
