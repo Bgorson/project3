@@ -49,11 +49,6 @@ class Tower extends Component {
             }
         })
 
-        // this.socket.on('SEND_MESSAGE', function(data){
-        //     console.log("Receiving on a message")
-        //     io.emit('RECEIVE_MESSAGE', data)
-        // })
-
         this.socket.on('hp',function(data){
             console.log(data)
             io.to(this.state.roomKey).emit('hp',data)

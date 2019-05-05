@@ -84,52 +84,6 @@ function onConnection(socket) {
 		console.log(data,"winner")
 		io.emit("win", data)
 	})
-	// socket.on('hp',function(data){
-	// 	console.log(data)
-	// 	io.to("test").emit('hp',data)
-	// })
-	// socket.on("lost", function(data){
-	// 	io.to("test").emit("msg", {message: data.username+ " has lost!"} )
-	// 	User.findOneAndUpdate({username:data.username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
-	// 		if (err) {
-	// 			(err);
-	// 		} else {
-	// 			(response)
-	// 		}
-	// 	})
-	// 	io.to("test").emit(roomKey,"lost")
-	// 	console.log("loser detected",data.username)
-	// 	if (data.username != username1){
-	// 		io.to("test").emit("winner", {username:username1})
-	// 		console.log(username1 + " won")
-	// 		User.findOneAndUpdate({username:username1}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
-	// 			if (err) {
-	// 				(err);
-	// 			} else {
-	// 				(response)
-	// 			}
-	// 		})
-	// 	}
-	// 	else{
-	// 		io.to("test").emit("winner", {username:username})
-	// 		console.log(username + " won")
-			// User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
-			// 	if (err) {
-			// 		(err);
-			// 	} else {
-			// 		(response)
-			// 	}
-			// })
-	// 	}
-	// })
-
-	// socket.on("winner",function(data){
-	// 	console.log("active")
-
-	// })
-
-
-
 	}
 //=============================================
 

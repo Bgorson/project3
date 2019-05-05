@@ -48,8 +48,7 @@ class Battle {
         }
       }).then(function(data){
         console.log("data on this line",data.stat.agility)
-        console.log(self)
-        self.playerOneDefense= data.stat.agility
+        self.playerOneDefense= (data.stat.agility/20)
         console.log("This is te players defense",self.playerOneDefense)
       })
       .catch((err) => {
@@ -58,7 +57,23 @@ class Battle {
       
     }
     else {
-      this.playerTwoDefense=5
+      User.findOne({username:this.player2Name}, (err, data)=>{
+        if (err){
+          console.log("an err here",err)
+        }
+        if (data){
+          console.log("data here", data.stat.agility)
+          return data.stat.agility
+        }
+      }).then(function(data){
+        console.log("data on this line",data.stat.agility)
+        console.log(self)
+        self.playerTwoDefense= (data.stat.agility/20)
+        console.log("This is te players defense",self.playerOneDefense)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }
   }
   // _getStats(userName){
@@ -99,6 +114,7 @@ _checkGameOver(){
 }
     //game logic for moves
 _getGameResult(){
+  let self = this;
   let p0 = this._decodeTurn(this._turns[0])
   let p1 = this._decodeTurn(this._turns[1])
   //check for shield
@@ -118,14 +134,52 @@ _getGameResult(){
     if(this.playerTwoDefense >0){
       p0.damage= (p0.damage/2)
     }
+    //modifiers
+    if(p0.name == "attack") {
+      User.findOne({username:this.player1Name}, (err, data)=>{
+        if (err){
+          console.log("an err here",err)
+        }
+        if (data){
+          console.log("data here", data.stat.strength)
+          return data.stat.strength
+        }
+      }).then(function(data){
+        console.log("data on this line",data.stat.strength)
+        p0.damage= p0.damage+(data.stat.strength/20)
+        self._damagePlayer(1,p0.damage)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+    if(p1.name == "attack") {
+      User.findOne({username:this.player2Name}, (err, data)=>{
+        if (err){
+          console.log("an err here",err)
+        }
+        if (data){
+          console.log("data here", data.stat.strength)
+          return data.stat.strength
+        }
+      }).then(function(data){
+        console.log("data on this line",data.stat.strength)
+        p1.damage= p1.damage+(data.stat.strength/20)
+        self._damagePlayer(0,p1.damage)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+
+    //calculate damages
+    else {
     this._damagePlayer(0,p1.damage)
+
     this._damagePlayer(1,p0.damage)
-
+  }
     this._sendToPlayers("Player 1 uses "+ p0.name + " Player 2 uses " + p1.name)
-
-    //Reduce hitpoints based on damage
-    //Check if anyone is at 0 and end game, assign win, assign lose
-
+   
 }
     //identify who wins and who lises
 _sendWinMessage(winner, loser) {
@@ -139,7 +193,8 @@ _decodeTurn(turn){
     case 'attack':
       return {
         name:'attack',
-        damage:20}
+        damage:20
+      }
         ;
     case 'defend':
       return {
