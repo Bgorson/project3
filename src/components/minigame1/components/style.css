@@ -36,7 +36,6 @@ nav {
 }
 .jumbotron {
     text-align: center;
-    background:url("../background.png");
     background-clip: content-box;
     background-position: center; 
     height:500px;

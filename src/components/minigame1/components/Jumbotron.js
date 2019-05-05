@@ -1,12 +1,13 @@
 import React from "react"
-import Jumbotron from 'react-bootstrap/Jumbotron'
 
-function JumbotronComponent() {
+
+function JumbotronComponent(props) {
     return(
-        <Jumbotron fluid>
+        <div fluid>
+        <h1>Hello {props.user}</h1>
         <h1>Clicky Game!</h1>
         <p>Click an image below to earn points. Don't click duplicates! </p>
-</Jumbotron>
+</div>
     )
 }
 export default JumbotronComponent;

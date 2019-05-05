@@ -84,6 +84,13 @@ class App extends Component {
   updatedStats(){
     axios.get("/stats/")
   }
+  //function for leveling up
+  //pass the USERNAME and the stat you want increased
+  levelUp(username,stat){
+    axios.post("/levelUp/"+username+"/"+stat, {stat}).then(function(){
+      console.log("leveling up", stat)
+    })
+  }
 
   render() {
     return (
@@ -136,7 +143,12 @@ class App extends Component {
         <Route
         exact path="/minigame1"
         render={()=>
-       <Minigame1/>}
+       <Minigame1
+       userId= {this.state.userId}
+       userName= {this.state.username}
+       levelUp= {this.levelUp}
+       strength= {this.state.stat.strength}
+       />}
         />
 
 {/* ===================================== */}

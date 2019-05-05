@@ -141,11 +141,11 @@ _getGameResult(){
           console.log("an err here",err)
         }
         if (data){
-          console.log("data here", data.stat.strength)
+          console.log("data here str", data.stat.strength)
           return data.stat.strength
         }
       }).then(function(data){
-        console.log("data on this line",data.stat.strength)
+        console.log("data on this line str",data.stat.strength)
         p0.damage= p0.damage+(data.stat.strength/20)
         self._damagePlayer(1,p0.damage)
       })
@@ -159,11 +159,11 @@ _getGameResult(){
           console.log("an err here",err)
         }
         if (data){
-          console.log("data here", data.stat.strength)
+          console.log("data here str", data.stat.strength)
           return data.stat.strength
         }
       }).then(function(data){
-        console.log("data on this line",data.stat.strength)
+        console.log("data on this line str",data.stat.strength)
         p1.damage= p1.damage+(data.stat.strength/20)
         self._damagePlayer(0,p1.damage)
       })
@@ -171,7 +171,43 @@ _getGameResult(){
         console.log(err);
       })
     }
-
+//Special Move
+if(p0.name == "special") {
+  User.findOne({username:this.player1Name}, (err, data)=>{
+    if (err){
+      console.log("an err here",err)
+    }
+    if (data){
+      console.log("data here Magic", data.stat.magic)
+      return data.stat.magic
+    }
+  }).then(function(data){
+    console.log("data on this line Magic",data.stat.magic)
+    p0.damage= p0.damage+(data.stat.magic/20)
+    self._damagePlayer(1,p0.damage)
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+if(p1.name == "special") {
+  User.findOne({username:this.player2Name}, (err, data)=>{
+    if (err){
+      console.log("an err here",err)
+    }
+    if (data){
+      console.log("data here Magic", data.stat.magic)
+      return data.stat.magic
+    }
+  }).then(function(data){
+    console.log("data on this line Magic",data.stat.magic)
+    p1.damage= p1.damage+(data.stat.magic/20)
+    self._damagePlayer(0,p1.damage)
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
     //calculate damages
     else {
     this._damagePlayer(0,p1.damage)
@@ -203,7 +239,7 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:200};
+        damage:50};
         
     default:
     throw new Error (' Could not decode' + turn)

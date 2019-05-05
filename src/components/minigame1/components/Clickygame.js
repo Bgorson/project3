@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import Clickcard from "./Clickcard";
-import Footer from "./Footer";
 import Navbar from "./Navbar";
-import Jumbotron from "./Jumbotron"
 import cards from "../cards.json"
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
 import "./style.css"
+import Jumbotron from "./Jumbotron"
+
+import Grid from "@material-ui/core/Grid"
+import Paper from '@material-ui/core/Paper';
+
+
 
 class Clickygame extends Component {
     state= {
@@ -37,6 +39,9 @@ handleClick = event =>{
     } 
 
     else {
+        if (this.state.score >1) {
+            this.props.levelUp(this.props.userName, "strength")
+        }
         this.setState({
             score:0,
             clicked:[],
@@ -66,19 +71,28 @@ render(){
             text= {this.state.headerText}
             />
         
-            <Jumbotron/>
-        <Container className= "collection">
-           <Row>
-        <Clickcard 
+            <Jumbotron
+            user= {this.props.userName}
+            />
+        <div className= "collection">
+            <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            item sm= {12}
+            >
+            <Clickcard 
+
             shuffle = {this.shuffleCards}
             cards = {cards}
             handleClick= {this.handleClick}
             />
-            </Row>
 
+            </Grid>
+          
+        </div>
 
-        </Container>
-            <Footer/>
         </div>
     )
 }

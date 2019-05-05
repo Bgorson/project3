@@ -123,6 +123,56 @@ app.post('/tower/lose/:id', (req,res)=>{
 		}
 	})
 })
+
+app.post('/levelUp/:id/strength', (req, res)=>{
+	let user = req.params.id 
+	let stat= req.params.stat
+	console.log(stat)
+	User.findOneAndUpdate({username:user}, { $inc: { "stat.strength" : 10 } }, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
+		}
+	})
+	})
+
+app.post('/levelUp/:id/magic', (req, res)=>{
+	let user = req.params.id 
+	let stat= req.params.stat
+	console.log(stat)
+	User.findOneAndUpdate({username:user}, { $inc: { "stat.magic" : 10 } }, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
+		}
+	})
+	})
+app.post('/levelUp/:id/hp', (req, res)=>{
+	let user = req.params.id 
+	let stat= req.params.stat
+	console.log(stat)
+	User.findOneAndUpdate({username:user}, { $inc: { "stat.hp" : 10 } }, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
+		}
+	})
+	})
+app.post('/levelUp/:id/agility', (req, res)=>{
+	let user = req.params.id 
+	let stat= req.params.stat
+	console.log(stat)
+	User.findOneAndUpdate({username:user}, { $inc: { "stat.agility" : 10 } }, {new:true}, function(err,response){
+		if (err) {
+			(err);
+		} else {
+			(response)
+		}
+	})
+	})
 app.use('/user', user.router)
 
 // Starting Server 

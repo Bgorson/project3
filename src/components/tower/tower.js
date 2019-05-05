@@ -104,6 +104,10 @@ class Tower extends Component {
         }
     const handleLoseEmit =(opponent)=> {
         console.log('hitting emit route')
+        this.socket.emit('SEND_MESSAGE', {
+            author: '',
+            message: "Game Over " +opponent+ " won!"
+        })
         this.socket.emit("gameover", opponent)
     }
     const handleLose = (username)=>{

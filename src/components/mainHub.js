@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
-
 import MainButtons from './mainButtons'
 
 import './main.css';
-import logo from '../images/logo.svg';
+
 
 class Main extends Component {
     state = { 
