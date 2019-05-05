@@ -7,6 +7,7 @@ import Navbar from './components/navbar'
 import Login from './components/login'
 import Main from './components/mainHub'
 import Minigame1 from "./components/minigame1/components/Clickygame"
+import MiniGame2 from "./components/minigame2/js/components/MiniGame2"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
 import StatInfo from './components/statinfo'
 import Tower from "./components/tower/tower"
@@ -140,6 +141,16 @@ class App extends Component {
         />
 
 {/* ===================================== */}
+
+{/* ===================================== */}
+        <Route
+        exact path="/minigame2"
+        render={()=>
+       <MiniGame2/>}
+        />
+
+{/* ===================================== */}
+
         <Route
         exact path="/minigame4"
         render={()=>

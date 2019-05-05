@@ -1,3 +1,6 @@
-import APP from './components/MiniGame2'
-import React from 'react'
-require('../css/stylesheet.css')
+import React from "react";
+import ReactDOM from "react-dom";
+import "./stylesheet.css";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
