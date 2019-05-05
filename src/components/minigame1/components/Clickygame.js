@@ -7,6 +7,7 @@ import Jumbotron from "./Jumbotron"
 
 import Grid from "@material-ui/core/Grid"
 import Paper from '@material-ui/core/Paper';
+import Grow from '@material-ui/core/Grow';
 
 
 
@@ -39,7 +40,7 @@ handleClick = event =>{
     } 
 
     else {
-        if (this.state.score >1) {
+        if (this.state.score >5) {
             this.props.levelUp(this.props.userName, "strength")
         }
         this.setState({
@@ -74,6 +75,7 @@ render(){
             <Jumbotron
             user= {this.props.userName}
             />
+
         <div className= "collection">
             <Grid
             container
