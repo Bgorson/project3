@@ -65,7 +65,7 @@ class PetChoice extends Component {
 				if (!response.data.errmsg) {
 					console.log('you chosen your pet')
 					this.setState({ //redirect to login page
-						redirectTo: '/main'
+						redirectTo: '/'
 					})
 				} else {
 					console.log('err')
@@ -81,7 +81,7 @@ class PetChoice extends Component {
         const { classes } = this.props;
         //if the redirect state is filled, go to it
         if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
+            return <Link to={this.state.redirectTo} />
         } else {
 return (
     <div className="petSelect">
@@ -141,7 +141,7 @@ return (
                 </Select>
         </FormControl> 
         <Button variant="contained" color="primary" onClick={this.handleSubmit}>    
-            <Link to="/main" className="btn btn-link">
+            <Link to="/" className="btn btn-link">
                 Confirm
             </Link>
         </Button>   

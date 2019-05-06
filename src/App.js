@@ -23,7 +23,8 @@ class App extends Component {
       stat: {},
       userId: null,
       win:null,
-      lose:null
+      lose:null,
+      petname:''
     }
 
     this.getUser = this.getUser.bind(this)
@@ -78,7 +79,8 @@ class App extends Component {
       this.setState({
           stat:response.data.stat,
           win:response.data.ratio.win,
-          lose:response.data.ratio.lose
+          lose:response.data.ratio.lose,
+          petname:response.data.petname
       })
     })
   }
@@ -90,6 +92,8 @@ class App extends Component {
   updatedStats(){
     axios.get("/stats/")
   }
+
+
   //function for leveling up
   //pass the USERNAME and the stat you want increased
   levelUp(username,stat){
@@ -153,6 +157,8 @@ class App extends Component {
         agility= {this.state.stat.agility}
         win= {this.state.win}
         lose= {this.state.lose}
+        getUser= {this.getUser}
+        petname= {this.state.petname}
         />
         <Main/>
         </React.Fragment>}

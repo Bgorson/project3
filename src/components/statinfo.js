@@ -25,6 +25,7 @@ class StatInfo extends Component {
         <div>Magic: {this.props.magic}</div>
         <div>Agility: {this.props.agility}</div>
         <div>Wins: {this.props.win} Loses: {this.props.lose}</div>
+        <div>Companion: {this.props.petname}</div>
 
         </React.Fragment>
          );
