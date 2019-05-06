@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import "../../css/stylesheet.css";
+import { Motion, spring } from "react-motion";
+
+
+const cells= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, ""];
+
+const array = [
+  [1,2,3,4],
+  [5,6,7,8],
+  [9,'',11,12],
+  [13,14,15,10]
+]; // Keep track of empty cell by using the 'state'
+
+
 
 class MiniGame2 extends Component {
+  state = {
+    
+  }
+
+ handleClick = () => {
+   console.log("click")
+ }
+
   render() {
     return (
       <div className= "container">
-        <p> Sup World</p>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>
-        <div>13</div>
-        <div>14</div>
-        <div>15</div>
-        <div id="empty">0</div>
-
+        {
+          cells.map( (cell, i) => {
+            return (<div key= {i} onClick= {this.handleClick}>{cell}</div>)
+          })
+        }
       </div>
     )
   }
