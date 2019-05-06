@@ -8,7 +8,11 @@ const userSchema = new Schema({
 	username: { type: String, unique: false, required: false },
 	password: { type: String, unique: false, required: false },
 	stat: {type: Object, unique: false},
-	ratio: {type: Object, unique:false}
+	ratio: {type: Object, unique:false},
+	petname: {type:String},
+	petType: {type:String},
+	petColor: {type:String},
+	petAccess: {type:String}
 
 })
 

@@ -30,7 +30,7 @@ class App extends Component {
     // this.componentDidMount = this.componentDidMount.bind(this)
     this.updateUser = this.updateUser.bind(this)
     this.getStats = this.getStats.bind(this)
-    
+    this.signupUser = this.signupUser.bind(this)
   }
 
   // componentDidMount() {
@@ -38,8 +38,13 @@ class App extends Component {
   // }
 
   updateUser (userObject) {
+    console.log("firing off updateUser ")
     this.setState(userObject)
     this.getUser()
+  }
+  signupUser (userObject) {
+      console.log("firing off updateUser ")
+      this.setState(userObject)
   }
 
   //WHY IS THIS NOT GETTING STATS FROM AXIOS CALL?!
@@ -119,14 +124,18 @@ class App extends Component {
         <Route
           path="/signup"
           render={() =>
-            <Signup/>}
+            <Signup
+            signUp={this.signupUser}
+            />}
         />
 
 {/* ===================================== */}
         <Route
           path="/petChoice"
           render={() =>
-            <PetChoice />}
+            <PetChoice
+            userName = {this.state.username}
+            />}
         />
 
 {/* ===================================== */}

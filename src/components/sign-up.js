@@ -42,8 +42,9 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/'
+					this.props.signUp({username:response.data.username})
+					this.setState({ //redirect to avatar creation page
+						redirectTo: "/petChoice",
 					})
 				} else {
 					console.log('username already taken')
