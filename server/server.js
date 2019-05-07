@@ -57,6 +57,18 @@ var username1;
 io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
+	
+	let rooms = {}
+	// rooms.username = username;
+	// rooms[username].battleObj = new BattleLogic(........)
+	// io.to(rooms.username.battleObj.roomKey).emit('msg', {message:'Waiting?!?'});
+	// queue_of_users.push(socket.id);
+	// // if for(let key in rooms){
+	// 	rooms.players = [];
+	// // if players.value < 2;
+	// room.players.push(queue_of_users[0])
+	// queue_of_users.unshift();
+
 	socket.on('name',function(data){
 		username= data
 		if (waitingPlayer) {
