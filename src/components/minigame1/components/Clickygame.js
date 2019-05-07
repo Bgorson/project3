@@ -5,9 +5,7 @@ import cards from "../cards.json"
 import "./style.css"
 import Jumbotron from "./Jumbotron"
 
-import Grid from "@material-ui/core/Grid"
-import Paper from '@material-ui/core/Paper';
-import Grow from '@material-ui/core/Grow';
+// import Grid from "@material-ui/core/Grid"
 
 
 
@@ -18,8 +16,6 @@ class Clickygame extends Component {
         clicked: [],
         headerText: "Click an Image to Begin"
     }
-
-
 
 handleClick = event =>{
     console.log("clicked")
@@ -67,9 +63,9 @@ render(){
     return (
         <div>
             <Navbar
-            score = {this.state.score}
-            topScore= {this.state.topScore}
-            text= {this.state.headerText}
+                score = {this.state.score}
+                topScore= {this.state.topScore}
+                text= {this.state.headerText}
             />
         
             <Jumbotron
@@ -77,22 +73,14 @@ render(){
             />
 
         <div className= "collection">
-            <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            item sm= {12}
-            >
-            <Clickcard 
 
-            shuffle = {this.shuffleCards}
-            cards = {cards}
-            handleClick= {this.handleClick}
-            />
-
-            </Grid>
-          
+                <Clickcard 
+                    className="image-cards"
+                    shuffle = {this.shuffleCards}
+                    cards = {cards}
+                    handleClick= {this.handleClick}
+                />
+        
         </div>
 
         </div>
