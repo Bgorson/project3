@@ -3,7 +3,9 @@ import Clickcard from "./Clickcard";
 import Navbar from "./Navbar";
 import cards from "../cards.json"
 import "./style.css"
-import Jumbotron from "./Jumbotron"
+import Instructions from "./Instructions"
+
+import Modal from '@material-ui/core/Modal';
 
 class Clickygame extends Component {
 
@@ -14,13 +16,13 @@ class Clickygame extends Component {
         headerText: "Click an Image to Begin"
     }
 
-handleClick = event =>{
-    console.log("clicked")
+handleClick = event => {
+        console.log("clicked")
     let localScore = this.state.score
-    console.log(this.state.topScore)
+        console.log(this.state.topScore)
     //check if its in the array
     //make this ternerary operator?
-    if (this.state.clicked.indexOf(event.target.alt) === -1){
+    if (this.state.clicked.indexOf(event.target.alt) === -1) {
         localScore = localScore +1
         this.state.clicked.push(event.target.alt)
         this.setState({
@@ -31,7 +33,7 @@ handleClick = event =>{
     } 
 
     else {
-        if (this.state.score >5) {
+        if (this.state.score > 5) {
             this.props.levelUp(this.props.userName, "strength")
         }
         this.setState({
@@ -43,7 +45,7 @@ handleClick = event =>{
     console.log(event.target.alt)
 }
 //Pulled function from StackOverFlow: https://stackoverflow.com/questions/38101522/how-to-render-random-objects-from-an-array-in-react
-shuffleCards = array =>{
+shuffleCards = array => {
     let i = array.length-1;
     for(; i > 0;i--){
         const j = Math.floor(Math.random() * (i+1));
@@ -62,11 +64,9 @@ render(){
                 topScore= {this.state.topScore}
                 text= {this.state.headerText}
             />
-        
-            <Jumbotron
-            user= {this.props.userName}
-            />
-
+        <Modal>    
+        <Instructions />
+        </Modal>
         <div className= "collection">
 
                 <Clickcard 

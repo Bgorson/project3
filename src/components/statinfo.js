@@ -20,7 +20,6 @@ class StatInfo extends Component {
 
     render() { 
         return ( 
-
           <div className="stat-box"> 
             <Card className="stat-content">
                 <CardContent>
