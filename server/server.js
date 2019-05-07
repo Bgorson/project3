@@ -31,6 +31,9 @@ app.use(favicon(__dirname + '/build/favicon.ico'))
 app.use(bodyParser.json())
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
 // Sessions
 app.use(
 	session({
