@@ -174,30 +174,11 @@ class App extends Component {
         petname= {this.state.petname}
 
         />
+        <Main/>
 </React.Fragment>
         }
 />
-{/* ===================================== */}
 
-        <Route
-          path="/main"
-          render= { () =>
-            <React.Fragment>
-              <StatInfo
-                // Send the current state of stats to be read by the block
-                userId= {this.state.userId}
-                getStats= {this.getStats}
-                hp= {this.state.stat.hp}
-                strength= {this.state.stat.strength}
-                magic= {this.state.stat.magic}
-                agility= {this.state.stat.agility}
-                win= {this.state.win}
-                lose= {this.state.lose}
-              />
-              <Main/>
-            </React.Fragment>
-          }
-        />
 {/* ===================================== */}
         <Route
           exact path="/minigame1"
