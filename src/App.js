@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Route } from 'react-router-dom'
 // components
+import Login from './components/login'
+import Navbar from './components/navbar'
+
 import Signup from './components/sign-up'
 import PetChoice from "./components/PetChoice"
-import Navbar from './components/navbar'
-import Login from './components/login'
+import Story from './components/Story'
+
 import Main from './components/mainHub'
+import StatInfo from './components/statinfo'
+
+//mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
-import StatInfo from './components/statinfo'
 import Tower from "./components/tower/tower"
 
 
@@ -110,40 +115,47 @@ class App extends Component {
             loggedIn={this.state.loggedIn}
             />
     {this.state.loggedIn &&
-    <p>Join the party, {this.state.username}!</p>
+      <p>Join the party, {this.state.username}!</p>
     }
+
 {/* ===================================== */}
         {/* Routes to different components */}
         <Route
           exact path="/"
-          render={() =>
+          render= { () =>
             <React.Fragment>
- 
-            <Login
-              updateUser={this.updateUser}
-            />
+              <Login
+                updateUser={this.updateUser}
+              />
             </React.Fragment>}
         />
 {/* ===================================== */}
         <Route
           path="/signup"
+
           render={() =>
             <Signup
             signUp={this.signupUser}
             />}
+
         />
 
 {/* ===================================== */}
+
         <Route
           path="/petChoice"
+
           render={() =>
             <PetChoice
             userName = {this.state.username}
             />}
+
         />
 
 {/* ===================================== */}
+
         <Route
+
         path="/main"
         render={()=>
           <React.Fragment>
@@ -159,41 +171,69 @@ class App extends Component {
         lose= {this.state.lose}
         getUser= {this.getUser}
         petname= {this.state.petname}
+
         />
-        <Main/>
-        </React.Fragment>}
+
+{/* ===================================== */}
+
+        <Route
+          path="/main"
+          render= { () =>
+            <React.Fragment>
+              <StatInfo
+                // Send the current state of stats to be read by the block
+                userId= {this.state.userId}
+                getStats= {this.getStats}
+                hp= {this.state.stat.hp}
+                strength= {this.state.stat.strength}
+                magic= {this.state.stat.magic}
+                agility= {this.state.stat.agility}
+                win= {this.state.win}
+                lose= {this.state.lose}
+              />
+              <Main/>
+            </React.Fragment>
+          }
         />
 {/* ===================================== */}
         <Route
-        exact path="/minigame1"
-        render={()=>
-       <Minigame1
-       userId= {this.state.userId}
-       userName= {this.state.username}
-       levelUp= {this.levelUp}
-       strength= {this.state.stat.strength}
-       />}
+          exact path="/minigame1"
+          render= { () =>
+            <Minigame1
+            userId= {this.state.userId}
+            userName= {this.state.username}
+            levelUp= {this.levelUp}
+            strength= {this.state.stat.strength}
+            />
+        }
         />
 
 {/* ===================================== */}
         <Route
-        exact path="/minigame4"
-        render={()=>
-       <Minigame4 />}
+          exact path="/minigame4"
+          render= { () =>
+            <Minigame4 
+              userId= {this.state.userId}
+              userName= {this.state.username}
+              levelUp= {this.levelUp}
+              strength= {this.state.stat.strength}
+            />
+          }
         />
         
 {/* ===================================== */}
         <Route
-        exact path="/tower"
-        render={()=>
-       <Tower
-       userId= {this.state.userId}
-       userName = {this.state.username}
-       hp= {this.state.stat.hp}
-       strength= {this.state.stat.strength}
-       magic= {this.state.stat.magic}
-       />}
+          exact path="/tower"
+          render= { () =>
+            <Tower
+            userId= {this.state.userId}
+            userName = {this.state.username}
+            hp= {this.state.stat.hp}
+            strength= {this.state.stat.strength}
+            magic= {this.state.stat.magic}
+            />}
         />
+{/* ===================================== */}
 
       </div>
     );

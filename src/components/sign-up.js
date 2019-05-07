@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
-import './login.css';
+// material-ui
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class Signup extends Component {
 	constructor() {
@@ -13,7 +15,6 @@ class Signup extends Component {
 			stat: {'strength':100, 'magic':100, 'hp':200, "agility":100},
 			confirmPassword: '',
 			redirectTo: null
-
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -57,58 +58,54 @@ class Signup extends Component {
 	}
 
 
-render() {
-	        //if the redirect state is filled, go to it
+	render() {
+			//if the redirect state is filled, go to it
 			if (this.state.redirectTo) {
 				return <Redirect to={{ pathname: this.state.redirectTo }} />
 			} else {
-	return (
-		<div className="SignupForm">
-			<h2>Sign up</h2>
-			<form className="form-horizontal">
-				<div className="form-group">
-					<div className="col-1 col-ml-auto">
-						<label className="form-label" htmlFor="username"></label>
-					</div>
-					<div className="col-3 col-mr-auto">
-						<input className="form-input"
+		return (
+			<div className="SignupForm">
+				<h2>Sign up</h2>
+				<form className="signup-form">
+					<div className="form-group">	
+						<TextField 
+							className="form-input"
 							type="text"
 							id="username"
+							label="username"
 							name="username"
-							placeholder="Username"
+							placeholder="username"
 							value={this.state.username}
 							onChange={this.handleChange}
+							margin="normal"
 						/>
-					</div>
-				</div>
-				<div className="form-group">
-					<div className="col-1 col-ml-auto">
-						<label className="form-label" htmlFor="password"></label>
-					</div>
-					<div className="col-3 col-mr-auto">
-						<input className="form-input"
+						</div>
+					<div className="form-group">
+						<TextField
+							className="form-input"
 							placeholder="password"
 							type="password"
+							label="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
+							margin="normal"
 						/>
 					</div>
-				</div>
-				<div className="form-group ">
-					<div className="col-7"></div>
-					<button
-						className="btn btn-primary col-1 col-mr-auto"
-						onClick={this.handleSubmit}
-						type="submit"
-					>Sign up</button>
-				</div>
-			</form>
-		</div>
-
-	)
-			}
-}
+					<div className="form-group">
+						<Button 
+							variant="contained" 
+							color="primary"
+							onClick={this.handleSubmit}
+							type="submit" 
+							>
+							Sign up
+						</Button>
+					</div>
+				</form>
+			</div>
+		)}
+	}
 }
 
 export default Signup

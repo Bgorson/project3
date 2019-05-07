@@ -7,13 +7,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Route, Link } from 'react-router-dom'
 
 import Bg from '../images/bg.svg'
+import Tower from '../images/tower.png'
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 450,
   },
   media: {
-    height: 350,
+    height: 500,
   }
 };
 
@@ -36,7 +37,7 @@ const images = [
     link: "/miniGame4"
   }, {
     title: "tower",
-      img: Bg,
+      img: Tower,
       link: "/tower"
   }
 
