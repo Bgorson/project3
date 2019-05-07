@@ -12,6 +12,8 @@ const socketio = require ('socket.io');
 const http = require('http');
 const RpsGame = require("./towerLogic")
 const BattleLogic = require( "./battle")
+const path = require('path')
+const favicon = require('express-favicon');
 
 // Route requires
 const user = require('./routes/user')
@@ -25,8 +27,10 @@ app.use(
 		extended: false
 	})
 )
+app.use(favicon(__dirname + '/build/favicon.ico'))
 app.use(bodyParser.json())
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'build')));
 // Sessions
 app.use(
 	session({
