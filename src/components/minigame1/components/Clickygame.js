@@ -5,11 +5,8 @@ import cards from "../cards.json"
 import "./style.css"
 import Jumbotron from "./Jumbotron"
 
-// import Grid from "@material-ui/core/Grid"
-
-
-
 class Clickygame extends Component {
+
     state= {
         score: 0,
         topScore: 0,
@@ -31,8 +28,6 @@ handleClick = event =>{
             headerText:"That is correct!",
             topScore: Math.max(this.state.topScore, localScore)
         })
-
-
     } 
 
     else {

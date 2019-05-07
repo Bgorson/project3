@@ -6,6 +6,7 @@
 .collection {
     display: grid;
     grid-template-columns: repeat(4, 3fr);
+    grid-row-gap: 40px;
     margin-right: auto;
     margin-left:auto;
     margin-bottom:10em;

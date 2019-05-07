@@ -1,4 +1,6 @@
 import React from "react"
+
+// material-ui
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -20,12 +22,14 @@ function Clickcard (props) {
       props.shuffle(props.cards).map(characters => (
         <Card className={classes.card}>
           <CardActionArea>
-            <CardMedia key = {characters.id}          
-              onClick= {props.handleClick} 
-              className={classes.media}
-              alt={characters.name} 
-              image={characters.image}
-            />
+            <CardMedia key = {characters.id}>   
+              <img 
+                  onClick= {props.handleClick} 
+                  className={classes.media}
+                  alt={characters.name} 
+                  src={characters.image} 
+                />
+            </CardMedia>
           </CardActionArea>
         </Card>
       ))
