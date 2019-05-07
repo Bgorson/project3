@@ -136,7 +136,8 @@ class App extends Component {
           render={() =>
             <Signup
             signUp={this.signupUser}
-            />}
+            />
+          }
 
         />
 
@@ -173,7 +174,9 @@ class App extends Component {
         petname= {this.state.petname}
 
         />
-
+</React.Fragment>
+        }
+/>
 {/* ===================================== */}
 
         <Route
@@ -231,13 +234,14 @@ class App extends Component {
             hp= {this.state.stat.hp}
             strength= {this.state.stat.strength}
             magic= {this.state.stat.magic}
-            />}
+            />
+          }
         />
 {/* ===================================== */}
 
-      </div>
-    );
-  }
+     </div>
+    )};
+  
 }
 
 export default App;

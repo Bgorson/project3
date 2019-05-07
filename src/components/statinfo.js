@@ -59,7 +59,7 @@ class StatInfo extends Component {
         );
 
 
-         );
+      
 
     }
 }
