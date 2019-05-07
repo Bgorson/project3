@@ -49,16 +49,23 @@ class Tower extends Component {
             }
         })
 
-       	    this.socket.on("win", function(data){
-            console.log(data)
-            if(data == props.userName){
-            toggleButton();
-            }
-        })
+       	//     this.socket.on("win", function(data){
+        //     console.log(data)
+        //     if(data == props.userName){
+        //     toggleButton();
+        //     }
+        // })
   
         this.socket.on("gameover", function(data){
             console.log(data)
                 toggleButton();
+            if (data.winner == props.userName){
+                handleWin(props.userName)
+            }
+            else {
+                handleLose(props.userName)
+            }
+                   
         })
     
         const addMessage = data => {
@@ -69,7 +76,8 @@ class Tower extends Component {
             event.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
                 author: this.props.userName,
-                message: this.state.message
+                message: this.state.message,
+                roomKey:this.state.roomKey
             })
             this.setState({message:''})
         }
@@ -84,38 +92,47 @@ class Tower extends Component {
             }
             else {
         this.socket.emit('turn', name.target.id);
+        console.log(name.target.id)
 
             }
     }
     const damageCounter= (damage)=>{
         this.setState({hp: (this.state.hp-damage) })
+        //if player's HP gets to zero or lower, send out an emit saying you lost
         if (this.state.hp <=0) {
-            handleLoseEmit(this.state.opponent)
-            handleWin(this.state.opponent)
-            handleLose(this.props.userName)
+            handleLoseEmit(this.props.userName)
 
         }
         else {this.socket.emit('hp',{
             username:this.props.userName,
-            hp:this.state.hp
+            hp:this.state.hp,
+            roomKey:this.state.roomKey
         })
     }
     }
 
-    const handleLoseEmit =(opponent)=> {
+    const handleLoseEmit =(user)=> {
            console.log('hitting emit route')
              this.socket.emit('SEND_MESSAGE', {
              author: '',
-             message: "Game Over " +opponent+ " won!"
+             message: "Game Over " +this.state.opponent+ " won!",
+             roomKey:this.state.roomKey
              })
-            this.socket.emit("gameover", opponent)
+            this.socket.emit("gameover", {
+                loser:user,
+                winner:this.state.opponent,
+                roomKey:this.state.roomKey
+            })
     }
+
     const handleLose = (username)=>{
+        console.log('handling lose', username)
         axios.post("/tower/lose/"+ username)
         toggleButton();
     }
 
     const handleWin = (username)=>{
+        console.log('handling win', username)
         axios.post("/tower/win/"+ username)
         toggleButton();
     }
@@ -136,23 +153,25 @@ class Tower extends Component {
 
     const toggleButton=()=>{
         this.setState({visible: "disable"})
-        this.socket.emit("SEND_MESSAGE", {
-            author: '',
-            message: "Game Over"
-        }
-        )
+        // this.socket.emit("SEND_MESSAGE", {
+        //     author: '',
+        //     message: "Game Over",
+        //     roomKey:this.state.roomKey
+        // }
+        // )
     }
     const setRoomKey=(key)=>{
+        console.log("settingroom key", key)
         this.setState({roomKey:key})
     }
 
     const addOpponent=(opp)=>{
         console.log(opp)
-        if (opp[0]==props.userName){
-            this.setState({opponent:opp[1]})
+        if (opp.playerOne==props.userName){
+            this.setState({opponent:opp.playerTwo})
         }
         else {
-            this.setState({opponent:opp[0]})
+            this.setState({opponent:opp.playerOne})
         }
        
     }
@@ -196,17 +215,18 @@ class Tower extends Component {
                             <div className="">
                                 <div className="">
                                     <div className="">Enemy HP</div>
-                                    <hr/>
+                               
                                     <div className= "enemyHp">
                                     {this.state.enemyHp}
                                     
                                     </div>
+                                    <hr/>
                                     </div>
                                 </div>
                             </div>
                     </div>
                     <div className = "row justify-content-center">
-                            <div className="">Global Chat
+                            <div className="">Chat with your opponent
                             <div className="messages col-12">
                                     {this.state.messages.map(message => {
                                         return (
