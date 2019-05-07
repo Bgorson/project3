@@ -16,19 +16,7 @@ class Battle {
     this.player1Name= p1Name;
     this.player2Name= p2Name;
     this.roomKey=roomKey
-    // this.startup()
-
-    // this._players.forEach((player, idx)=> {
-    //   player.on('hp', (turn)=> {
-    //     this._hpEmit(idx,turn)
-    //   })
-    // })
   }
-
-  // startup() {
-  //   this._sendToPlayers("you're in room"+ this.roomKey)
-  //   console.log("I think this worked?")
-  // }
 
   //sending a message to one player.
     _sendToPlayer(playerIndex, msg) {
@@ -36,12 +24,16 @@ class Battle {
     }
     //damage player
     _damagePlayer(playerIndex,damage){
-        this._players[playerIndex].emit("damage",{damage})
+        this._players[playerIndex].in(this.roomKey).emit("damage",{
+          damage:damage,
+          roomKey:this.roomKey
+        })
+        console.log('only sending to',this.roomKey)
     }
 
       //function to send a message to each player.
   _sendToPlayers(msg){
-    this._players.forEach((player) => {player.emit("msg",{message: msg})
+    this._players.forEach((player) => {player.in(this.roomKey).emit("msg",{message: msg})
     
   })
 }
@@ -61,7 +53,7 @@ class Battle {
       }).then(function(data){
         console.log("data on this line",data.stat.agility)
         self.playerOneDefense= (data.stat.agility/20)
-        console.log("This is te players defense",self.playerOneDefense)
+        console.log("This is player1's players defense",self.playerOneDefense)
       })
       .catch((err) => {
         console.log(err);
@@ -81,27 +73,14 @@ class Battle {
         console.log("data on this line",data.stat.agility)
         console.log(self)
         self.playerTwoDefense= (data.stat.agility/20)
-        console.log("This is te players defense",self.playerOneDefense)
+        console.log("This is player 2's defense",self.playerOneDefense)
       })
       .catch((err) => {
         console.log(err);
       })
     }
   }
-  // _getStats(userName){
-  //   User.findOne({username:userName}, (err, data)=>{
-  //     if (err){
-  //       console.log("an err here",err)
-  //     }
-  //     if (data){
-  //       console.log("data here", data.stat.agility)
-  //       return data.stat.agility
-  //     }
-  //   }).then(function(agility){
-  //     this.playerOneDefense= agility
-  //   })
-  // }
-  
+ 
 
     // on a player's turn, they select the move they want to make and check if the other player
     // has made a turn yet
@@ -111,12 +90,6 @@ _onTurn(playerIndex, turn){
   this._sendToPlayer(playerIndex, `you are going to use ${turn}`)
   this._checkGameOver();
 }
-// _hpEmit(playerIndex, turn){
-//   this._turns[playerIndex] = turn;
-//   this._sendToPlayer(playerIndex, `your hp ${turn}`)
-
-// }
-
     //Once both players made a turn, reset game and display results
 _checkGameOver(){
   const turns = this._turns
@@ -132,8 +105,8 @@ _checkGameOver(){
     //game logic for moves
 _getGameResult(){
   let self = this;
-  let p0 = this._decodeTurn(this._turns[0])
-  let p1 = this._decodeTurn(this._turns[1])
+  let p1 = this._decodeTurn(this._turns[0])
+  let p0 = this._decodeTurn(this._turns[1])
   //check for shield
   if(p0.name=='defend'){
     this.shield(0)
@@ -235,10 +208,10 @@ if(p1.name == "special") {
    
 }
     //identify who wins and who lises
-_sendWinMessage(winner, loser) {
-  winner.emit('msg', {message:'you won'})
-  loser.emit('msg', {message: 'you lost'})
-}
+// _sendWinMessage(winner, loser) {
+//   winner.to(this.roomKey).emit('msg', {message:'you won'})
+//   loser.emit('msg', {message: 'you lost'})
+// }
 
     //turn selections into numbers
 _decodeTurn(turn){
@@ -256,7 +229,7 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:400};
+        damage:40};
     // case 'heal':
     // return {
     //   name:"heal",

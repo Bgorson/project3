@@ -48,7 +48,7 @@ app.use(passport.session()) // calls the deserializeUser
 // SocketIO 
 let waitingPlayer = null;
 let roomKey= null;
-
+let rooms={}
 const server = http.createServer(app);
 const io = socketio(server);
 var username;
@@ -58,29 +58,23 @@ io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	
-	let rooms = {}
-	// rooms.username = username;
-	// rooms[username].battleObj = new BattleLogic(........)
-	// io.to(rooms.username.battleObj.roomKey).emit('msg', {message:'Waiting?!?'});
-	// queue_of_users.push(socket.id);
-	// // if for(let key in rooms){
-	// 	rooms.players = [];
-	// // if players.value < 2;
-	// room.players.push(queue_of_users[0])
-	// queue_of_users.unshift();
-
 	socket.on('name',function(data){
 		username= data
 		if (waitingPlayer) {
 			socket.emit('room',roomKey)
 			socket.join(roomKey)
 			io.to(roomKey).emit('msg', {message:'Waiting?!?'});
-			io.to(roomKey).emit('enemy',[username,username1])
-			new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
+			io.to(roomKey).emit('enemy', {
+				playerOne:username1,
+				playerTwo:username
+			});
+			rooms[roomKey] = new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
+			console.log(rooms)
 			waitingPlayer = null;
 			roomKey = null
 		  } else {
 			roomKey = username
+			rooms[roomKey] = {}
 			socket.join(roomKey)
 			username1 = username
 			waitingPlayer = socket;
@@ -90,16 +84,27 @@ function onConnection(socket) {
 	})
 	
 	socket.on('SEND_MESSAGE', function(data){
-		io.emit('RECEIVE_MESSAGE', data)
+		let roomId = data.roomKey
+		io.in(rooms[roomId].roomKey).emit('RECEIVE_MESSAGE', data)
+		console.log((rooms[roomId].roomKey))
+
 	})
 	socket.on("gameover", function(data){
+		let roomId = data.roomKey
 		console.log("game is over")
-		console.log(data,"winner")
-		io.emit("win", data)
+		io.in(rooms[roomId].roomKey).emit("gameover", data)
 	})
 	socket.on("hp", function(data){
-		io.emit("hp",data)
+		let roomId = data.roomKey
+		socket.to(rooms[roomId].roomKey).emit("hp",data)
 	})
+	socket.on("damage", function(data){
+		let roomId = data.roomKey
+		socket.to(rooms[roomId].roomKey).emit("damage",data)
+	})
+
+	
+
 	}
 
 //=============================================
