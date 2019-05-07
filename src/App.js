@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Route } from 'react-router-dom'
 // components
+import Login from './components/login'
+import Navbar from './components/navbar'
+
 import Signup from './components/sign-up'
 import PetChoice from "./components/PetChoice"
-import Navbar from './components/navbar'
-import Login from './components/login'
+import Story from './components/Story'
+
 import Main from './components/mainHub'
+import StatInfo from './components/statinfo'
+
+//mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
-import StatInfo from './components/statinfo'
 import Tower from "./components/tower/tower"
 
 
@@ -123,6 +128,7 @@ class App extends Component {
         />
 
 {/* ===================================== */}
+
         <Route
           path="/petChoice"
           render= { () =>
@@ -130,6 +136,15 @@ class App extends Component {
         />
 
 {/* ===================================== */}
+
+        <Route
+          path="/story"
+          render= { () =>
+            <Story />}
+        />
+
+{/* ===================================== */}
+
         <Route
           path="/main"
           render= { () =>
