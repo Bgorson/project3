@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client'
 import "./tower.css"
 import axios from 'axios'
+import Sound from 'react-sound';
 
 class Tower extends Component {
 
@@ -17,6 +18,7 @@ class Tower extends Component {
             visible:'',
             roomKey:'',
             opponent:'',
+            victory:false
         };
         this.socket = io('localhost:9090/');
         this.socket.on('room', function(data){
@@ -132,6 +134,7 @@ class Tower extends Component {
     }
 
     const handleWin = (username)=>{
+        this.setState({victory:true})
         console.log('handling win', username)
         axios.post("/tower/win/"+ username)
         toggleButton();
@@ -188,6 +191,18 @@ class Tower extends Component {
     render() { 
         return (
             <div className="container-fluid">
+
+            {this.state.victory == true &&
+            <Sound
+            url="./victory.mp3"
+            playStatus={Sound.status.PLAYING}
+            playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+            />
+            }
+
                 <div className="row">
                     <div className="col-sm-6">
                         <div className>

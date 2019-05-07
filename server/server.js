@@ -26,7 +26,7 @@ app.use(
 	})
 )
 app.use(bodyParser.json())
-
+app.use(express.static("public"));
 // Sessions
 app.use(
 	session({
