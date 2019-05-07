@@ -21,7 +21,11 @@ router.post('/', (req, res) => {
                 username: username,
                 password: password,
                 stat: stat,
-                ratio:ratio
+                ratio:ratio,
+                petname:'',
+                petType:'',
+                petColor:'',
+                petAcces:''
             })
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)

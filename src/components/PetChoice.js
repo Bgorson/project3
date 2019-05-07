@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom'
 // material-ui
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -34,6 +34,7 @@ class PetChoice extends Component {
     constructor() {
 		super()
 		this.state = {
+            redirectTo: null,
 			petName: '',
 			petType: '',
 			petColor: '',
@@ -53,18 +54,18 @@ class PetChoice extends Component {
 		event.preventDefault()
 
 		//request to server to add a pet to user
-		axios.post('/pets/', {
+		axios.post('/pets/'+this.props.userName, {
 			petname: this.state.petName,
 			petType: this.state.petType,
-			petColor:this.state.Color,
-			petAccess: this.state.Access
+			petColor:this.state.petColor,
+			petAccess: this.state.petAccess
 		})
 			.then(response => {
 				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('you chosen your pet')
 					this.setState({ //redirect to login page
-						redirectTo: '/main'
+						redirectTo: '/'
 					})
 				} else {
 					console.log('err')
@@ -79,19 +80,19 @@ class PetChoice extends Component {
     render() {
         const { classes } = this.props;
         //if the redirect state is filled, go to it
-        // if (this.state.redirectTo) {
-        //     return <Redirect to={{ pathname: this.state.redirectTo }} />
-        // } else {
+        if (this.state.redirectTo) {
+            return <Link to={this.state.redirectTo} />
+        } else {
 return (
     <div className="petSelect">
-    <h2>PET SELECTION</h2>
+    <h2>PET SELECTION {this.props.userName}</h2>
     <form className="petForm">
         <FormControl className={classes.formControl}>
         <TextField
                 id="petname-input"
                 label="pet name"
                 type="petname"
-                name="petname"
+                name="petName"
                 value={this.state.petName}
                 onChange={this.handleChange}
                 margin="normal"
@@ -140,7 +141,7 @@ return (
                 </Select>
         </FormControl> 
         <Button variant="contained" color="primary" onClick={this.handleSubmit}>    
-            <Link to="/main" className="btn btn-link">
+            <Link to="/" className="btn btn-link">
                 Confirm
             </Link>
         </Button>   
@@ -149,6 +150,7 @@ return (
 
 )
     }
+}
 }
 
 PetChoice.propTypes = {

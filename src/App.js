@@ -28,14 +28,15 @@ class App extends Component {
       stat: {},
       userId: null,
       win:null,
-      lose:null
+      lose:null,
+      petname:''
     }
 
     this.getUser = this.getUser.bind(this)
     // this.componentDidMount = this.componentDidMount.bind(this)
     this.updateUser = this.updateUser.bind(this)
     this.getStats = this.getStats.bind(this)
-    
+    this.signupUser = this.signupUser.bind(this)
   }
 
   // componentDidMount() {
@@ -43,8 +44,13 @@ class App extends Component {
   // }
 
   updateUser (userObject) {
+    console.log("firing off updateUser ")
     this.setState(userObject)
     this.getUser()
+  }
+  signupUser (userObject) {
+      console.log("firing off updateUser ")
+      this.setState(userObject)
   }
 
   //WHY IS THIS NOT GETTING STATS FROM AXIOS CALL?!
@@ -78,7 +84,8 @@ class App extends Component {
       this.setState({
           stat:response.data.stat,
           win:response.data.ratio.win,
-          lose:response.data.ratio.lose
+          lose:response.data.ratio.lose,
+          petname:response.data.petname
       })
     })
   }
@@ -90,6 +97,8 @@ class App extends Component {
   updatedStats(){
     axios.get("/stats/")
   }
+
+
   //function for leveling up
   //pass the USERNAME and the stat you want increased
   levelUp(username,stat){
@@ -123,24 +132,46 @@ class App extends Component {
 {/* ===================================== */}
         <Route
           path="/signup"
-          render= { () =>
-            <Signup/>}
+
+          render={() =>
+            <Signup
+            signUp={this.signupUser}
+            />}
+
         />
 
 {/* ===================================== */}
 
         <Route
           path="/petChoice"
-          render= { () =>
-            <PetChoice />}
+
+          render={() =>
+            <PetChoice
+            userName = {this.state.username}
+            />}
+
         />
 
 {/* ===================================== */}
 
         <Route
-          path="/story"
-          render= { () =>
-            <Story />}
+
+        path="/main"
+        render={()=>
+          <React.Fragment>
+        <StatInfo
+        // Send the current state of stats to be read by the block
+        userId= {this.state.userId}
+        getStats= {this.getStats}
+        hp= {this.state.stat.hp}
+        strength= {this.state.stat.strength}
+        magic= {this.state.stat.magic}
+        agility= {this.state.stat.agility}
+        win= {this.state.win}
+        lose= {this.state.lose}
+        getUser= {this.getUser}
+        petname= {this.state.petname}
+
         />
 
 {/* ===================================== */}

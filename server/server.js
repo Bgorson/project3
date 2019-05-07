@@ -15,7 +15,8 @@ const BattleLogic = require( "./battle")
 
 // Route requires
 const user = require('./routes/user')
-const User = require('./database/models/user')
+
+
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -32,17 +33,19 @@ app.use(
 		secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
 		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false, //required
-		saveUninitialized: false //required
+		saveUninitialized: false, //required
+		cookie: {
+			secure: false,
+			maxAge: 3600000 //1 hour
+		}
 	})
 )
 
-// Passport
+// Passport,
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 //=============================================
 // SocketIO 
-
-
 let waitingPlayer = null;
 let roomKey= null;
 
@@ -51,12 +54,21 @@ const io = socketio(server);
 var username;
 var username1;
 
-
-
-
 io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
+	
+	let rooms = {}
+	// rooms.username = username;
+	// rooms[username].battleObj = new BattleLogic(........)
+	// io.to(rooms.username.battleObj.roomKey).emit('msg', {message:'Waiting?!?'});
+	// queue_of_users.push(socket.id);
+	// // if for(let key in rooms){
+	// 	rooms.players = [];
+	// // if players.value < 2;
+	// room.players.push(queue_of_users[0])
+	// queue_of_users.unshift();
+
 	socket.on('name',function(data){
 		username= data
 		if (waitingPlayer) {
@@ -81,100 +93,22 @@ function onConnection(socket) {
 		io.emit('RECEIVE_MESSAGE', data)
 	})
 	socket.on("gameover", function(data){
+		console.log("game is over")
 		console.log(data,"winner")
 		io.emit("win", data)
 	})
+	socket.on("hp", function(data){
+		io.emit("hp",data)
+	})
 	}
+
 //=============================================
-
 // Routes
-app.get('/stats/:id', (req,res)=>{
-	username= req.params.id
-	console.log("This is the username we are searching",username)
-	User.findOne({ username:username}, (err,data)=> {
-		if (err) {
-			console.log("Some kind of err",err)
-		}
-		else {
-			res.json(data)
-		}
-	})
-})
 
-app.post('/tower/win/:id', (req,res)=>{
-	username= req.params.id
-	console.log("hitting win route for:" + username)
-	User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-})
-app.post('/tower/lose/:id', (req,res)=>{
-	username= req.params.id
-	console.log("hitting lose route for:" + username)
-	User.findOneAndUpdate({username:username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-})
-
-app.post('/levelUp/:id/strength', (req, res)=>{
-	let user = req.params.id 
-	let stat= req.params.stat
-	console.log(stat)
-	User.findOneAndUpdate({username:user}, { $inc: { "stat.strength" : 10 } }, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-	})
-
-app.post('/levelUp/:id/magic', (req, res)=>{
-	let user = req.params.id 
-	let stat= req.params.stat
-	console.log(stat)
-	User.findOneAndUpdate({username:user}, { $inc: { "stat.magic" : 10 } }, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-	})
-app.post('/levelUp/:id/hp', (req, res)=>{
-	let user = req.params.id 
-	let stat= req.params.stat
-	console.log(stat)
-	User.findOneAndUpdate({username:user}, { $inc: { "stat.hp" : 10 } }, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-	})
-app.post('/levelUp/:id/agility', (req, res)=>{
-	let user = req.params.id 
-	let stat= req.params.stat
-	console.log(stat)
-	User.findOneAndUpdate({username:user}, { $inc: { "stat.agility" : 10 } }, {new:true}, function(err,response){
-		if (err) {
-			(err);
-		} else {
-			(response)
-		}
-	})
-	})
+require("./routes/apiRoute")(app);
 app.use('/user', user.router)
 
+//=============================================
 // Starting Server 
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)

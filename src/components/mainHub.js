@@ -5,9 +5,15 @@ import './main.css';
 
 
 class Main extends Component {
-    state = { 
+    constructor(){
+        super()
 
-     }
+    }
+   
+
+   
+         
+    
     render() { 
         return (
             <React.Fragment>

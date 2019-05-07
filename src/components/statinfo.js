@@ -20,6 +20,7 @@ class StatInfo extends Component {
 
     render() { 
         return ( 
+
           <div className="stat-box"> 
             <Card className="stat-content">
                 <CardContent>
@@ -47,10 +48,19 @@ class StatInfo extends Component {
                         Wins: {this.props.win}
                         Loses: {this.props.lose}
                     </Typography>
+          
+                    <Typography component="p">
+                        Companion: {this.props.petname}           
+                    </Typography>
+          
                 </CardContent>
             </Card>
           </div> 
         );
+
+
+         );
+
     }
 }
  
