@@ -21,15 +21,15 @@ nav {
 .navbar {
     padding:1.5em;
 }
-.heading {
-    font-weight:bolder;
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-column-gap: 40px;
+    padding: 20px;
+
 }
-.jumbotron {
-    text-align: center;
-    background-clip: content-box;
-    background-position: center; 
-    height:500px;
-    color:white;
-    font-size:30px;
-    font-weight:bold;
+
+.instructions,
+.score {
+    padding: 30px;
 }

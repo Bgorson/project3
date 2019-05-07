@@ -5,7 +5,7 @@ import cards from "../cards.json"
 import "./style.css"
 import Instructions from "./Instructions"
 
-import Modal from '@material-ui/core/Modal';
+
 
 class Clickygame extends Component {
 
@@ -56,30 +56,29 @@ shuffleCards = array => {
     return array;
 }
 
-render(){
-    return (
-        <div>
-            <Navbar
-                score = {this.state.score}
-                topScore= {this.state.topScore}
-                text= {this.state.headerText}
-            />
-        <Modal>    
-        <Instructions />
-        </Modal>
-        <div className= "collection">
+    render() {
+        return (
+            <div>
+                <div className="header">
+                    <Instructions />
 
-                <Clickcard 
-                    className="image-cards"
-                    shuffle = {this.shuffleCards}
-                    cards = {cards}
-                    handleClick= {this.handleClick}
-                />
-        
-        </div>
-
-        </div>
-    )
-}
+                    <Navbar
+                        score = {this.state.score}
+                        topScore= {this.state.topScore}
+                        text= {this.state.headerText}
+                    />
+                    
+                </div>
+                <div className= "collection">
+                    <Clickcard 
+                        className="image-cards"
+                        shuffle = {this.shuffleCards}
+                        cards = {cards}
+                        handleClick= {this.handleClick}
+                    />
+                </div>
+            </div>
+        )
+    }
 }
 export default Clickygame;
