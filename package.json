@@ -1,5 +1,5 @@
 {
-  "name": "simple-mern-passport",
+  "name": "wildlyfe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
     "socket.io-client": "^2.2.0",
     "spectre.css": "^0.5.0"
   },
+  "homepage" : "https://the-wildlyfe.herokuapp.com/",
   "scripts": {
     "start": "node ./server/server.js",
     "startlocal": "react-scripts start",
