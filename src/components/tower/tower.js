@@ -20,7 +20,7 @@ class Tower extends Component {
             opponent:'',
             victory:false
         };
-        this.socket = io('localhost:9090/');
+        this.socket = io();
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
