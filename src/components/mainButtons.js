@@ -6,10 +6,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Route, Link } from 'react-router-dom'
 
-import Bg from '../images/bg.svg'
 import Water from '../images/underwater.png'
 import Hills from '../images/hills.png'
 import Mtn from '../images/mtn.png'
+import Trees from '../images/trees.png'
 import Tower from '../images/tower.png'
 
 const styles = {
@@ -24,19 +24,19 @@ const styles = {
 const images = [
   {
     title: "minigame1",
-    img: Bg,
+    img: Hills,
     link: "/miniGame1"
   }, {
     title: "minigame2",
-    img: Water,
+    img: Trees,
     link: "/miniGame2"
   }, {
     title: "minigame3",
-    img: Hills,
+    img: Mtn,
     link: "/miniGame3"
   }, {
     title: "minigame4",
-    img: Mtn,
+    img: Water,
     link: "/miniGame4"
   }, {
     title: "tower",
