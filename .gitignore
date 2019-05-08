@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+,
+#   "proxy": "http://localhost:8080"
+
 
 # misc
 .DS_Store
