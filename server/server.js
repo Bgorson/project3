@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
 const app = express()
 const PORT = process.env.PORT || 8080
-const SOCKETPORT = 9090
+// const SOCKETPORT = 9090
 const socketio = require ('socket.io');
 const http = require('http');
 const RpsGame = require("./towerLogic")
@@ -24,7 +24,7 @@ const user = require('./routes/user')
 // }
 //=============================================
 // Starting Server 
-app.listen(PORT, () => {
+const server= app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
 
@@ -62,7 +62,7 @@ app.use(passport.session()) // calls the deserializeUser
 let waitingPlayer = null;
 let roomKey= null;
 let rooms={}
-const server = http.createServer(app);
+// const server = http.createServer(app);
 const io = socketio(server);
 var username;
 var username1;
