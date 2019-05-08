@@ -7,7 +7,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Route, Link } from 'react-router-dom'
 
 import Bg from '../images/bg.svg'
-import Mtn from '../images/mtn.svg'
+import Water from '../images/underwater.png'
+import Hills from '../images/hills.png'
+import Mtn from '../images/mtn.png'
 import Tower from '../images/tower.png'
 
 const styles = {
@@ -26,11 +28,11 @@ const images = [
     link: "/miniGame1"
   }, {
     title: "minigame2",
-    img: Bg,
+    img: Water,
     link: "/miniGame2"
   }, {
     title: "minigame3",
-    img: Bg,
+    img: Hills,
     link: "/miniGame3"
   }, {
     title: "minigame4",
