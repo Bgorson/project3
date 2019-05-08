@@ -22,6 +22,12 @@ const user = require('./routes/user')
 // if (process.env.NODE_ENV === 'production') {
 // 	app.use(express.static('client/build'));
 // }
+//=============================================
+// Starting Server 
+app.listen(PORT, () => {
+	console.log(`App listening on PORT: ${PORT}`)
+})
+
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -120,12 +126,8 @@ function onConnection(socket) {
 require("./routes/apiRoute")(app);
 app.use('/user', user.router)
 
-//=============================================
-// Starting Server 
-app.listen(PORT, () => {
-	console.log(`App listening on PORT: ${PORT}`)
-})
-server.listen(SOCKETPORT, () => {
-	console.log(`Socket listening on PORT: ${SOCKETPORT}`)
-})
+
+// server.listen(SOCKETPORT, () => {
+// 	console.log(`Socket listening on PORT: ${SOCKETPORT}`)
+// })
 
