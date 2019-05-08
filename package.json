@@ -30,8 +30,7 @@
   },
   "homepage": "https://the-wildlyfe.herokuapp.com/",
   "scripts": {
-    "start": "node ./server/server.js",
-    "startlocal": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
