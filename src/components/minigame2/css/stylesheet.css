@@ -21,14 +21,16 @@ html body .container {
   margin: auto;
   text-align: center;
   min-height: 380px;
+  position: relative;
+  overflow: hidden;
 }
 
 .puzzle div {
   background-color: darkblue;
   color: #f1f1f1;
-
   margin: 10px;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
+  cursor: pointer;
 }

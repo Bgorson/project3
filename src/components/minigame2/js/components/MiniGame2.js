@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "../../css/stylesheet.css";
 import { Motion, spring } from "react-motion";
 
+//Individual cells//
 const cells = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
-
-const array = [[1, 2, 3, 4], [5, 6, 7, 8], [9, "", 11, 12], [13, 14, 15, 10]]; // Keep track of empty cell by using the 'state'
 
 class MiniGame2 extends Component {
   state = {};
@@ -15,9 +14,12 @@ class MiniGame2 extends Component {
 
   render() {
     return (
+      //Puzzle container//
       <div className="puzzle">
+      {/* //Each div created for amount in array above// */}
         {cells.map((cell, i) => {
           return (
+            //Click event for each div//
             <div key={i} onClick={this.handleClick}>
               {cell}
             </div>
