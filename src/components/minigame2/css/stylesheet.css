@@ -1,33 +1,34 @@
-@import url('game.css');
-@import url('cell.css');
+@import url("game.css");
+@import url("cell.css");
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-html body .container{
-    height: 100%;
+html body .container {
+  height: 100%;
 }
 
-.container{
-    
-    width: 50%;
-    padding: 25px;
-    background-color:#f1f1f1;
-    column-count: 4;
-    margin: auto;
-    text-align: center;
-    min-height: 380px;
+.puzzle {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: 50%;
+  padding: 25px;
+  background-color: #f1f1f1;
+  column-count: 4;
+  margin: auto;
+  text-align: center;
+  min-height: 380px;
 }
 
-.container div{
-    background-color: darkblue;
-    color: #f1f1f1;
-    
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px
+.puzzle div {
+  background-color: darkblue;
+  color: #f1f1f1;
+
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
 }
