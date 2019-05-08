@@ -28,7 +28,6 @@
     "socket.io-client": "^2.2.0",
     "spectre.css": "^0.5.0"
   },
-  "homepage": "https://the-wildlyfe.herokuapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
