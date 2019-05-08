@@ -18,10 +18,10 @@ const favicon = require('express-favicon');
 // Route requires
 const user = require('./routes/user')
 
-app.use(express.static(path.join(__dirname, 'build')));
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-}
+// app.use(express.static(path.join(__dirname, 'build')));
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use(express.static('client/build'));
+// }
 
 // MIDDLEWARE
 app.use(morgan('dev'))
