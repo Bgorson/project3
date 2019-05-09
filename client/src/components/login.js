@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
 import logo from '../images/logo.svg'
 import './login.css';
+import '../components/loginModal/modal.css';
 
 // material-ui
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Modal from './loginModal/modal'
 
 class Login extends Component {
     constructor() {
@@ -17,7 +18,8 @@ class Login extends Component {
             username: '',
             password: '',
             redirectTo: null,
-            stats:null
+            stats:null,
+            show:false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -28,6 +30,14 @@ class Login extends Component {
             [event.target.name]: event.target.value
         })
     }
+
+    showModal =() => {
+        this.setState({ show:true})
+    }
+    hideModal =()=> {
+        this.setState({show:false})
+    }
+
 
     handleSubmit(event) {
         event.preventDefault()
@@ -54,10 +64,14 @@ class Login extends Component {
                     })
                 }
             }).catch(error => {
+                if(error){
+                    this.showModal()
+                }
                 console.log('login error: ')
                 console.log(error);
                 
             })
+
     }
 
     render() {
@@ -66,6 +80,10 @@ class Login extends Component {
         } else {
             return (
                 <div>
+                        <Modal show={this.state.show} handleClose={this.hideModal}>
+                        <p>Log-in Error. Please check username/password</p>
+                        </Modal>
+
                     <img src={logo} className="wildlyfe-logo" alt="wildlyfe" />
                     <h2>WILDLYFE</h2>
                     <form className="login-input">
