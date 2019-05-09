@@ -16,7 +16,27 @@ class MiniGame2 extends Component {
     return (
       //Puzzle container//
       <div className="puzzle">
-      {/* //Each div created for amount in array above// */}
+        <div class = "cell1" onClick={this.handleClick} >1</div>
+        <div class="cell2" onClick={this.handleClick}>2</div>
+        <div class = "cell3" onClick={this.handleClick}>3</div>
+        {/* <div class = "cell4" onClick={this.handleClick}>4</div>
+        <div class = "cell5" onClick={this.handleClick}>5</div>
+        <div class = "cell6" onClick={this.handleClick}>6</div>
+        <div class = "cell7" onClick={this.handleClick}>7</div>
+        <div class = "cell8" onClick={this.handleClick}>8</div>
+        <div class = "cell9" onClick={this.handleClick}>9</div>
+        <div class = "cell10" onClick={this.handleClick}>10</div>
+        <div class = "cell11" onClick={this.handleClick}>11</div>
+        <div class = "cell12" onClick={this.handleClick}>12</div>
+        <div class = "cell13" onClick={this.handleClick}>13</div>
+        <div class = "cell14" onClick={this.handleClick}>14</div>
+        <div class = "cell15" onClick={this.handleClick}>15</div>
+        <div id="empty" onClick={this.handleClick}></div> */}
+            {/* <div key={i} onClick={this.handleClick}>
+              {div}
+            </div> */}
+
+      {/* //Each div created for amount in array above//
         {cells.map((cell, i) => {
           return (
             //Click event for each div//
@@ -24,8 +44,8 @@ class MiniGame2 extends Component {
               {cell}
             </div>
           );
-        })}
-      </div>
+        })} */} 
+        </div>
     );
   }
 }
