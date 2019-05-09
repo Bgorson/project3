@@ -181,7 +181,7 @@ class App extends Component {
 
 {/* ===================================== */}
         <Route
-          exact path="/minigame1"
+          exact path="/miniGame1"
           render= { () =>
             <Minigame1
             userId= {this.state.userId}
