@@ -8,21 +8,24 @@ class MiniGame4 extends Component {
       render() {
         return (
             <Stage width={window.innerWidth} height={window.innerHeight}>
-                <Layer>
-                  <Images />
-                  <Images />
-                  <Images />
-                  <Images />
-                  <Images />
-                </Layer>
-                <Layer>
+                            <Layer>
                   <Rect
                   fill="#FFFFFF"
-                  width="100px"
-                  height="100px"
+                  width={100}
+                  height={100}
+                  x={20}
+                  y={20}
                   >
                   </Rect>
                 </Layer>
+                <Layer>
+                  <Images />
+                  <Images />
+                  <Images />
+                  <Images />
+                  <Images />
+                </Layer>
+
           </Stage>
         );
       }
