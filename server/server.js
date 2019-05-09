@@ -27,10 +27,6 @@ app.use('/user', user.router)
 // 	app.use(express.static('client/build'));
 // }
 //=============================================
-// Starting Server 
-const server= app.listen(PORT, () => {
-	console.log(`App listening on PORT: ${PORT}`)
-})
 
 
 // MIDDLEWARE
@@ -61,6 +57,13 @@ app.use(
 // Passport,
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
+
+
+// Starting Server 
+const server= app.listen(PORT, () => {
+	console.log(`App listening on PORT: ${PORT}`)
+})
+
 //=============================================
 // SocketIO 
 let waitingPlayer = null;
