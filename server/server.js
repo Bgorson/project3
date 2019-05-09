@@ -17,6 +17,10 @@ const favicon = require('express-favicon');
 
 // Route requires
 const user = require('./routes/user')
+// Routes
+
+require("./routes/apiRoute")(app);
+app.use('/user', user.router)
 
 // app.use(express.static(path.join(__dirname, 'build')));
 // if (process.env.NODE_ENV === 'production') {
@@ -121,10 +125,7 @@ function onConnection(socket) {
 	}
 
 //=============================================
-// Routes
 
-require("./routes/apiRoute")(app);
-app.use('/user', user.router)
 
 
 // server.listen(SOCKETPORT, () => {
