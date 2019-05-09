@@ -9,11 +9,7 @@ class Main extends Component {
         super()
 
     }
-   
-
-   
-         
-    
+     
     render() { 
         return (
             <React.Fragment>
