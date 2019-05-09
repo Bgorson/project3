@@ -20,9 +20,9 @@ const user = require('./routes/user')
 // Routes
 
 require("./routes/apiRoute")(app);
-app.use('/user', user.router)
 
-// app.use(express.static(path.join(__dirname, 'build')));
+
+app.use(express.static(path.join(__dirname, 'build')));
 // if (process.env.NODE_ENV === 'production') {
 // 	app.use(express.static('client/build'));
 // }
@@ -58,7 +58,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
-
+app.use('/user', user.router)
 // Starting Server 
 const server= app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
