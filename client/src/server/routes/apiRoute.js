@@ -5,6 +5,7 @@ module.exports = function (app) {
 //Route to restrive all information on a username
     app.get('/stats/:id', (req,res)=>{
 	username= req.params.id
+	console.log(username)
 	console.log("This is the username we are searching",username)
 	User.findOne({ username:username}, (err,data)=> {
 		if (err) {

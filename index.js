@@ -1,40 +1,21 @@
-const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')
-const dbConnection = require('./database') 
-const MongoStore = require('connect-mongo')(session)
-const passport = require('./passport');
-const app = express()
-const PORT = process.env.PORT || 8080
-// const SOCKETPORT = 9090
+const passport = require('./client/src/server/passport');
 const socketio = require ('socket.io');
-const http = require('http');
-const RpsGame = require("./towerLogic")
-const BattleLogic = require( "./battle")
-const path = require('path')
-const favicon = require('express-favicon');
-var proxy = require('http-proxy-middleware')
-
+const BattleLogic = require( "./client/src/server/battle")
+const MongoStore = require('connect-mongo')(session)
+const dbConnection = require('./client/src/server/database') 
 // Route requires
-const user = require('./routes/user')
-// Routes
+const user = require('./client/src/server/routes/user')
 
-userProxy= proxy('***', {target:'https://wild-lyfe2.herokuapp.com/', changeOrigin:true})
+const express = require('express');
+const path = require('path');
 
+const app = express();
 
-if (process.env.NODE_ENV === 'production') {
-	// Serve any static files
-	app.use(express.static(path.join(__dirname, 'client/build')));
-  
-	// Handle React routing, return all requests to React app
-	app.get('*', function(req, res) {
-	  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-	});
-  }
-//=============================================
-
-
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 // MIDDLEWARE
 app.use(morgan('dev'))
 app.use(
@@ -42,10 +23,23 @@ app.use(
 		extended: false
 	})
 )
-app.use(favicon(__dirname + '/build/favicon.ico'))
 app.use(bodyParser.json())
-app.use(express.static(__dirname));
 
+
+// Put all API endpoints under '/api'
+// app.get('/api/passwords', (req, res) => {
+//   const count = 5;
+
+//   // Generate some passwords
+//   const passwords = Array.from(Array(count).keys()).map(i =>
+//     generatePassword(12, false)
+//   )
+
+//   // Return them as json
+//   res.json(passwords);
+
+//   console.log(`Sent ${count} passwords`);
+// });
 // Sessions
 app.use(
 	session({
@@ -60,15 +54,22 @@ app.use(
 	})
 )
 
-// Passport,
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
-app.use('/', userProxy)
-require("./routes/apiRoute")(app);
-app.use('/user',userProxy, user.router)
-// Starting Server 
-const server= app.listen(PORT, () => {
-	console.log(`App listening on PORT: ${PORT}`)
+require("./client/src/server/routes/apiRoute")(app);
+require("./client/src/server/routes/userRoute")(app);
+// app.use('/user', user.router)
+
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
+const port = process.env.PORT || 5000;
+const server= app.listen(port, () => {
+	console.log(`App listening on PORT: ${port}`)
 })
 
 //=============================================
@@ -134,11 +135,5 @@ function onConnection(socket) {
 
 	}
 
-//=============================================
 
-
-
-// server.listen(SOCKETPORT, () => {
-// 	console.log(`Socket listening on PORT: ${SOCKETPORT}`)
-// })
-
+console.log(`Password generator listening on ${port}`);

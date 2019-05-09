@@ -1,64 +1,30 @@
-## Simple MERN Passport Template
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# Rando
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+A password generator built with React and Express.
 
-# About
-I couldn't find a simple MERN passport tutorial, so I made one!
+This is a minimal demo of using Create React App to bootstrap a React project, connect the React app to an Express backend, and deploy the whole thing to Heroku.
 
-## Built With
+Read the blog post: [Create React App with Express in
+Production](https://daveceddia.com/create-react-app-express-production/)
 
-Mongo, Express, ReactJS, Node.js, Javascript. 
+## Prerequisites
 
-## Getting Started
+You need to [sign up](https://heroku.com/) for a Heroku account if you don't already have one, and install the [Heroku toolbelt](https://devcenter.heroku.com/articles/heroku-cli). (On a Mac with Homebrew, just run `brew install heroku`).
 
-Clone the repo and follow the instructions.  You can view each step by running these commands from the terminal:
+## Deploy to Heroku
 
-```
-git checkout step-0
-git checkout step-1
-...
-```
+To deploy:
 
-### Prerequisites
+1. Clone this repo.
+2. Inside the repo directory, run `heroku create` (requires [Heroku toolbelt](https://devcenter.heroku.com/articles/heroku-cli)).
+3. Run `git push heroku master` to simultaneously deploy the frontend + backend to Heroku.
 
-- [Node.js](https://nodejs.org/en/)
-- [MongoDB](https://www.mongodb.com/)
-- [Nodemon](https://github.com/remy/nodemon)
-- [create-react-app](https://github.com/facebook/create-react-app)
+### Using NPM
 
-### Installing
+Check out the `npm` branch if you're not using Yarn:
 
-Run these commands in the terminal:
+`git checkout npm`
 
-```
-cd simple-mern-passport
-npm install
-npm run dev
-```
+And then once on that branch, the deploy command is:
 
-# Instructions
-
-Complete instructions at https://medium.com/@brendt_bly/simple-mern-passport-app-tutorial-4aec2105e367
-
-### Completed Features
-
-- [ ] Sign up, login and logout.
-- [ ] Authentication with passport and bcryptjs.
-- [ ] Session information stored with express sessions.
-- [ ] Store data for production in sessions with connect-mongo
-
-### Next Steps
-- [ ] Add redux
-
-## Author
-
-Brendt Bly
-
-## Acknowledgments
-
-Thanks to the people who provided great examples:
-https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
-
-https://github.com/thechutrain/mern-passport
+`git push heroku npm:master`
