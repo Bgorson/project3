@@ -19,7 +19,8 @@
     "spectre.css": "^0.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": " cd server && node server.js",
+    "heroku-postbuild": "cd../ && npm && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
