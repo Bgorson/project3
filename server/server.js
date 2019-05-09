@@ -19,7 +19,7 @@ const favicon = require('express-favicon');
 const user = require('./routes/user')
 // Routes
 
-require("./routes/apiRoute")(app);
+
 
 
 app.use(express.static(path.join(__dirname, 'build')));
@@ -58,6 +58,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
+require("./routes/apiRoute")(app);
 app.use('/user', user.router)
 // Starting Server 
 const server= app.listen(PORT, () => {
