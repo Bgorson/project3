@@ -4,14 +4,7 @@ import MainButtons from './mainButtons'
 import './main.css';
 
 
-class Main extends Component {
-    constructor(){
-        super()
-
-    }
-   
-
-   
+class Main extends Component {  
          
     
     render() { 

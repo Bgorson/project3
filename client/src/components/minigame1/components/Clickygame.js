@@ -6,8 +6,8 @@ import "./style.css"
 import Jumbotron from "./Jumbotron"
 
 import Grid from "@material-ui/core/Grid"
-import Paper from '@material-ui/core/Paper';
-import Grow from '@material-ui/core/Grow';
+// import Paper from '@material-ui/core/Paper';
+// import Grow from '@material-ui/core/Grow';
 
 
 

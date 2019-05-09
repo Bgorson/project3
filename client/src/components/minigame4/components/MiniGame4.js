@@ -34,7 +34,7 @@ class MiniGame4 extends Component {
                 height={50}
                 fill={this.state.color}
                 shadowBlur={5}
-                x={100}
+                // x={100}
                 onClick={this.handleClick}
                 />
                 </Layer>

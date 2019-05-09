@@ -41,13 +41,13 @@ class Tower extends Component {
             console.log(data.username)
             console.log(data.hp)
             try {
-            if (data.username != props.userName){
+            if (data.username !== props.userName){
             console.log("new data")
             updateEnemyHp(data)
             }
             }
             catch(error){
-                error
+                console.log(error)
             }
         })
 
@@ -61,7 +61,7 @@ class Tower extends Component {
         this.socket.on("gameover", function(data){
             console.log(data)
                 toggleButton();
-            if (data.winner == props.userName){
+            if (data.winner === props.userName){
                 handleWin(props.userName)
             }
             else {
@@ -85,11 +85,11 @@ class Tower extends Component {
         }
 
         this.buttonListener = (name) => {
-            if(name.target.id == "special" && this.state.mp >0) {
+            if(name.target.id === "special" && this.state.mp >0) {
                 specialMove()
                 this.socket.emit('turn', name.target.id);
             }
-            else if (name.target.id == "special" && this.state.mp <=0){
+            else if (name.target.id === "special" && this.state.mp <=0){
                 return null
             }
             else {
@@ -170,7 +170,7 @@ class Tower extends Component {
 
     const addOpponent=(opp)=>{
         console.log(opp)
-        if (opp.playerOne==props.userName){
+        if (opp.playerOne===props.userName){
             this.setState({opponent:opp.playerTwo})
         }
         else {
@@ -192,7 +192,7 @@ class Tower extends Component {
         return (
             <div className="container-fluid">
 
-            {this.state.victory == true &&
+            {this.state.victory === true &&
             <Sound
             url="./victory.mp3"
             playStatus={Sound.status.PLAYING}
