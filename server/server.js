@@ -14,12 +14,13 @@ const RpsGame = require("./towerLogic")
 const BattleLogic = require( "./battle")
 const path = require('path')
 const favicon = require('express-favicon');
+var proxy = require('http-proxy-middleware')
 
 // Route requires
 const user = require('./routes/user')
 // Routes
 
-
+userProxy= proxy('***', {target:'https://wild-lyfe2.herokuapp.com/', changeOrigin:true})
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -62,9 +63,9 @@ app.use(
 // Passport,
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
-
+app.use('/', userProxy)
 require("./routes/apiRoute")(app);
-app.use('/user', user.router)
+app.use('/user',userProxy, user.router)
 // Starting Server 
 const server= app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
