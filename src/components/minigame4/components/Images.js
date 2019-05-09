@@ -32,7 +32,7 @@ class Images extends Component {
                   numPoints={5}
                   innerRadius={20}
                   outerRadius={35}
-                  fill="ffffff"
+                  fill= "#000000"
                   opacity={0.8}
                   draggable
                   rotation={Math.random() * 180}

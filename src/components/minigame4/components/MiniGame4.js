@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import { Stage, Layer} from 'react-konva';
+import { Stage, Layer, Rect} from 'react-konva';
 
-
-// import "./style.css"
 import Images from './Images'
 
 class MiniGame4 extends Component {
@@ -16,6 +14,14 @@ class MiniGame4 extends Component {
                   <Images />
                   <Images />
                   <Images />
+                </Layer>
+                <Layer>
+                  <Rect
+                  fill="#FFFFFF"
+                  width="100px"
+                  height="100px"
+                  >
+                  </Rect>
                 </Layer>
           </Stage>
         );
