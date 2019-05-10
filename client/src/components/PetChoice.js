@@ -64,7 +64,7 @@ class PetChoice extends Component {
 				if (!response.data.errmsg) {
 					console.log('you chosen your pet')
 					this.setState({ //redirect to login page
-						redirectTo: '/main'
+						redirectTo: '/story'
 					})
 				} else {
 					console.log('err')
@@ -140,7 +140,7 @@ return (
                 </Select>
         </FormControl> 
         <Button variant="contained" color="primary" onClick={this.handleSubmit}>    
-            <Link to="/main" className="btn btn-link">
+            <Link to="/story" className="btn btn-link">
                 Confirm
             </Link>
         </Button>   

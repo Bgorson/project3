@@ -7,7 +7,7 @@ import Navbar from './components/navbar'
 
 import Signup from './components/sign-up'
 import PetChoice from "./components/PetChoice"
-// import Story from './components/Story'
+import Story from './components/Story'
 
 import Main from './components/mainHub'
 import StatInfo from './components/statinfo'
@@ -152,7 +152,16 @@ class App extends Component {
             />}
 
         />
+{/* ===================================== */}
+        <Route
+          path="/story"
 
+          render={() =>
+            <Story
+            />
+          }
+
+        />
 {/* ===================================== */}
 
         <Route
