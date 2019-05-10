@@ -25,21 +25,6 @@ app.use(
 )
 app.use(bodyParser.json())
 
-
-// Put all API endpoints under '/api'
-// app.get('/api/passwords', (req, res) => {
-//   const count = 5;
-
-//   // Generate some passwords
-//   const passwords = Array.from(Array(count).keys()).map(i =>
-//     generatePassword(12, false)
-//   )
-
-//   // Return them as json
-//   res.json(passwords);
-
-//   console.log(`Sent ${count} passwords`);
-// });
 // Sessions
 app.use(
 	session({
@@ -47,10 +32,6 @@ app.use(
 		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false, //required
 		saveUninitialized: false, //required
-		cookie: {
-			secure: false,
-			maxAge: 3600000 //1 hour
-		}
 	})
 )
 
@@ -63,9 +44,9 @@ require("./client/src/server/routes/userRoute")(app);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
+// });
 
 const port = process.env.PORT || 5000;
 const server= app.listen(port, () => {
@@ -91,7 +72,7 @@ function onConnection(socket) {
 		if (waitingPlayer) {
 			socket.emit('room',roomKey)
 			socket.join(roomKey)
-			io.to(roomKey).emit('msg', {message:'Waiting?!?'});
+			io.to(roomKey).emit('msg', {message:'Game Starting NOW! '});
 			io.to(roomKey).emit('enemy', {
 				playerOne:username1,
 				playerTwo:username
@@ -106,7 +87,7 @@ function onConnection(socket) {
 			socket.join(roomKey)
 			username1 = username
 			waitingPlayer = socket;
-			socket.emit('msg', {message:'Waiting for an opponent'+username1});
+			socket.emit('msg', {message:'Waiting for your opponent, '+username1+'.'});
 			socket.emit('room',roomKey)
 		  }
 	})
@@ -134,6 +115,3 @@ function onConnection(socket) {
 	
 
 	}
-
-
-console.log(`Password generator listening on ${port}`);

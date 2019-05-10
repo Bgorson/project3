@@ -190,7 +190,7 @@ class Tower extends Component {
 
     render() { 
         return (
-            <div className="container-fluid">
+            <div>
 
             {this.state.victory === true &&
             <Sound
@@ -203,10 +203,10 @@ class Tower extends Component {
             />
             }
 
-                <div className="row">
-                    <div className="col-sm-6">
-                        <div className>
-                            <div className="">
+                <div>
+                    <div>
+                        <div>
+                            <div>
 
                                 <hr/>
                                 <div className= "hp">
@@ -226,10 +226,10 @@ class Tower extends Component {
                             </div>
                         </div>
                     </div>
-                        <div className="col-sm-6">
-                            <div className="">
-                                <div className="">
-                                    <div className="">Enemy HP</div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>Enemy HP</div>
                                
                                     <div className= "enemyHp">
                                     {this.state.enemyHp}
@@ -240,9 +240,9 @@ class Tower extends Component {
                                 </div>
                             </div>
                     </div>
-                    <div className = "row justify-content-center">
-                            <div className="">Chat with your opponent
-                            <div className="messages col-12">
+                    <div>
+                            <div>Chat with your opponent
+                            <div>
                                     {this.state.messages.map(message => {
                                         return (
                                             <div>{message.author} {message.message}</div>
@@ -253,7 +253,7 @@ class Tower extends Component {
                                     <br/>
                                     <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <br/>
-                                    <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                                    <button onClick={this.sendMessage}>Send</button>
                                 </div>
                                 </div>
                                 </div>

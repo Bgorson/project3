@@ -204,7 +204,7 @@ if(p1.name == "special") {
 
   //   this._damagePlayer(1,p0.damage)
   // }
-    this._sendToPlayers("Player 1 uses "+ p0.name + " Player 2 uses " + p1.name)
+    this._sendToPlayers(this.player2Name+" uses "+ p0.name + " "+this.player1Name +" uses " + p1.name)
    
 }
     //identify who wins and who lises

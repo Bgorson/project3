@@ -5,6 +5,10 @@ import { Redirect } from 'react-router-dom'
 // material-ui
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import './login.css';
+import '../components/loginModal/modal.css';
+import Modal from './loginModal/modal'
+
 
 class Signup extends Component {
 	constructor() {
@@ -14,7 +18,9 @@ class Signup extends Component {
 			password: '',
 			stat: {'strength':100, 'magic':100, 'hp':200, "agility":100},
 			confirmPassword: '',
-			redirectTo: null
+			redirectTo: null,
+			show:false,
+			modalMessage:'Sign Up Error'
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -24,6 +30,15 @@ class Signup extends Component {
 			[event.target.name]: event.target.value,
 		})
 	}
+	showModal =(modalText) => {
+        this.setState({ 
+			show:true,
+			modalMessage:modalText
+		})
+    }
+    hideModal =()=> {
+        this.setState({show:false})
+    }
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
@@ -52,10 +67,12 @@ class Signup extends Component {
 					})
 				} else {
 					console.log('username already taken')
+					
 				}
 			}).catch(error => {
 				console.log('signup error: ')
 				console.log(error)
+				this.showModal("Error signing up. Check password/username or this username exists.")
 
 			})
 	}
@@ -68,6 +85,9 @@ class Signup extends Component {
 			} else {
 		return (
 			<div className="SignupForm">
+			                        <Modal show={this.state.show} handleClose={this.hideModal}>
+                        <p>{this.state.modalMessage}</p>
+                        </Modal>
 				<h2>Sign up</h2>
 				<form className="signup-form">
 					<div className="form-group">	
