@@ -22,7 +22,7 @@ class Tower extends Component {
             specialClick:false,
             healClick:false
         };
-        this.socket = io("localhost:3000");
+        this.socket = io();
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
