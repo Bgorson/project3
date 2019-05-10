@@ -33,7 +33,7 @@ class Battle {
 
       //function to send a message to each player.
   _sendToPlayers(msg){
-    this._players.forEach((player) => {player.in(this.roomKey).emit("msg",{message: msg})
+    this._players.forEach((player) => {player.in(this.roomKey).emit("msg",{message: msg, heal:false})
     
   })
 }
@@ -230,14 +230,14 @@ _decodeTurn(turn){
       return {
         name:"special",
         damage:40};
-    // case 'heal':
-    // return {
-    //   name:"heal",
-    //   damage:0
-    // }
+
+    case 'heal':
+    return {
+      name:"heal",
+      damage:0}
         
     default:
-    throw new Error (' Could not decode' + turn)
+    throw new Error (' Could not decode ' + turn)
   }
   
 }

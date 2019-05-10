@@ -18,9 +18,11 @@ class Tower extends Component {
             visible:'',
             roomKey:'',
             opponent:'',
-            victory:false
+            victory:false,
+            specialClick:false,
+            healClick:false
         };
-        this.socket = io();
+        this.socket = io("localhost:3000");
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
@@ -31,6 +33,10 @@ class Tower extends Component {
             addMessage(data);
         })
         this.socket.on("msg", function(data){
+            console.log(data)
+            if(data.heal === false){
+                enableButtons();
+            }
             addMessage(data);
         })
         this.socket.on("damage", function(data){
@@ -50,13 +56,6 @@ class Tower extends Component {
                 console.log(error)
             }
         })
-
-       	//     this.socket.on("win", function(data){
-        //     console.log(data)
-        //     if(data == props.userName){
-        //     toggleButton();
-        //     }
-        // })
   
         this.socket.on("gameover", function(data){
             console.log(data)
@@ -79,7 +78,7 @@ class Tower extends Component {
             this.socket.emit('SEND_MESSAGE', {
                 author: this.props.userName,
                 message: this.state.message,
-                roomKey:this.state.roomKey
+                roomKey:this.state.roomKey,
             })
             this.setState({message:''})
         }
@@ -92,6 +91,13 @@ class Tower extends Component {
             else if (name.target.id === "special" && this.state.mp <=0){
                 return null
             }
+            else if(name.target.id === "heal" && this.state.mp >0) {
+                heal()
+                this.socket.emit('turn', name.target.id);
+            }
+            else if (name.target.id === "heal" && this.state.mp <=0){
+                return null
+            }
             else {
         this.socket.emit('turn', name.target.id);
         console.log(name.target.id)
@@ -99,7 +105,10 @@ class Tower extends Component {
             }
     }
     const damageCounter= (damage)=>{
-        this.setState({hp: (this.state.hp-damage) })
+        this.setState({
+            hp: (this.state.hp-damage),
+            specialClick:false,
+         })
         //if player's HP gets to zero or lower, send out an emit saying you lost
         if (this.state.hp <=0) {
             handleLoseEmit(this.props.userName)
@@ -132,6 +141,11 @@ class Tower extends Component {
         axios.post("/tower/lose/"+ username)
         toggleButton();
     }
+    const enableButtons = () => {
+        this.setState({
+            healClick:false
+        })
+    }
 
     const handleWin = (username)=>{
         this.setState({victory:true})
@@ -144,15 +158,18 @@ class Tower extends Component {
         this.setState({enemyHp: eHp.hp})
     }
     const specialMove = ()=>{
-        this.setState({mp: this.state.mp-1})
+        this.setState({
+            mp: this.state.mp-1,
+            specialClick:true
+        })
     }
-    // const heal = ()=>{
-    //     this.setState({
-    //         mp: this.state.mp-1,
-    //         hp: this.state.hp+10
-    //     })
-    
-    // }
+    const heal = ()=>{
+        this.setState({
+            mp: this.state.mp-1,
+            hp: this.state.hp+10,
+            healClick:true
+        })
+    }
 
     const toggleButton=()=>{
         this.setState({visible: "disable"})
@@ -217,10 +234,10 @@ class Tower extends Component {
                                 </div>
                                 <div className= {this.state.visible}>
                                 <div className="button-wrapper">
-                                    <button onClick= {this.buttonListener} id="attack" className="turn">Attack</button>
-                                    <button onClick= {this.buttonListener} id="defend" className="turn">Defend</button>
-                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0}className="turn">Special</button>
-                                    {/* <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0}className="turn">Heal</button> */}
+                                    <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
+                                    <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
+                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">Special</button>
+                                    <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">Heal</button>
                                     </div>
                                     </div>
                             </div>
@@ -245,7 +262,7 @@ class Tower extends Component {
                             <div>
                                     {this.state.messages.map(message => {
                                         return (
-                                            <div>{message.author} {message.message}</div>
+                                            <div key = {message.id} >{message.author} {message.message}</div>
                                         )
                                     })}
                                 </div>
