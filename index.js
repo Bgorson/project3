@@ -38,9 +38,10 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
+// app.use('/user', user.router)
 require("./client/src/server/routes/apiRoute")(app);
 require("./client/src/server/routes/userRoute")(app);
-// app.use('/user', user.router)
+
 
 
 // The "catchall" handler: for any request that doesn't

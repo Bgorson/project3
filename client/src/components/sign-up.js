@@ -43,7 +43,7 @@ class Signup extends Component {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
 		event.preventDefault()
-
+		
 		//request to server to add a new username/password
 		axios.post('/user/', {
 			username: this.state.username,
@@ -56,7 +56,8 @@ class Signup extends Component {
 		})
 			.then(response => {
 				console.log("post response",response)
-				if (!response.data.errmsg) {
+				
+				if (!response.data.error) {
 					console.log('successful signup')
 					this.props.signUp({
 						username:response.data.username,
@@ -67,7 +68,7 @@ class Signup extends Component {
 					})
 				} else {
 					console.log('username already taken')
-					
+					this.showModal("Error signing up. Check password/username or this username exists.")
 				}
 			}).catch(error => {
 				console.log('signup error: ')
@@ -79,15 +80,16 @@ class Signup extends Component {
 
 
 	render() {
+
 			//if the redirect state is filled, go to it
 			if (this.state.redirectTo) {
 				return <Redirect to={{ pathname: this.state.redirectTo }} />
 			} else {
 		return (
 			<div className="SignupForm">
-			                        <Modal show={this.state.show} handleClose={this.hideModal}>
-                        <p>{this.state.modalMessage}</p>
-                        </Modal>
+		<Modal show={this.state.show} handleClose={this.hideModal}>
+		<p>{this.state.modalMessage}</p>
+		</Modal>
 				<h2>Sign up</h2>
 				<form className="signup-form">
 					<div className="form-group">	
