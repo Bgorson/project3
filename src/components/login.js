@@ -94,6 +94,7 @@ class Login extends Component {
                         </div>
                         <div className="form-group ">
                             <Button
+                                className="btn-buttons"
                                 variant="contained" 
                                 color="primary"
                                 onClick={this.handleSubmit}
@@ -101,11 +102,12 @@ class Login extends Component {
                             </Button>
 
                             <Button 
+                                className="btn-buttons"
                                 variant="contained" 
                                 color="primary">    
                                     <Link 
                                         to="/signup" 
-                                        className="btn btn-link">
+                                    >
                                     Sign Up 
                                     </Link>
                             </Button>    
