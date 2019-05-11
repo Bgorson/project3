@@ -8,14 +8,14 @@ import "../css/stylesheet.css";
 class App extends PureComponent {
   state = {
     isFlipped: Array(16).fill(false),
-    shuffleCard: App.duplicateCard.sort(() => Math.random() - 0.5),
+    shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
     clickCount: 1,
     prevSelectedCard: -1,
     prevCardID: -1
   };
 
   static duplicateCard = () => {
-    return [0, 1, 2, 3, 4, 5, 6, 7].reduce(
+    return [0,1,2,3,4,5,6,7].reduce(
       (preValue, current, index, array) => {
         return preValue.concat([current, current]);
         // console.log(current)
@@ -26,11 +26,11 @@ class App extends PureComponent {
 
   handleClick = event => {
     event.preventDefault();
-    const cardID = event.target.id;
+    const cardId = event.target.id;
     const newFlipps = this.state.isFlipped.slice();
     this.setState({
       prevSelectedCard: this.state.shuffledCard[cardId],
-      prevCardID: cardId
+      prevCardId: cardId
     });
 
     if (newFlipps[cardId] === false) {
@@ -51,6 +51,65 @@ class App extends PureComponent {
       }
     }
   };
+
+  isCardMatch = (card1, card2, card1Id, card2Id) => {
+    if (card1 === card2) {
+      const hideCard = this.state.shuffledCard.slice();
+      hideCard[card1Id] = -1;
+      hideCard[card2Id] = -1;
+      setTimeout(() => {
+        this.setState(prevState => ({
+          shuffledCard: hideCard
+        }));
+      }, 1000);
+    } else {
+      const flipBack = this.state.isFlipped.slice();
+      flipBack[card1Id] = false;
+      flipBack[card2Id] = false;
+      setTimeout(() => {
+        this.setState(prevState => ({ isFlipped: flipBack }));
+      }, 1000);
+    }
+  };
+
+  restartGame = () => {
+    this.setState({
+      isFlipped: Array(16).fill(false),
+      shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
+      clickCount: 1,
+      prevSelectedCard: -1,
+      prevCardId: -1
+    });
+  };
+
+  isGameOver = () => {
+    return this.state.isFlipped.every(
+      (element, index, array) => element !== false
+    );
+  };
+
+  render() {
+    return (
+      <div>
+        <Header restartGame={this.restartGame} />
+        {this.isGameOver() ? (
+          <GameOver restartGame={this.restartGame} />
+        ) : (
+          <div className="grid-container">
+            {this.state.shuffledCard.map((cardNumber, index) => (
+              <Card
+                key={index}
+                id={index}
+                cardNumber={cardNumber}
+                isFlipped={this.state.isFlipped[index]}
+                handleClick={this.handleClick}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
