@@ -6,42 +6,55 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Route, Link } from 'react-router-dom'
 
-import Water from '../images/underwater.png'
-import Hills from '../images/hills.png'
-import Mtn from '../images/mtn.png'
-import Trees from '../images/trees.png'
-import Tower from '../images/tower.png'
+import One from '../images/icon01.png'
+import Two from '../images/icon02.png'
+import Three from '../images/icon03.png'
+import Four from '../images/icon04.png'
+import Cs from '../images/cs01.png'
+
 
 const styles = {
   card: {
-    maxWidth: 450,
+    maxWidth: 300,
   },
   media: {
-    height: 500,
+    height: 300,
   }
 };
 
 const images = [
   {
     title: "minigame1",
-    img: Hills,
+    img: One,
     link: "/miniGame1"
   }, {
     title: "minigame2",
-    img: Trees,
+    img: Two,
     link: "/miniGame2"
   }, {
     title: "minigame3",
-    img: Mtn,
+    img: Three,
     link: "/miniGame3"
   }, {
     title: "minigame4",
-    img: Water,
+    img: Four,
     link: "/miniGame4"
   }, {
-    title: "tower",
-      img: Tower,
-      link: "/tower"
+    title: "coming",
+      img: Cs,
+      link: "/main"
+  }, {
+    title: "coming",
+      img: Cs,
+      link: "/main"
+  }, {
+    title: "coming",
+      img: Cs,
+      link: "/main"
+  }, {
+    title: "coming",
+      img: Cs,
+      link: "/main"
   }
 
 ];
