@@ -3,16 +3,12 @@ import Clickcard from "./Clickcard";
 import Navbar from "./Navbar";
 import cards from "../cards.json"
 import "./style.css"
-<<<<<<< HEAD:src/components/minigame1/components/Clickygame.js
+
 import Instructions from "./Instructions"
-=======
+
 import Jumbotron from "./Jumbotron"
 
 import Grid from "@material-ui/core/Grid"
-// import Paper from '@material-ui/core/Paper';
-// import Grow from '@material-ui/core/Grow';
->>>>>>> develop:client/src/components/minigame1/components/Clickygame.js
-
 
 
 class Clickygame extends Component {
