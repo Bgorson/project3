@@ -110,6 +110,9 @@ class Tower extends Component {
                 return null
             }
             else if(name.target.id === "heal" && this.state.mp >0) {
+                if (this.state.hp===this.props.hp){
+                    return null
+                }
                 heal()
                 this.socket.emit('turn', name.target.id);
             }

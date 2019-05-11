@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../images/logo.svg'
 import './login.css';
-import '../components/loginModal/modal.css';
+
 
 // material-ui
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Modal from './loginModal/modal'
+import Modal from '@material-ui/core/Modal';
 
 class Login extends Component {
     constructor() {
@@ -80,10 +81,6 @@ class Login extends Component {
         } else {
             return (
                 <div>
-                        <Modal show={this.state.show} handleClose={this.hideModal}>
-                        <p>Log-in Error. Please check username/password</p>
-                        </Modal>
-
                     <img src={logo} className="wildlyfe-logo" alt="wildlyfe" />
                     <h2>WILDLYFE</h2>
                     <form className="login-input">
@@ -129,6 +126,22 @@ class Login extends Component {
                             </Button>    
                         </div>
                     </form>
+                                        <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            >
+                            <div style={getModalStyle()} className={classes.paper}>
+                                <Typography variant="h6" id="modal-title">
+                                Text in a modal
+                                </Typography>
+                                <Typography variant="subtitle1" id="simple-modal-description">
+                                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                                </Typography>
+                                <SimpleModalWrapped />
+                            </div>
+                            </Modal>
                 </div>
             )
         }

@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Modal from './loginModal/modal'
+// import Modal from './loginModal/modal'
 
 // css styles
 import './pet.css';
@@ -100,9 +100,9 @@ class PetChoice extends Component {
         } else {
 return (
     <div className="petSelect">
-    		<Modal show={this.state.show} handleClose={this.hideModal}>
+    		{/* <Modal show={this.state.show} handleClose={this.hideModal}>
 		<p>{this.state.modalMessage}</p>
-		</Modal>
+		</Modal> */}
     <h2>PET SELECTION {this.props.userName}</h2>
     <form className="petForm">
         <FormControl className={classes.formControl}>

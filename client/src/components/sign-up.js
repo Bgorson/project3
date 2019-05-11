@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './login.css';
 import '../components/loginModal/modal.css';
-import Modal from './loginModal/modal'
+// import Modal from './loginModal/modal'
 
 
 class Signup extends Component {
@@ -87,9 +87,9 @@ class Signup extends Component {
 			} else {
 		return (
 			<div className="SignupForm">
-		<Modal show={this.state.show} handleClose={this.hideModal}>
+		{/* <Modal show={this.state.show} handleClose={this.hideModal}>
 		<p>{this.state.modalMessage}</p>
-		</Modal>
+		</Modal> */}
 				<h2>Sign up</h2>
 				<form className="signup-form">
 					<div className="form-group">	
