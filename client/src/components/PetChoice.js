@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Modal from './loginModal/modal'
 
 // css styles
 import './pet.css';
@@ -48,12 +49,26 @@ class PetChoice extends Component {
 		this.setState({
 			[event.target.name]: event.target.value,
 		})
-	}
+    }
+    showModal =(modalText) => {
+        this.setState({ 
+			show:true,
+			modalMessage:modalText
+		})
+    }
+    hideModal =()=> {
+        this.setState({show:false})
+    }
     handleSubmit(event) {
 		event.preventDefault()
-
+        if (this.state.petName === "" || this.state.petType=== "" || this.state.petColor==="" || this.state.petAccess===""){
+            console.log("missing info")
+            this.showModal("Please fill out the entire form.")
+            return null
+        }
 		//request to server to add a pet to user
-		axios.post('/pets/'+this.props.userName, {
+		else {
+            axios.post('/pets/'+this.props.userName, {
 			petname: this.state.petName,
 			petType: this.state.petType,
 			petColor:this.state.petColor,
@@ -61,7 +76,7 @@ class PetChoice extends Component {
 		})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('you chosen your pet')
 					this.setState({ //redirect to login page
 						redirectTo: '/story'
@@ -75,6 +90,7 @@ class PetChoice extends Component {
 
 			})
     }
+}
     
     render() {
         const { classes } = this.props;
@@ -84,6 +100,9 @@ class PetChoice extends Component {
         } else {
 return (
     <div className="petSelect">
+    		<Modal show={this.state.show} handleClose={this.hideModal}>
+		<p>{this.state.modalMessage}</p>
+		</Modal>
     <h2>PET SELECTION {this.props.userName}</h2>
     <form className="petForm">
         <FormControl className={classes.formControl}>

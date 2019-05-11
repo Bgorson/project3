@@ -74,7 +74,7 @@ function onConnection(socket) {
 		if (waitingPlayer) {
 			socket.emit('room',roomKey)
 			socket.join(roomKey)
-			io.to(roomKey).emit('msg', {message:'Game Starting NOW! '});
+			io.to(roomKey).emit('msgLog', {message:'Game Starting NOW! '});
 			io.to(roomKey).emit('enemy', {
 				playerOne:username1,
 				playerTwo:username
@@ -94,9 +94,15 @@ function onConnection(socket) {
 		  }
 	})
 	
-	socket.on('SEND_MESSAGE', function(data){
+	socket.on('SEND_MESSAGE_CHAT', function(data){
 		let roomId = data.roomKey
 		io.in(rooms[roomId].roomKey).emit('RECEIVE_MESSAGE', data)
+		console.log((rooms[roomId].roomKey))
+
+	})
+	socket.on('SEND_MESSAGE', function(data){
+		let roomId = data.roomKey
+		io.in(rooms[roomId].roomKey).emit('RECEIVE_LOG', data)
 		console.log((rooms[roomId].roomKey))
 
 	})

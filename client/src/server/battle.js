@@ -4,7 +4,7 @@ class Battle {
   constructor(p1,p1Name,p2,p2Name, roomKey) {
     this._players= [p1,p2];
     this._turns= [null, null];
-    this._sendToPlayers('Starting Battle'+ p1Name + p2Name);
+    this._sendToPlayersLogs('Starting Battle'+ p1Name + p2Name);
     this._sendToPlayers(p1Name +" VS "+ p2Name);
     this._players.forEach((player, idx)=> {
       player.on('turn', (turn)=> {
@@ -22,6 +22,9 @@ class Battle {
     _sendToPlayer(playerIndex, msg) {
       this._players[playerIndex].emit("msg",{message:msg})
     }
+    _sendToPlayerLog(playerIndex, msg) {
+      this._players[playerIndex].emit("msgLog",{message:msg})
+    }
     //damage player
     _damagePlayer(playerIndex,damage){
         this._players[playerIndex].in(this.roomKey).emit("damage",{
@@ -36,6 +39,11 @@ class Battle {
     this._players.forEach((player) => {player.in(this.roomKey).emit("msg",{message: msg, heal:false})
     
   })
+}
+_sendToPlayersLogs(msg){
+  this._players.forEach((player) => {player.in(this.roomKey).emit("msgLog",{message: msg, heal:false})
+  
+})
 }
   //activate shield
   
@@ -87,7 +95,7 @@ class Battle {
     //turn = what you are doing
 _onTurn(playerIndex, turn){
   this._turns[playerIndex] = turn;
-  this._sendToPlayer(playerIndex, `you are going to use ${turn}`)
+  this._sendToPlayerLog(playerIndex, `you are going to use ${turn}`)
   this._checkGameOver();
 }
     //Once both players made a turn, reset game and display results
@@ -99,7 +107,7 @@ _checkGameOver(){
     this._getGameResult();
     this._turns = [null, null]
     
-    this._sendToPlayers('New Turn!')
+    this._sendToPlayersLogs('New Turn!')
   }
 }
     //game logic for moves
@@ -204,7 +212,7 @@ if(p1.name == "special") {
 
   //   this._damagePlayer(1,p0.damage)
   // }
-    this._sendToPlayers(this.player2Name+" uses "+ p0.name + " "+this.player1Name +" uses " + p1.name)
+    this._sendToPlayersLogs(this.player2Name+" uses "+ p0.name + " "+this.player1Name +" uses " + p1.name)
    
 }
     //identify who wins and who lises

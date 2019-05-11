@@ -12,6 +12,8 @@ class Tower extends Component {
             username: '',
             message: '',
             messages: [],
+            battleLog: '',
+            battleLogs: [],
             hp:'',
             mp:5,
             enemyHp:'',
@@ -20,7 +22,8 @@ class Tower extends Component {
             opponent:'',
             victory:false,
             specialClick:false,
-            healClick:false
+            healClick:false,
+            damage:0
         };
         this.socket = io();
         this.socket.on('room', function(data){
@@ -32,6 +35,16 @@ class Tower extends Component {
         this.socket.on("RECEIVE_MESSAGE", function(data){
             addMessage(data);
         })
+        this.socket.on("RECEIVE_LOG", function(data){
+            addLog(data);
+        })
+        this.socket.on("msgLog", function(data){
+            console.log(data)
+            if(data.heal === false){
+                enableButtons();
+            }
+            addLog(data);
+        })
         this.socket.on("msg", function(data){
             console.log(data)
             if(data.heal === false){
@@ -39,6 +52,7 @@ class Tower extends Component {
             }
             addMessage(data);
         })
+
         this.socket.on("damage", function(data){
             damageCounter(data.damage)
         })
@@ -73,9 +87,13 @@ class Tower extends Component {
             this.setState({messages: [...this.state.messages,data]})
         }
 
+        const addLog = data => {
+            this.setState({battleLogs: [...this.state.battleLogs,data]})
+        }
+
         this.sendMessage= event => {
             event.preventDefault();
-            this.socket.emit('SEND_MESSAGE', {
+            this.socket.emit('SEND_MESSAGE_CHAT', {
                 author: this.props.userName,
                 message: this.state.message,
                 roomKey:this.state.roomKey,
@@ -108,6 +126,7 @@ class Tower extends Component {
         this.setState({
             hp: (this.state.hp-damage),
             specialClick:false,
+            damage:this.state.damage+damage
          })
         //if player's HP gets to zero or lower, send out an emit saying you lost
         if (this.state.hp <=0) {
@@ -167,6 +186,7 @@ class Tower extends Component {
         this.setState({
             mp: this.state.mp-1,
             hp: this.state.hp+10,
+            damage:this.state.damage-10,
             healClick:true
         })
     }
@@ -203,9 +223,12 @@ class Tower extends Component {
         this.setState({
             hp:this.props.hp
         })
+
+        
     }
 
     render() { 
+
         return (
             <div>
 
@@ -226,12 +249,41 @@ class Tower extends Component {
                             <div>
 
                                 <hr/>
+                                
                                 <div className= "hp">
                                 {this.state.hp} HP
                                 </div>
+                                <div>
+                                <div className='HpBar'>
+                                    <div className='balanceSection currentHealth' 
+                                    style={{'width':
+                                     Math.max((this.state.hp/this.props.hp)*100,0)+'%'
+                                     }}></div>
+                                    <div className='balanceSection damage' 
+                                    style={{'width': 
+                                    Math.min((this.state.damage/this.props.hp)*100,100)+'%'
+                                    }}></div>
+                                </div>
+                                </div>
+                               
                                 <div className="mp">
                                 {this.state.mp} MP
                                 </div>
+                                <div>
+                                <div className='MpBar'>
+                                    <div className='balanceSection currentMp' 
+                                    style={{'width':
+                                     (this.state.mp/5)*100+'%'
+                                     }}></div>
+                                    <div className='balanceSection damage' 
+                                    style={{'width': 
+                                    ((5-this.state.mp)/5)*100+'%'
+                                    }}></div>
+                                </div>
+                                </div>
+
+
+
                                 <div className= {this.state.visible}>
                                 <div className="button-wrapper">
                                     <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
@@ -249,8 +301,7 @@ class Tower extends Component {
                                     <div>Enemy HP</div>
                                
                                     <div className= "enemyHp">
-                                    {this.state.enemyHp}
-                                    
+                                    {this.enemyHp}
                                     </div>
                                     <hr/>
                                     </div>
@@ -271,6 +322,15 @@ class Tower extends Component {
                                     <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <br/>
                                     <button onClick={this.sendMessage}>Send</button>
+                                </div>
+                                </div>
+                                <div>Battle Log
+                            <div>
+                                    {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
+                                        return (
+                                            <div key = {message.id}>{message.message}</div>
+                                        )
+                                    })}
                                 </div>
                                 </div>
                                 </div>
