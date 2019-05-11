@@ -3,15 +3,20 @@ import Clickcard from "./Clickcard";
 import Navbar from "./Navbar";
 import cards from "../cards.json"
 import "./style.css"
+<<<<<<< HEAD:src/components/minigame1/components/Clickygame.js
+import Instructions from "./Instructions"
+=======
 import Jumbotron from "./Jumbotron"
 
 import Grid from "@material-ui/core/Grid"
 // import Paper from '@material-ui/core/Paper';
 // import Grow from '@material-ui/core/Grow';
+>>>>>>> develop:client/src/components/minigame1/components/Clickygame.js
 
 
 
 class Clickygame extends Component {
+
     state= {
         score: 0,
         topScore: 0,
@@ -19,15 +24,13 @@ class Clickygame extends Component {
         headerText: "Click an Image to Begin"
     }
 
-
-
-handleClick = event =>{
-    console.log("clicked")
+handleClick = event => {
+        console.log("clicked")
     let localScore = this.state.score
-    console.log(this.state.topScore)
+        console.log(this.state.topScore)
     //check if its in the array
     //make this ternerary operator?
-    if (this.state.clicked.indexOf(event.target.alt) === -1){
+    if (this.state.clicked.indexOf(event.target.alt) === -1) {
         localScore = localScore +1
         this.state.clicked.push(event.target.alt)
         this.setState({
@@ -35,12 +38,10 @@ handleClick = event =>{
             headerText:"That is correct!",
             topScore: Math.max(this.state.topScore, localScore)
         })
-
-
     } 
 
     else {
-        if (this.state.score >5) {
+        if (this.state.score > 5) {
             this.props.levelUp(this.props.userName, "strength")
         }
         this.setState({
@@ -52,7 +53,7 @@ handleClick = event =>{
     console.log(event.target.alt)
 }
 //Pulled function from StackOverFlow: https://stackoverflow.com/questions/38101522/how-to-render-random-objects-from-an-array-in-react
-shuffleCards = array =>{
+shuffleCards = array => {
     let i = array.length-1;
     for(; i > 0;i--){
         const j = Math.floor(Math.random() * (i+1));
@@ -63,40 +64,29 @@ shuffleCards = array =>{
     return array;
 }
 
-render(){
-    return (
-        <div>
-            <Navbar
-            score = {this.state.score}
-            topScore= {this.state.topScore}
-            text= {this.state.headerText}
-            />
-        
-            <Jumbotron
-            user= {this.props.userName}
-            />
+    render() {
+        return (
+            <div>
+                <div className="header">
+                    <Instructions />
 
-        <div className= "collection">
-            <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            item sm= {12}
-            >
-            <Clickcard 
-
-            shuffle = {this.shuffleCards}
-            cards = {cards}
-            handleClick= {this.handleClick}
-            />
-
-            </Grid>
-          
-        </div>
-
-        </div>
-    )
-}
+                    <Navbar
+                        score = {this.state.score}
+                        topScore= {this.state.topScore}
+                        text= {this.state.headerText}
+                    />
+                    
+                </div>
+                <div className= "collection">
+                    <Clickcard 
+                        className="image-cards"
+                        shuffle = {this.shuffleCards}
+                        cards = {cards}
+                        handleClick= {this.handleClick}
+                    />
+                </div>
+            </div>
+        )
+    }
 }
 export default Clickygame;

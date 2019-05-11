@@ -1,8 +1,16 @@
+.row {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-column-gap: 15px;
+}
+
 .cards-cards {
     display: grid;
-    grid-template-columns: repeat(5, 2fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 15px;
-  }
+    grid-row-gap: 20px;
+    
+}
 
 .stat-box {
   display: grid;
