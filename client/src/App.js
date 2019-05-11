@@ -14,6 +14,7 @@ import StatInfo from './components/statinfo'
 
 //mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"
+import Minigame2 from "./components/minigame2/CardFlip.js/index.js"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
 import Tower from "./components/tower/tower"
 
@@ -200,6 +201,24 @@ class App extends Component {
             />
         }
         />
+
+{/* ===================================== */}
+
+<Route
+          exact path="/miniGame2"
+          render= { () =>
+            <Minigame2
+            userId= {this.state.userId}
+            userName= {this.state.username}
+            levelUp= {this.levelUp}
+            magic= {this.state.stat.magic}
+            />
+        }
+        />
+
+
+{/* ===================================== */}
+
 
 {/* ===================================== */}
         <Route
