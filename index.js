@@ -120,6 +120,7 @@ function onConnection(socket) {
 		socket.to(rooms[roomId].roomKey).emit("damage",data)
 	})
 
-	
-
+	socket.on('disconnect', function(){
+		console.log(socket.id, "Disconnected")
+	})
 	}

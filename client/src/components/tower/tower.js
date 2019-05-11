@@ -16,14 +16,16 @@ class Tower extends Component {
             battleLogs: [],
             hp:'',
             mp:5,
-            enemyHp:'',
+            enemyHp:200,
             visible:'',
             roomKey:'',
             opponent:'',
             victory:false,
             specialClick:false,
             healClick:false,
-            damage:0
+            damage:0,
+            enemyMaxHp:200,
+            enemyDamageReceived:0
         };
         this.socket = io();
         this.socket.on('room', function(data){
@@ -118,6 +120,8 @@ class Tower extends Component {
             }
             else {
         this.socket.emit('turn', name.target.id);
+
+        console.log(this.props.hp)
         console.log(name.target.id)
 
             }
@@ -136,7 +140,8 @@ class Tower extends Component {
         else {this.socket.emit('hp',{
             username:this.props.userName,
             hp:this.state.hp,
-            roomKey:this.state.roomKey
+            roomKey:this.state.roomKey,
+            maxhp:this.props.hp
         })
     }
     }
@@ -174,7 +179,10 @@ class Tower extends Component {
     }
     const updateEnemyHp= (eHp)=>{
         console.log("Receiving",eHp)
-        this.setState({enemyHp: eHp.hp})
+        this.setState({
+            enemyHp: eHp.hp,
+            enemyMaxHp:eHp.maxhp
+        })
     }
     const specialMove = ()=>{
         this.setState({
@@ -251,7 +259,8 @@ class Tower extends Component {
                                 <hr/>
                                 
                                 <div className= "hp">
-                                {this.state.hp} HP
+                                {/* {this.state.hp} HP */}
+                                Health
                                 </div>
                                 <div>
                                 <div className='HpBar'>
@@ -267,7 +276,7 @@ class Tower extends Component {
                                 </div>
                                
                                 <div className="mp">
-                                {this.state.mp} MP
+                                {this.state.mp} Magic
                                 </div>
                                 <div>
                                 <div className='MpBar'>
@@ -298,10 +307,21 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
-                                    <div>Enemy HP</div>
+                                    <div>Enemy Health</div>
                                
                                     <div className= "enemyHp">
-                                    {this.enemyHp}
+                                    {/* {this.state.enemyHp} */}
+
+                                    <div className='HpBar'>
+                                    <div className='balanceSection currentHealth' 
+                                    style={{'width':
+                                     Math.max((this.state.enemyHp/this.state.enemyMaxHp)*100,0)+'%'
+                                     }}></div>
+                                    <div className='balanceSection damage' 
+                                    style={{'width': 
+                                    Math.min(((this.state.enemyMaxHp-this.state.enemyHp)/this.state.enemyMaxHp)*100,100)+'%'
+                                    }}></div>
+                                </div>
                                     </div>
                                     <hr/>
                                     </div>
