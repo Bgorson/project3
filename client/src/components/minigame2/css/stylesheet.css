@@ -67,12 +67,11 @@ body {
   .card-front {
     background-color: darkblue;
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    height: 10em;
   }
   
   .card-back {
     font-weight: bold;
+    height: 10em;
   }
-  
-  .react-card-front {
-    position: unset !important;
-  }
+

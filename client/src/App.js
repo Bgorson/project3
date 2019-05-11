@@ -14,6 +14,7 @@ import StatInfo from './components/statinfo'
 
 //mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"
+import Minigame2 from "./components/minigame2/CardFlip.js"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
 import Tower from "./components/tower/tower"
 
@@ -29,7 +30,8 @@ class App extends Component {
       userId: null,
       win:null,
       lose:null,
-      petname:''
+      petname:'',
+      topPlayerName:''
     }
 
     this.getUser = this.getUser.bind(this)
@@ -37,6 +39,7 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this)
     this.getStats = this.getStats.bind(this)
     this.signupUser = this.signupUser.bind(this)
+    this.topPlayer= this.topPlayer.bind(this)
   }
 
   // componentDidMount() {
@@ -51,6 +54,10 @@ class App extends Component {
   signupUser (userObject) {
       console.log("firing off updateUser ")
       this.setState(userObject)
+  }
+
+  topPlayer(){
+    console.log('delete e')
   }
 
   //WHY IS THIS NOT GETTING STATS FROM AXIOS CALL?!
@@ -182,8 +189,11 @@ class App extends Component {
         getUser= {this.getUser}
         petname= {this.state.petname}
 
+
         />
-        <Main/>
+        <Main
+
+                />
 </React.Fragment>
         }
 />
@@ -200,6 +210,24 @@ class App extends Component {
             />
         }
         />
+
+{/* ===================================== */}
+
+<Route
+          exact path="/miniGame2"
+          render= { () =>
+            <Minigame2
+            userId= {this.state.userId}
+            userName= {this.state.username}
+            levelUp= {this.levelUp}
+            magic= {this.state.stat.magic}
+            />
+        }
+        />
+
+
+{/* ===================================== */}
+
 
 {/* ===================================== */}
         <Route

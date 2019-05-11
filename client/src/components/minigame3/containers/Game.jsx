@@ -1,6 +1,6 @@
 import React from 'react';
 import GamePlay from "../components/GamePlay"
-import { GamePlay, Board, Player, Enemy } from 'components';
+import { GamePlay, Board, Player, Enemy, } from 'components';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/Constants.js'
 import {  pluck } from 'helpers/Utils'
 

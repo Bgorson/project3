@@ -1,4 +1,3 @@
-// think of rules and how to win or lose
 import React, { PropTypes } from 'react'
 
 const style = () => {

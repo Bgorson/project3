@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./client/src/server/database') 
 // Route requires
 const user = require('./client/src/server/routes/user')
-
+const db = require('./client/src/server/database//models/user')
 const express = require('express');
 const path = require('path');
 
@@ -64,6 +64,7 @@ let rooms={}
 const io = socketio(server);
 var username;
 var username1;
+
 
 io.on('connection',onConnection);
 function onConnection(socket) {

@@ -2,12 +2,12 @@ import React, { PureComponent } from "react";
 import Header from "./components/header/Header";
 import Card from "./components/card/card";
 import GameOver from "./components/card/GameOver";
-import "../css/stylesheet.css";
+import "./css/stylesheet.css";
 
-class App extends PureComponent {
+class MiniGame2 extends PureComponent {
   state = {
     isFlipped: Array(16).fill(false),
-    shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
+    shuffledCard: MiniGame2.duplicateCard().sort(() => Math.random() - 0.5),
     clickCount: 1,
     prevSelectedCard: -1,
     prevCardID: -1
@@ -74,7 +74,7 @@ class App extends PureComponent {
   restartGame = () => {
     this.setState({
       isFlipped: Array(16).fill(false),
-      shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
+      shuffledCard: MiniGame2.duplicateCard().sort(() => Math.random() - 0.5),
       clickCount: 1,
       prevSelectedCard: -1,
       prevCardId: -1
@@ -111,4 +111,4 @@ class App extends PureComponent {
   }
 }
 
-export default App;
+export default MiniGame2;

@@ -1,6 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Game }from './containers/Game';
+import MiniGame3 from "./components/MiniGame3"
 
-ReactDOM.render(<Game boardSize={20} playerSize={25}/>, document.getElementById('root'));
+import './style.css'
+function App() {
+  return <MiniGame3 />
+}
+   
 
+export default App;

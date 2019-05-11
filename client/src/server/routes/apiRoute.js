@@ -113,6 +113,13 @@ app.post('/levelUp/:id/agility', (req, res)=>{
 			(response)
 		}
 	})
-    })
-    
+	})
+	
+    //Route to find leader
+app.get('/leaderboard', (req, res)=>{
+	User.findOne().sort({'ratio.win':-1}).then(function(data){
+		console.log(data)
+		res.json(data)
+		})
+	})
 }

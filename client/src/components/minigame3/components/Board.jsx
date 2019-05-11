@@ -1,7 +1,3 @@
-// Board to have a width of 50px????
-// First, determine the margin of the board
-//We need a component for Player, Board, Enemy, Object, Game Play/INFO
-
 import React from 'react';
 
 const style = (dimension) => {
@@ -21,3 +17,7 @@ export default ({ dimension, children}) => {
             {children}
     </div>
 }
+
+// Board to have a width of 50px????
+// First, determine the margin of the board
+//We need a component for Player, Board, Enemy, Object, Game Play/INFO
