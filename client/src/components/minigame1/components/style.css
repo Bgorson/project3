@@ -1,0 +1,35 @@
+.cardImage {
+    max-width:200px;
+    max-height:200px;
+    padding:1em;
+}
+.collection {
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    grid-row-gap: 40px;
+    margin-right: auto;
+    margin-left:auto;
+    margin-bottom:10em;
+    width:75%;
+}
+nav {
+    background:blue;
+    color:white;
+    font-size: 1.5em;
+    text-align: center;
+}
+.navbar {
+    padding:1.5em;
+}
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-column-gap: 40px;
+    padding: 20px;
+
+}
+
+.instructions,
+.score {
+    padding: 30px;
+}

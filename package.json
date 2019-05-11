@@ -1,34 +1,25 @@
 {
-  "name": "wildlyfe",
-  "version": "0.1.0",
-  "private": true,
+  "name": "rando",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "animejs": "^3.0.1",
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
-    "konva": "^3.2.5",
-    "react": "^16.7.0-alpha.2",
-    "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.7.0-alpha.2",
-    "react-konva": "^16.8.6",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
-    "react-sound": "^1.2.0",
-    "socket.io-client": "^2.2.0",
-    "spectre.css": "^0.5.0"
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^2.0.3",
+    "express": "^4.15.3",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.5.6",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "password-generator": "^2.1.0",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "api": "nodemon ./server/server.js",
-    "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\""
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
-  "devDependencies": {
-    "concurrently": "^3.5.1",
-    "nodemon": "^1.17.5"
-  },
-  "proxy": "http://localhost:8080"
+  "server": "nodemon server --ignore frontend"
 }
