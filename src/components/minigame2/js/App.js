@@ -16,7 +16,26 @@ class App extends PureComponent {
     prevCardID: -1
   };
 
-  return <MiniGame2/>
+  static duplicateCard =  () => {
+    return [0,1,2,3,4,5,6,7].reduce((preValue, current, index, array) => {
+      return preValue.concat([current, current])
+      // console.log(current)
+    },[])
+    };
+    
+    handleClick = event => {
+      event.preventDefault();
+      const cardID = event.target.id;
+      const newFlipps = this.state.isFlipped.slice();
+      this.setState({
+        prevSelectedCard: this.state.shuffledCard[cardId],
+        prevCardID: cardId
+      });
+
+    }
+    
+    )
+  }
 }
    
 export default App;
