@@ -24,9 +24,6 @@ class EnemyBar extends React.Component {
             <div className='balanceSection damage' style={{'width': damagePercent+'%'}}></div>
       
           </div>
-          {/* <a href='#' onClick={this.settotalHealth.bind(this, 107)}>Set to 107</a>
-          <br />
-          <a href='#' onClick={this.settotalHealth.bind(this, 807)}>Set to 807</a> */}
         </div>
       );
     }
