@@ -25,8 +25,17 @@ class Main extends Component {
         return (
             <React.Fragment>
             <h4>Choose a mini game here</h4>
-            <div>Leader Name: {this.state.topPlayerName}</div>
-
+            <div>
+                <h1>Currently at the top of the Tower: {this.state.topPlayerName}
+                    </h1></div>
+            <div>
+                Your pet info:
+                <br></br>
+                Name: {this.props.petname}
+                Type: {this.props.petType}
+                Color:{this.props.petColor}
+                Accessory:{this.props.petAccess}
+            </div>
             <div className = "row">        
                 <MainButtons />
                 <TowerBtn />

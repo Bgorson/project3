@@ -31,7 +31,10 @@ class App extends Component {
       win:null,
       lose:null,
       petname:'',
-      topPlayerName:''
+      topPlayerName:'',
+      petType:'',
+      petColor:'',
+      petAccess:''
     }
 
     this.getUser = this.getUser.bind(this)
@@ -92,7 +95,10 @@ class App extends Component {
           stat:response.data.stat,
           win:response.data.ratio.win,
           lose:response.data.ratio.lose,
-          petname:response.data.petname
+          petname:response.data.petname,
+          petType:response.data.petType,
+          petColor:response.data.petColor,
+          petAccess:response.data.petAccess,
       })
     })
   }
@@ -109,7 +115,10 @@ class App extends Component {
   //function for leveling up
   //pass the USERNAME and the stat you want increased
   levelUp(username,stat){
-    axios.post("/levelUp/"+username+"/"+stat, {stat}).then(function(){
+    axios.post("/levelUp/"+username+"/"+stat, {stat}).then(function(error){
+      if (error){
+        console.log(error)
+      }
       console.log("leveling up", stat)
     })
   }
@@ -165,7 +174,8 @@ class App extends Component {
 
           render={() =>
             <Story
-            />
+            getStats= {this.getStats}
+            petname= {this.state.petname}/>
           }
 
         />
@@ -192,7 +202,10 @@ class App extends Component {
 
         />
         <Main
-
+       petname= {this.state.petname}
+       petType= {this.state.petType}
+       petColor= {this.state.petColor}
+       petAccess= {this.state.petAccess}
                 />
 </React.Fragment>
         }

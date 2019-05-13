@@ -4,8 +4,8 @@ import { GamePlay, Board, Player, Enemy, } from 'components';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/Constants.js'
 import {  pluck } from 'helpers/Utils'
 
-import './style.css'
-import { doesNotThrow } from 'assert';
+// import './style.css'
+// import { doesNotThrow } from 'assert';
 
    const getDefaultState = ({ boarSize, playerSize, highScore = 0 }) => {
      const half = Math.floor(boardSize / 2 ) * playerSize;

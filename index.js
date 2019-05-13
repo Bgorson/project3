@@ -2,7 +2,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('./client/src/server/passport');
-const socketio = require ('socket.io');
+// const socketio = require ('socket.io');
 const BattleLogic = require( "./client/src/server/battle")
 const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./client/src/server/database') 
@@ -11,8 +11,11 @@ const user = require('./client/src/server/routes/user')
 const db = require('./client/src/server/database//models/user')
 const express = require('express');
 const path = require('path');
-
+const port = process.env.PORT || 5000;
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+// io.set('transports', ['websocket']);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -50,10 +53,17 @@ require("./client/src/server/routes/userRoute")(app);
 //   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 // });
 
-const port = process.env.PORT || 5000;
-const server= app.listen(port, () => {
-	console.log(`App listening on PORT: ${port}`)
-})
+
+// const server= app.listen(port, () => {
+// 	console.log(`App listening on PORT: ${port}`)
+// })
+
+
+// const app = require('express')();
+
+
+
+
 
 //=============================================
 // SocketIO 
@@ -61,10 +71,9 @@ let waitingPlayer = null;
 let roomKey= null;
 let rooms={}
 // const server = http.createServer(app);
-const io = socketio(server);
+// const io = socketio(server);
 var username;
 var username1;
-
 
 io.on('connection',onConnection);
 function onConnection(socket) {
@@ -113,14 +122,18 @@ function onConnection(socket) {
 		io.in(rooms[roomId].roomKey).emit("gameover", data)
 	})
 	socket.on("hp", function(data){
+		console.log("sending hp from server")
 		let roomId = data.roomKey
-		socket.to(rooms[roomId].roomKey).emit("hp",data)
+		io.to(rooms[roomId].roomKey).emit("hp",data)
 	})
 	socket.on("damage", function(data){
+		console.log("sending damage from server")
 		let roomId = data.roomKey
-		socket.to(rooms[roomId].roomKey).emit("damage",data)
+		io.to(rooms[roomId].roomKey).emit("damage",data)
 	})
 
-	
-
+	socket.on('disconnect', function(){
+		console.log(socket.id, "Disconnected")
+	})
 	}
+	server.listen(port);

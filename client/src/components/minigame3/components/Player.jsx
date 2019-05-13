@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Object } from 'components';
-import { UP, DOWN, LEFT,RIGHT} from 'constants'
+import { UP, DOWN, LEFT,RIGHT} from 'helpers/constants'
 
 class Player extends Component {
     handleKeyDown = (e) => {
