@@ -109,7 +109,10 @@ class App extends Component {
   //function for leveling up
   //pass the USERNAME and the stat you want increased
   levelUp(username,stat){
-    axios.post("/levelUp/"+username+"/"+stat, {stat}).then(function(){
+    axios.post("/levelUp/"+username+"/"+stat, {stat}).then(function(error){
+      if (error){
+        console.log(error)
+      }
       console.log("leveling up", stat)
     })
   }
@@ -165,7 +168,8 @@ class App extends Component {
 
           render={() =>
             <Story
-            />
+            getStats= {this.getStats}
+            petname= {this.state.petname}/>
           }
 
         />

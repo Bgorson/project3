@@ -65,7 +65,6 @@ const io = socketio(server);
 var username;
 var username1;
 
-
 io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
@@ -113,12 +112,14 @@ function onConnection(socket) {
 		io.in(rooms[roomId].roomKey).emit("gameover", data)
 	})
 	socket.on("hp", function(data){
+		console.log("sending hp from server")
 		let roomId = data.roomKey
-		socket.to(rooms[roomId].roomKey).emit("hp",data)
+		io.to(rooms[roomId].roomKey).emit("hp",data)
 	})
 	socket.on("damage", function(data){
+		console.log("sending damage from server")
 		let roomId = data.roomKey
-		socket.to(rooms[roomId].roomKey).emit("damage",data)
+		io.to(rooms[roomId].roomKey).emit("damage",data)
 	})
 
 	socket.on('disconnect', function(){

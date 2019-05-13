@@ -27,7 +27,9 @@ class Tower extends Component {
             enemyMaxHp:200,
             enemyDamageReceived:0
         };
+
         this.socket = io();
+
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
