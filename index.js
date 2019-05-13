@@ -15,7 +15,8 @@ const port = process.env.PORT || 5000;
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-server.listen(port);
+// io.set('transports', ['websocket']);
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -135,4 +136,4 @@ function onConnection(socket) {
 		console.log(socket.id, "Disconnected")
 	})
 	}
-	
+	server.listen(port);
