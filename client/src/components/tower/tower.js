@@ -317,17 +317,18 @@ class Tower extends Component {
                                     </div>
                                 </div>
                                 
-                                <div className="message-display">
-                                
+
+                                <div className="chat-box">
+                                    <div className="message-display">
+                                    
                                     {this.state.messages.map(message => {
                                         return (
                                             <div key = {message.id} >{message.author} {message.message}</div>
                                         )
                                     })}
-                         
+                        
                                 </div>
 
-                                <div className="chat-box">
                                     <input type="text" placeholder="Chat with your opponent." className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <button onClick={this.sendMessage}>Send</button>
                             </div>
