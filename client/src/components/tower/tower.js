@@ -230,109 +230,110 @@ class Tower extends Component {
     render() { 
 
         return (
-            <div>
+            <div className="tower-container">
 
-            {this.state.victory === true &&
-            <Sound
-            url="./victory.mp3"
-            playStatus={Sound.status.PLAYING}
-            playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            />
-            }
+                {this.state.victory === true &&
+                    <Sound
+                    url="./victory.mp3"
+                    playStatus={Sound.status.PLAYING}
+                    playFromPosition={300 /* in milliseconds */}
+                    onLoading={this.handleSongLoading}
+                    onPlaying={this.handleSongPlaying}
+                    onFinishedPlaying={this.handleSongFinishedPlaying}
+                    />
+                }
 
                 <div>
-                    <div>
-                        <div>
-                            <div>
+                    <div className="playerInfo">
+                        <div >
+                            <div className="playerStatus">
 
-                                <hr/>
-                                
                                 <div className= "hp">
-                                {this.state.hp} HP
+                                    {this.state.hp} HP
                                 </div>
-                                <div>
+                             
                                 <div className='HpBar'>
-                                    <div className='balanceSection currentHealth' 
-                                    style={{'width':
-                                     Math.max((this.state.hp/this.props.hp)*100,0)+'%'
+                                    <div 
+                                        className='balanceSection currentHealth' 
+                                        style={{'width':
+                                        Math.max((this.state.hp/this.props.hp)*100,0)+'%'
                                      }}></div>
-                                    <div className='balanceSection damage' 
-                                    style={{'width': 
-                                    Math.min((this.state.damage/this.props.hp)*100,100)+'%'
+                                    <div 
+                                        className='balanceSection damage' 
+                                        style={{'width': 
+                                        Math.min((this.state.damage/this.props.hp)*100,100)+'%'
                                     }}></div>
-                                </div>
                                 </div>
                                
+                               
                                 <div className="mp">
-                                {this.state.mp} MP
+                                    {this.state.mp} MP
                                 </div>
-                                <div>
+                             
+
                                 <div className='MpBar'>
-                                    <div className='balanceSection currentMp' 
-                                    style={{'width':
-                                     (this.state.mp/5)*100+'%'
+                                    <div 
+                                        className='balanceSection currentMp' 
+                                        style={{'width':
+                                        (this.state.mp/5)*100+'%'
                                      }}></div>
-                                    <div className='balanceSection damage' 
-                                    style={{'width': 
-                                    ((5-this.state.mp)/5)*100+'%'
+
+                                    <div 
+                                        className='balanceSection damage' 
+                                        style={{'width': 
+                                        ((5-this.state.mp)/5)*100+'%'
                                     }}></div>
                                 </div>
-                                </div>
-
-
-
+                            
                                 <div className= {this.state.visible}>
-                                <div className="button-wrapper">
-                                    <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
-                                    <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
-                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">Special</button>
-                                    <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">Heal</button>
-                                    </div>
+                                    <div className="button-wrapper">
+                                        <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
+                                        <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
+                                        <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">Special</button>
+                                        <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">Heal</button>                                    </div>
                                     </div>
                             </div>
                         </div>
-                    </div>
-                        <div>
+                    
+                        
+                            <div className="playerStatus">Enemy HP</div>
+                           
+                                <div className= "enemyHp">
+                                {this.enemyHp}
+                                </div>
+                                
+                            </div>
+                            </div>
+                    <div>
                             <div>
-                                <div>
-                                    <div>Enemy HP</div>
-                               
-                                    <div className= "enemyHp">
-                                    {this.enemyHp}
-                                    </div>
-                                    <hr/>
+
+                                <div className="footer">Battle Log
+                                    <div>
+                                        {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
+                                            return (
+                                                <div key = {message.id}>{message.message}</div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
-                            </div>
-                    </div>
-                    <div>
-                            <div>Chat with your opponent
-                            <div>
+                                
+                                <div className="message-display">
+                                
                                     {this.state.messages.map(message => {
                                         return (
                                             <div key = {message.id} >{message.author} {message.message}</div>
                                         )
                                     })}
+                         
                                 </div>
-                                <div className="footer">
-                                    <br/>
-                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                                    <br/>
+
+                                <div className="chat-box">
+                                    <input type="text" placeholder="Chat with your opponent." className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <button onClick={this.sendMessage}>Send</button>
+                            </div>
+                                
                                 </div>
-                                </div>
-                                <div>Battle Log
-                            <div>
-                                    {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
-                                        return (
-                                            <div key = {message.id}>{message.message}</div>
-                                        )
-                                    })}
-                                </div>
-                                </div>
+
                                 </div>
                 </div>
                 
