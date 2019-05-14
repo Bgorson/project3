@@ -1,13 +1,19 @@
 .petForm {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
-    margin: 0 150px;
+    justify-content: center;
+    color: #FFFFFF;
 }
 
 .MuiFormControl-root-4.PetChoice-formControl-2 {
     margin: 15px 0;
 }
 
+.MuiSelect-root-56,
+#petname-input {
+    text-align: left;
+    color: #FFFFFF;
+}
 .container {
     display: grid;
     grid-template-columns: 1.5fr 1fr;

@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Modal from './loginModal/modal'
 
+
 class Login extends Component {
     constructor() {
         super()
@@ -108,16 +109,18 @@ class Login extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="form-group ">
+                        <div className="btn-login">
                             <Button
                                 variant="contained" 
+                                size="large"
                                 color="primary"
                                 onClick={this.handleSubmit}
                                 type="submit"
                                 show={this.state.show}
                                 >Login
                             </Button>
-
+                            </div>
+                            <div className="signup-btn">
                             <Button 
                                 variant="contained" 
                                 color="primary">    

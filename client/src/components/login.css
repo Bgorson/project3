@@ -2,14 +2,19 @@
     width: 90px;
 }
 
-.login-btn {
+/* .login-btn {
     margin: 10px;
     text-decoration: none;
+} */
+
+.btn-login {
+    margin: 10px;
 }
 
 #username-input,
 #password-input {
     color: #FFFFFF;
+    width: 230px;
 }
 
 input:-webkit-autofill,

@@ -22,7 +22,7 @@ const styles = theme => ({
     },
     formControl: {
       margin: theme.spacing.unit,
-      minWidth: 120,
+      minWidth: 400,
     },
     selectEmpty: {
       marginTop: theme.spacing.unit * 2,
@@ -63,7 +63,7 @@ class PetChoice extends Component {
 		event.preventDefault()
         if (this.state.petName === "" || this.state.petType=== "" || this.state.petColor==="" || this.state.petAccess===""){
             console.log("missing info")
-            this.showModal("Please fill out the entire form.")
+            this.showModal("Please fill out the entire form and create a companion.")
             return null
         }
 		//request to server to add a pet to user
@@ -100,9 +100,7 @@ class PetChoice extends Component {
         } else {
 return (
     <div className="petSelect">
-    		<Modal show={this.state.show} handleClose={this.hideModal}>
-		<p>{this.state.modalMessage}</p>
-		</Modal>
+
     <h2>PET SELECTION {this.props.userName}</h2>
     <form className="petForm">
         <FormControl className={classes.formControl}>
@@ -164,6 +162,9 @@ return (
             </Link>
         </Button>   
     </form>
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+            <p>{this.state.modalMessage}</p>
+        </Modal>
 </div>
 
 )
