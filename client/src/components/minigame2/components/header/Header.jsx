@@ -5,7 +5,7 @@ const Header = ({ restartGame }) => (
     <div ClassName="justify-left timer"></div>
     <div ClassName="justify-center game-status-text"></div>
     <div ClassName="justify-end">
-    <button onClick={restartGame} className = "restart-button">Restart Game</button>
+    <button onClick={restartGame} className = "restart-button">RESTART GAME</button>
     
     </div>
     </div>

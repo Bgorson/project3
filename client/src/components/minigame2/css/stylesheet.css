@@ -6,17 +6,18 @@ body {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: auto auto auto auto;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
     padding: 10px 150px 10px 150px;
   }
   
   .grid-header-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: #c9d1f5;
+    /* display: grid;
+    grid-template-columns: auto auto auto; */
     padding: 10px;
   }
   
-  h1, h2, h3{
+  h2, h3 {
     color: #fff;
   }
   
@@ -34,6 +35,8 @@ body {
   
   .justify-center {
     text-align: center;
+    margin: 0 400px;
+    color: #FFFFFF;
   }
   
   .timer {
@@ -48,10 +51,11 @@ body {
     color: white;
     background-color: #5168e9;
     border: 0;
+    font-size: 16px;
   }
   
   .game-status-text {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     color: rgb(24, 21, 16);
     font-weight: bold;
   }
@@ -69,7 +73,8 @@ body {
   }
   
   .card-front {
-    background-color: darkblue;
+    background-color: #2b3990;
+    background-image: url('../css/flower.png');
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     height: 10em;
   }

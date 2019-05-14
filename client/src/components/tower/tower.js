@@ -235,24 +235,24 @@ class Tower extends Component {
             if(color === 'white'){
                 if(access === 'bell'){
                     console.log("White cat with a bell")
-                    return <img src={pet[2].image} />
+                    return <img className="pet" alt="whitecatBell" src={pet[2].image} />
                     
                 }
                 else if (access === 'bandana'){
                     console.log("White cat with a bandana")
-                    return <img src={pet[3].image} />
+                    return <img className="pet" alt="whitecatbanda" src={pet[3].image} />
                 }
 
             }
             else if(color === 'orange'){
                 if(access === 'bell'){
                     console.log("Orange cat with a bell")
-                    return <img src={pet[5].image} />
+                    return <img className="pet" alt="orangecatbell" src={pet[5].image} />
                     
                 }
                 else if (access === 'bandana'){
                     console.log("Orange cat with a bandana")
-                    return <img src={pet[4].image} />
+                    return <img className="pet" alt="orangecatbandana" src={pet[4].image} />
                     
                 }
             }
@@ -262,12 +262,12 @@ class Tower extends Component {
             if(color === 'white'){
                 if(access === 'bell'){
                     console.log("White dog with a bell")
-                    return <img src={pet[1].image} />
+                    return <img className="pet" alt="whitedogBell" src={pet[1].image} />
                     
                 }
                 else if (access === 'bandana'){
                     console.log("White dog with a bandana")
-                    return <img src={pet[0].image} />
+                    return <img className="pet" alt="whitedogbandan" src={pet[0].image} />
                 }
                 
             }
@@ -275,11 +275,11 @@ class Tower extends Component {
                 if(access === 'bell'){
                     console.log("Orange dog with a bell")
                     this.socket.emit('pet', 5);
-                    return <img src={pet[5].image} />
+                    return <img className="pet" alt="orangedogbell" src={pet[5].image} />
                 }
                 else if (access === 'bandana'){
                     console.log("Orange dog with a bandana")
-                    return <img src={pet[6].image} />
+                    return <img className="pet" alt="orangedogbanda" src={pet[6].image} />
                 }
             }
         }
@@ -289,7 +289,7 @@ class Tower extends Component {
         }
 
         this.enemyPet= () => {
-            return <img src={pet[this.state.opponentPet].image} />
+            return <img className="pet" alt="pet" src={pet[this.state.opponentPet].image} />
         }
 
     }
@@ -378,7 +378,7 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
-                                    <div>Enemy Pet>
+                                    <div>Enemy Pet
                                    <div>{this.enemyPet()}</div> 
 
                                     </div>
