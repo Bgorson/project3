@@ -25,11 +25,11 @@ const styles = {
 const images = [
   {
     title: "minigame1",
-    img: One,
+    img: Two,
     link: "/miniGame1"
   }, {
     title: "minigame2",
-    img: Two,
+    img: Four,
     link: "/miniGame2"
   }, {
     title: "minigame3",
@@ -37,7 +37,7 @@ const images = [
     link: "/miniGame3"
   }, {
     title: "minigame4",
-    img: Four,
+    img: One,
     link: "/miniGame4"
   }, {
     title: "coming",
