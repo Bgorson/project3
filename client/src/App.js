@@ -18,6 +18,7 @@ import Minigame2 from "./components/minigame2/CardFlip.js"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
 import Tower from "./components/tower/tower"
 
+import io from 'socket.io-client'
 
 
 class App extends Component {
@@ -121,6 +122,12 @@ class App extends Component {
       }
       console.log("leveling up", stat)
     })
+  }
+  componentDidMount(){
+    let socket = io.connect('/')
+    socket.on('connect',function(data){
+      console.log(socket)
+    } )
   }
 
   render() {
