@@ -1,16 +1,39 @@
+.tower-container {
+  display: grid;
+  grid-template-rows: 75% 25%;
+}
+
+.playerInfo {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100px;
+}
+
+.chat-box {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.form-control {
+  width: 90%;
+  margin: 0 10px;
+  height: 25px;
+}
+
+
+
 .disable {
     display:none
 }
 .HpBar, .MpBar {
-    width: 20%;
-    height: 20px;
-    border: 2px #ccc solid;
+    width: 45%;
+    height: 10px;
     margin:auto;
   }
   
   .balanceSection {
     display: inline-block;
-    height: 20px;
+    height: 10px;
     font-size: 10pt;
     vertical-align: top;
     text-align: center;
@@ -22,16 +45,26 @@
   }
   
   .damage {
-    background-color: red;
+    background-color: #ed1c24;
     transition: width 1s ease-in-out;
   }
     
   .currentHealth {
-    background-color: lightgreen;
+    background-color: #39b54a;
     transition: width 1s ease-in-out;
   }
 
   .currentMp {
-    background-color: lightblue;
+    background-color: #27aae1;
     transition: width 1s ease-in-out;
+  }
+
+  button {
+    color: #ffffff;
+    background-color: #7f3f98;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    margin: 5px;
+    font-weight: 700;
   }
