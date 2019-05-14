@@ -1,26 +1,26 @@
 .tower-container {
   display: grid;
-  grid-template-rows: 75% 25%;
-}
-
-.playerInfo {
-  display: grid;
   grid-template-columns: 50% 50%;
-  height: 100px;
+  color: #ffffff;
 }
 
 .chat-box {
   width: 80%;
-  margin: 20px auto;
 }
 
 .form-control {
-  width: 90%;
+  width: 60%;
   margin: 0 10px;
-  height: 25px;
+  height: 30px;
+  padding: 10px;
 }
 
-
+.message-area,
+.battleLog-area {
+  overflow-y: scroll;
+  height: 200px;
+  margin: 20px 0;
+}
 
 .disable {
     display:none
