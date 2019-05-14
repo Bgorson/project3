@@ -3,7 +3,7 @@ import './game.css';
 import '../index.css'
 
 class MiniGame3 extends Component {
-
+//Can Agility be leveled up here?
     constructor() {
         super();
         this.state= {
@@ -34,11 +34,15 @@ class MiniGame3 extends Component {
 
             var result = this.checkWinner();
 
-            if(result === 'X') {
+            if(result == 'X') {
+
+
                 this.gameState.gameEnded = true;
                 this.setState({
                     winner: 'X',
-                    winnerLine: 'this match won by X'
+                    winnerLine: 'this match won by X, Agility XP earned',
+                    
+
                 });
             } else if(result === 'O') {
                 this.gameState.gameEnded = true;
