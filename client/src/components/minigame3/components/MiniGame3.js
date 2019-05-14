@@ -4,8 +4,8 @@ import '../index.css'
 
 class MiniGame3 extends Component {
 //Can Agility be leveled up here?
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
             winner: undefined
         };
@@ -16,9 +16,11 @@ class MiniGame3 extends Component {
             board: Array(9).fill(''),
             totalMoves: 0
         }
+
     }
 
     clicked(box) {
+        
         if(this.gameState.gameEnded || this.gameState.gameLocked) 
         return;
 
@@ -35,15 +37,15 @@ class MiniGame3 extends Component {
             var result = this.checkWinner();
 
             if(result == 'X') {
-
-
+                this.props.levelUp(this.props.userName,"agility")
+                console.log("leveling up ", this.props.userName)
                 this.gameState.gameEnded = true;
                 this.setState({
                     winner: 'X',
                     winnerLine: 'this match won by X, Agility XP earned',
-                    
-
                 });
+                
+                
             } else if(result === 'O') {
                 this.gameState.gameEnded = true;
                 this.setState({
@@ -84,6 +86,7 @@ class MiniGame3 extends Component {
             return 'draw';
         }
     }
+  
     render() {
         return (
           <div id="game">
