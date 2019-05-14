@@ -335,6 +335,40 @@ class Tower extends Component {
                             </div>
                         
                     <div>
+
+
+
+                    <div>
+                            <div>Chat with your opponent
+                            <div>
+                                    {this.state.messages.map(message => {
+                                        return (
+                                            <div key = {message.id} >{message.author} {message.message}</div>
+                                        )
+                                    })}
+                                </div>
+                                <div className="footer">
+                                    <br/>
+                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                    <br/>
+                                    <button onClick={this.sendMessage}>Send</button>
+                                </div>
+                                </div>
+                                <div>Battle Log
+                            <div>
+                                    {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
+                                        return (
+                                            <div key = {message.id}>{message.message}</div>
+                                        )
+                                    })}
+                                </div>
+                                </div>
+                                </div>
+
+
+
+{/* 
+
                             <div>
 
                                 <div className="footer">Battle Log
@@ -360,7 +394,7 @@ class Tower extends Component {
                                     <button onClick={this.sendMessage}>SEND</button>
                             </div>
                                 
-                                </div>
+                                </div> */}
 
                                 </div>
                 </div>
