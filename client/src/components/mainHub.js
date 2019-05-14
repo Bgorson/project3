@@ -20,24 +20,24 @@ class Main extends Component {
                 if(color === 'white'){
                     if(access === 'bell'){
                         console.log("White cat with a bell")
-                        return <img alt="whitecatBell" src={pet[2].image} />
+                        return <img className="pet" alt="whitecatBell" src={pet[2].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("White cat with a bandana")
-                        return <img alt="whitecatBandana" src={pet[3].image} />
+                        return <img className="pet" alt="whitecatBandana" src={pet[3].image} />
                     }
 
                 }
                 else if(color === 'orange'){
                     if(access === 'bell'){
                         console.log("Orange cat with a bell")
-                        return <img  alt="orangecatBell" src={pet[5].image} />
+                        return <img  className="pet" alt="orangecatBell" src={pet[5].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("Orange cat with a bandana")
-                        return <img  alt="orangecatbandana"src={pet[4].image} />
+                        return <img className="pet" alt="orangecatbandana"src={pet[4].image} />
                         
                     }
                 }
@@ -47,23 +47,23 @@ class Main extends Component {
                 if(color === 'white'){
                     if(access === 'bell'){
                         console.log("White dog with a bell")
-                        return <img  alt="whitedogBell" src={pet[1].image} />
+                        return <img className="pet" alt="whitedogBell" src={pet[1].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("White dog with a bandana")
-                        return <img alt="whitedogBandana"src={pet[0].image} />
+                        return <img className="pet" alt="whitedogBandana"src={pet[0].image} />
                     }
                     
                 }
                 else if(color === 'orange'){
                     if(access === 'bell'){
                         console.log("Orange dog with a bell")
-                        return <img alt="orangedogBell"src={pet[5].image} />
+                        return <img className="pet" alt="orangedogBell"src={pet[5].image} />
                     }
                     else if (access === 'bandana'){
                         console.log("Orange dog with a bandana")
-                        return <img  alt="orangedogBell" src={pet[6].image} />
+                        return <img className="pet" alt="orangedogBell" src={pet[6].image} />
                     }
                 }
             }
@@ -88,8 +88,24 @@ class Main extends Component {
     render() { 
         return (
             <React.Fragment>
+    <div className="statPet">
+            <div className="topPlayer-box">
+                <h1>Currently at the Top of the Tower:</h1> 
+                <br/>
+                <h1 className="topPlayer">{this.state.topPlayerName}</h1>
+            </div>
+           
+            <div>
+                {/* Your pet info:
+                <br></br> */}
                 
-<div className="stat-box"> 
+                <div className="pet-img">{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
+                {/* Type: {this.props.petType}
+                Color:{this.props.petColor}
+                Accessory:{this.props.petAccess} */}
+            </div>
+
+        <div className="stat-box"> 
             <Card className="stat-content">
                 <CardContent>
                     <Typography variant="h3" component="h3">
@@ -124,25 +140,15 @@ class Main extends Component {
           
                 </CardContent>
             </Card>
-          </div> 
-
-            <h4>Choose a mini game here</h4>
-            <div>
-                <h1>Currently at the top of the Tower: {this.state.topPlayerName}
-                    </h1></div>
-            <div>
-                {/* Your pet info:
-                <br></br> */}
-                
-                <div className="pet-img">{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
-                {/* Type: {this.props.petType}
-                Color:{this.props.petColor}
-                Accessory:{this.props.petAccess} */}
-            </div>
-            <div className = "row">        
+        </div> 
+     </div>
+            
+            <h3>Choose from various challenges below to increase your stats!</h3>   
+            <div className = "row">  
                 <MainButtons />
                 <TowerBtn />
             </div>
+            
             </React.Fragment>
           );
     }

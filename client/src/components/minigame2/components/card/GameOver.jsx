@@ -6,7 +6,7 @@ const GameOver = ({ restartGame,levelUp,userName }) => (
     <div className="justify-center">
     {console.log("this ran?")}
      {levelUp(userName, "magic")}
-    <h1> You Win!</h1>
+    <h2> You Win!</h2>
     <br/>
     <h3>Your magic has increased by 10!</h3>
     <br/>
