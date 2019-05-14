@@ -86,7 +86,7 @@ class MiniGame3 extends Component {
           <div id="game">
               <div id="status">{this.state.winnerLine}</div>
               <div id="head">
-                  World's best tic tac toe AI
+                  Tic Tac Toe
               </div>
               <div id="board" onClick={(e)=>this.clicked(e.target)}>
                   <div className="square" data-square="0"></div>
