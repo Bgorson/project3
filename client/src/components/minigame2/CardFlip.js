@@ -93,9 +93,6 @@ class MiniGame2 extends PureComponent {
   };
   
   isGameOver = () => {
-    console.log("level up here")
-    this.props.levelUp(this.props.userName, "magic")
-    
     return this.state.isFlipped.every(
       (element, index, array) => element !== false,
     );
@@ -107,7 +104,10 @@ class MiniGame2 extends PureComponent {
         <h2>Match the Cards</h2>
         <Header restartGame={this.restartGame} />
         {this.isGameOver() ? (
-          <GameOver restartGame={this.restartGame} />
+          <GameOver 
+          levelUp= {this.props.levelUp}
+          restartGame={this.restartGame}
+          userName={this.props.userName} />
         ) : (
           <div className="grid-container">
             {this.state.shuffledCard.map((cardNumber, index) => (
