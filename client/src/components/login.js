@@ -80,9 +80,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
-                        <Modal show={this.state.show} handleClose={this.hideModal}>
-                        <p>Log-in Error. Please check username/password</p>
-                        </Modal>
+
 
                     <img src={logo} className="wildlyfe-logo" alt="wildlyfe" />
                     <h2>WILDLYFE</h2>
@@ -115,7 +113,9 @@ class Login extends Component {
                                 variant="contained" 
                                 color="primary"
                                 onClick={this.handleSubmit}
-                                type="submit">Login
+                                type="submit"
+                                show={this.state.show}
+                                >Login
                             </Button>
 
                             <Button 
@@ -127,6 +127,10 @@ class Login extends Component {
                                     Sign Up 
                                     </Link>
                             </Button>    
+                            
+                            <Modal show={this.state.show} handleClose={this.hideModal}>
+                                <p>Either the username or password is incorrect. Please try again.</p>
+                            </Modal>
                         </div>
                     </form>
                 </div>

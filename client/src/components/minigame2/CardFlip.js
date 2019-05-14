@@ -23,6 +23,17 @@ class MiniGame2 extends PureComponent {
     );
   };
 
+  // componentDidMount(){
+  //   setInterval( () =>
+  //   {
+  //     let num = this.state.time;
+  //     let diff = num - 1;
+  //     console.log(diff)
+  //     this.setState ({time: diff})
+  //     }, 1000)
+  // };
+  
+  
   handleClick = event => {
     event.preventDefault();
     const cardId = event.target.id;
@@ -80,19 +91,23 @@ class MiniGame2 extends PureComponent {
       prevCardId: -1
     });
   };
-
+  
   isGameOver = () => {
     return this.state.isFlipped.every(
-      (element, index, array) => element !== false
+      (element, index, array) => element !== false,
     );
   };
 
   render() {
     return (
       <div>
+        <h2>Match the Cards</h2>
         <Header restartGame={this.restartGame} />
         {this.isGameOver() ? (
-          <GameOver restartGame={this.restartGame} />
+          <GameOver 
+          levelUp= {this.props.levelUp}
+          restartGame={this.restartGame}
+          userName={this.props.userName} />
         ) : (
           <div className="grid-container">
             {this.state.shuffledCard.map((cardNumber, index) => (

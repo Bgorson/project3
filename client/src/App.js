@@ -15,9 +15,13 @@ import StatInfo from './components/statinfo'
 //mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"
 import Minigame2 from "./components/minigame2/CardFlip.js"
+import Minigame3 from "./components/minigame3/components/MiniGame3"
 import Minigame4 from "./components/minigame4/components/MiniGame4"
 import Tower from "./components/tower/tower"
-import Minigame3 from "./components/minigame3/components/MiniGame3"
+
+
+import io from 'socket.io-client'
+
 
 
 class App extends Component {
@@ -121,6 +125,12 @@ class App extends Component {
       }
       console.log("leveling up", stat)
     })
+  }
+  componentDidMount(){
+    let socket = io.connect('/')
+    socket.on('connect',function(data){
+      console.log(socket)
+    } )
   }
 
   render() {

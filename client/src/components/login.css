@@ -2,8 +2,18 @@
     width: 90px;
 }
 
-.MuiButtonBase-root-79{
-   margin: 10px;
+.login-btn {
+    margin: 10px;
+    text-decoration: none;
 }
 
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #FFFFFF;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
