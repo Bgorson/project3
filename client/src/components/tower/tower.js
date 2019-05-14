@@ -243,9 +243,8 @@ class Tower extends Component {
                     />
                 }
 
-                <div>
                     <div className="playerInfo">
-                        <div >
+                        
                             <div className="playerStatus">
 
                                 <div className= "hp">
@@ -287,23 +286,19 @@ class Tower extends Component {
                             
                                 <div className= {this.state.visible}>
                                     <div className="button-wrapper">
-                                        <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
-                                        <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
-                                        <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">Special</button>
-                                        <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">Heal</button>                                    </div>
+                                        <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">ATTACK</button>
+                                        <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">DEFEND</button>
+                                        <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">SPECIAL</button>
+                                        <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">HEAL</button>                                    </div>
                                     </div>
-                            </div>
-                        </div>
-                    
-                        
+                                </div>
+                                   
                             <div className="playerStatus">Enemy HP</div>
-                           
                                 <div className= "enemyHp">
                                 {this.enemyHp}
                                 </div>
-                                
                             </div>
-                            </div>
+                        
                     <div>
                             <div>
 
@@ -316,21 +311,18 @@ class Tower extends Component {
                                         })}
                                     </div>
                                 </div>
-                                
 
-                                <div className="chat-box">
-                                    <div className="message-display">
-                                    
+                                <div className="message-display">
                                     {this.state.messages.map(message => {
                                         return (
                                             <div key = {message.id} >{message.author} {message.message}</div>
                                         )
                                     })}
-                        
                                 </div>
 
+                                <div className="chat-box">
                                     <input type="text" placeholder="Chat with your opponent." className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                                    <button onClick={this.sendMessage}>Send</button>
+                                    <button onClick={this.sendMessage}>SEND</button>
                             </div>
                                 
                                 </div>

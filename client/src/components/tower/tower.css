@@ -20,15 +20,13 @@
   height: 25px;
 }
 
-.message-display {
-  margin: left;
-}
+
 
 .disable {
     display:none
 }
 .HpBar, .MpBar {
-    width: 30%;
+    width: 45%;
     height: 10px;
     margin:auto;
   }
@@ -59,4 +57,14 @@
   .currentMp {
     background-color: #27aae1;
     transition: width 1s ease-in-out;
+  }
+
+  button {
+    color: #ffffff;
+    background-color: #7f3f98;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    margin: 5px;
+    font-weight: 700;
   }
