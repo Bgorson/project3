@@ -34,7 +34,6 @@ class MiniGame3 extends Component {
 
             var result = this.checkWinner();
 
-
             if(result == 'X') {
                 this.gameState.gameEnded = true;
                 this.setState({
@@ -46,7 +45,7 @@ class MiniGame3 extends Component {
                 this.setState({
                     winner: 'O',
                     winnerLine: 'this match won by O'
-                })
+                });
             } else if(result == 'draw') {
                 this.gameState.gameEnded = 'true';
                 this.setState({
@@ -72,7 +71,7 @@ class MiniGame3 extends Component {
         var moves = [[0,3,6], [1,4,7], [2,5,8],[0, 4, 8], [2, 4, 6], [0, 1, 2], [3, 4, 5], [6, 7, 8]];
         var board = this.gameState.board;
         for(let i=0; i<moves.length; i++) {
-            if(board[moves[i][0]] == board[moves[i[1]]] && board[moves[i][1]] == board[moves[i][2]])
+            if(board[moves[i][0]] == board[moves[i][1]] && board[moves[i][1]] == board[moves[i][2]])
                 return board[moves[i][0]];
         }
 
