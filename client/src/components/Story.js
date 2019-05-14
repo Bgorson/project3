@@ -26,16 +26,16 @@ class Story extends Component {
                     to run through Kingthon Hallow looking for any sanctuary you can find! Luckily, you 
                     stumble upon a cave in the forest. This is where your journey begins . . .  
                 <br />
-                <div className="storyBtn">
-                <Button 
-                        variant="contained" 
-                        color="primary">    
-                            <Link 
-                                to="/main" 
-                                className="btn btn-link">
-                                CONTINUE
-                            </Link>
-                    </Button> 
+                    <div className="storyBtn">
+                    <Button 
+                            variant="contained" 
+                            color="primary">    
+                                <Link 
+                                    to="/main" 
+                                    className="btn btn-link">
+                                    CONTINUE
+                                </Link>
+                        </Button> 
                     </div>
                 </div>
             </div>

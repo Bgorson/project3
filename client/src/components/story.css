@@ -8,8 +8,13 @@
     margin: 25px 0 0;
 }
 
-.btn {
+.btn,
+.btn-link {
     text-decoration: none;
-    padding: 5px;
     color: #FFFFFF;
+}
+
+.btn {
+    padding: 5px;
+    
 }

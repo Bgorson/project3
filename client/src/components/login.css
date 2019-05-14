@@ -2,8 +2,9 @@
     width: 90px;
 }
 
-.form-group{
-   margin: 10px;
+.login-btn {
+    margin: 10px;
+    text-decoration: none;
 }
 
 input:-webkit-autofill,
