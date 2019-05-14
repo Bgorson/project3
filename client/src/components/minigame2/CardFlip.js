@@ -23,6 +23,17 @@ class MiniGame2 extends PureComponent {
     );
   };
 
+  // componentDidMount(){
+  //   setInterval( () =>
+  //   {
+  //     let num = this.state.time;
+  //     let diff = num - 1;
+  //     console.log(diff)
+  //     this.setState ({time: diff})
+  //     }, 1000)
+  // };
+  
+  
   handleClick = event => {
     event.preventDefault();
     const cardId = event.target.id;
@@ -80,10 +91,13 @@ class MiniGame2 extends PureComponent {
       prevCardId: -1
     });
   };
-
+  
   isGameOver = () => {
+    console.log("level up here")
+    this.props.levelUp(this.props.userName, "magic")
+    
     return this.state.isFlipped.every(
-      (element, index, array) => element !== false
+      (element, index, array) => element !== false,
     );
   };
 
