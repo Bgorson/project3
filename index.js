@@ -24,7 +24,11 @@ const server = require('http').createServer(app);
 
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+if (process.env.NODE_ENV == 'production'){
+	app.use(express.static(path.join(__dirname, 'client/build')));
+	
+}
+
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -55,9 +59,16 @@ require("./client/src/server/routes/userRoute")(app);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
+if (process.env.NODE_ENV == 'production'){
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
 });
+}
+else {
+	app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname+'/client/build/index.html'));
+	})
+}
 
 
 // const server= app.listen(port, () => {
@@ -85,28 +96,28 @@ function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data
-	})
+	console.log("the user is", username)
 	if (waitingPlayer) {
 		socket.emit('room',roomKey)
 		socket.join(roomKey)
-		io.to(roomKey).emit('msgLog', {message:'Game Starting NOW! '});
+		io.to(roomKey).emit('msg', {message: "The match of " + username1 +' VS ' + username+ " is starting NOW! Choose your move on each turn"});
 		io.to(roomKey).emit('enemy', {
 			playerOne:username1,
 			playerTwo:username
 		});
 		rooms[roomKey] = new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
-		console.log(rooms)
 		waitingPlayer = null;
 		roomKey = null
-	  } else {
+	} else {
 		roomKey = username
 		rooms[roomKey] = {}
 		socket.join(roomKey)
 		username1 = username
 		waitingPlayer = socket;
-		socket.emit('msg', {message:'Waiting for your opponent, '+username1+'.'});
+		socket.emit('msg', {message:'You are waiting for an opponent to join, '+username1+'.'});
 		socket.emit('room',roomKey)
 	  }
+	})
 	socket.on('SEND_MESSAGE_CHAT', function(data){
 		let roomId = data.roomKey
 		io.in(rooms[roomId].roomKey).emit('RECEIVE_MESSAGE', data)
