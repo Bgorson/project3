@@ -20,10 +20,6 @@ import Minigame4 from "./components/minigame4/components/MiniGame4"
 import Tower from "./components/tower/tower"
 
 
-import io from 'socket.io-client'
-
-
-
 class App extends Component {
   constructor() {
     super()
@@ -126,12 +122,8 @@ class App extends Component {
       console.log("leveling up", stat)
     })
   }
-  componentDidMount(){
-    let socket = io.connect('/')
-    socket.on('connect',function(data){
-      console.log(socket)
-    } )
-  }
+
+
 
   render() {
     return (
@@ -287,6 +279,10 @@ class App extends Component {
             hp= {this.state.stat.hp}
             strength= {this.state.stat.strength}
             magic= {this.state.stat.magic}
+            petname= {this.state.petname}
+            petType= {this.state.petType}
+            petColor= {this.state.petColor}
+            petAccess= {this.state.petAccess}
             />
           }
         />

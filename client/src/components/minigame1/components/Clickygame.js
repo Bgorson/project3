@@ -6,9 +6,6 @@ import "./style.css"
 
 import Instructions from "./Instructions"
 
-import Jumbotron from "./Jumbotron"
-
-import Grid from "@material-ui/core/Grid"
 
 
 class Clickygame extends Component {

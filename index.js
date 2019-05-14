@@ -85,29 +85,28 @@ function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data
-		if (waitingPlayer) {
-			socket.emit('room',roomKey)
-			socket.join(roomKey)
-			io.to(roomKey).emit('msgLog', {message:'Game Starting NOW! '});
-			io.to(roomKey).emit('enemy', {
-				playerOne:username1,
-				playerTwo:username
-			});
-			rooms[roomKey] = new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
-			console.log(rooms)
-			waitingPlayer = null;
-			roomKey = null
-		  } else {
-			roomKey = username
-			rooms[roomKey] = {}
-			socket.join(roomKey)
-			username1 = username
-			waitingPlayer = socket;
-			socket.emit('msg', {message:'Waiting for your opponent, '+username1+'.'});
-			socket.emit('room',roomKey)
-		  }
 	})
-	
+	if (waitingPlayer) {
+		socket.emit('room',roomKey)
+		socket.join(roomKey)
+		io.to(roomKey).emit('msgLog', {message:'Game Starting NOW! '});
+		io.to(roomKey).emit('enemy', {
+			playerOne:username1,
+			playerTwo:username
+		});
+		rooms[roomKey] = new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
+		console.log(rooms)
+		waitingPlayer = null;
+		roomKey = null
+	  } else {
+		roomKey = username
+		rooms[roomKey] = {}
+		socket.join(roomKey)
+		username1 = username
+		waitingPlayer = socket;
+		socket.emit('msg', {message:'Waiting for your opponent, '+username1+'.'});
+		socket.emit('room',roomKey)
+	  }
 	socket.on('SEND_MESSAGE_CHAT', function(data){
 		let roomId = data.roomKey
 		io.in(rooms[roomId].roomKey).emit('RECEIVE_MESSAGE', data)

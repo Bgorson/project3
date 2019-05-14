@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import "./tower.css"
 import axios from 'axios'
 import Sound from 'react-sound';
+import pet from "../pets.json"
 
 class Tower extends Component {
 
@@ -25,7 +26,8 @@ class Tower extends Component {
             healClick:false,
             damage:0,
             enemyMaxHp:200,
-            enemyDamageReceived:0
+            enemyDamageReceived:0,
+            opponentPet:0
         };
     
         this.socket = io();
@@ -225,6 +227,70 @@ class Tower extends Component {
         }
        
     }
+    this.socket.on("pet", function(data){
+        this.setState({opponentPet:data})
+    })
+    this.displayPet= (type,color,access) => {
+        if (type=== 'cat'){
+            if(color === 'white'){
+                if(access === 'bell'){
+                    console.log("White cat with a bell")
+                    return <img src={pet[2].image} />
+                    
+                }
+                else if (access === 'bandana'){
+                    console.log("White cat with a bandana")
+                    return <img src={pet[3].image} />
+                }
+
+            }
+            else if(color === 'orange'){
+                if(access === 'bell'){
+                    console.log("Orange cat with a bell")
+                    return <img src={pet[5].image} />
+                    
+                }
+                else if (access === 'bandana'){
+                    console.log("Orange cat with a bandana")
+                    return <img src={pet[4].image} />
+                    
+                }
+            }
+        }
+
+        else if (type ==='dog'){
+            if(color === 'white'){
+                if(access === 'bell'){
+                    console.log("White dog with a bell")
+                    return <img src={pet[1].image} />
+                    
+                }
+                else if (access === 'bandana'){
+                    console.log("White dog with a bandana")
+                    return <img src={pet[0].image} />
+                }
+                
+            }
+            else if(color === 'orange'){
+                if(access === 'bell'){
+                    console.log("Orange dog with a bell")
+                    this.socket.emit('pet', 5);
+                    return <img src={pet[5].image} />
+                }
+                else if (access === 'bandana'){
+                    console.log("Orange dog with a bandana")
+                    return <img src={pet[6].image} />
+                }
+            }
+        }
+        else {
+            return null
+        }
+        }
+
+        this.enemyPet= () => {
+            return <img src={pet[this.state.opponentPet].image} />
+        }
 
     }
     
@@ -254,7 +320,9 @@ class Tower extends Component {
                 }
 
                     <div className="playerInfo">
-                        
+                    <div>
+                    Your pet: {this.props.petname}
+                    {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
                             <div className="playerStatus">
 
                                 <div className= "hp">
@@ -308,6 +376,10 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
+                                    <div>Enemy Pet>
+                                   <div>{this.enemyPet()}</div> 
+
+                                    </div>
                                     <div>Enemy Health</div>
                                
                                     <div className= "enemyHp">

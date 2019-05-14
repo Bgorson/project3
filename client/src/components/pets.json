@@ -1,0 +1,42 @@
+[
+    {
+      "id": 0,
+      "name": "White Dog with Bandana",
+      "image": "/imgs/pets/pets-01.png"
+    },
+    {
+      "id": 1,
+      "name": "White Dog with Bell",
+      "image": "/imgs/pets/pets-02.png"
+    },
+    {
+      "id": 2,
+      "name": "White Cat with Bell",
+      "image": "/imgs/pets/pets-03.png"
+    },
+    {
+      "id": 3,
+      "name": "White Cat with Bandana",
+      "image": "/imgs/pets/pets-04.png"
+    },
+    {
+      "id": 4,
+      "name": "Orange Cat with Bandana",
+      "image": "/imgs/pets/pets-05.png"
+    },
+    {
+      "id": 5,
+      "name": "Orange Dog with Bell",
+      "image": "/imgs/pets/pets-06.png"
+    },
+    {
+      "id": 6,
+      "name": "Orange Dog with Bandana",
+      "image": "/imgs/pets/pets-07.png"
+    },
+    {
+      "id": 7,
+      "name": "Orange Cat with Bell",
+      "image": "/imgs/pets/pets-08.png"
+    }
+]
