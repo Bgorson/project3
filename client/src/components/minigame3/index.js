@@ -1,9 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Game } from 'containers/Game';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-const root = document.getElementById('root');
 
-render(
-    <Game boardSize={11} playerSize={25} />
-, root);
+ReactDOM.render(<App />, document.getElementById('root'));
