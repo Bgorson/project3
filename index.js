@@ -15,10 +15,11 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 
-const server = app.listen(port, () => {
-    console.log("Listening on port: " + port);
-});
-
+// const server = app.listen(port, () => {
+//     console.log("Listening on port: " + port);
+// });
+const server = require('http').createServer(app);	
+ // io.set('transports', ['websocket']);
 
 
 
