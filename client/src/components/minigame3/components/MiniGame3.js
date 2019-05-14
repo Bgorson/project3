@@ -1,7 +1,6 @@
-import React from 'react';
-import MiniGame3 from "./components/MiniGame3"
+import React, {Component} from 'react';
 import './game.css';
-
+import '../index.css'
 
 class MiniGame3 extends Component {
 
@@ -14,7 +13,7 @@ class MiniGame3 extends Component {
             turn: 'X',
             gameLocked: false,
             gameEnded: false,
-            board: Arrary(9).fill(''),
+            board: Array(9).fill(''),
             totalMoves: 0
         }
     }
