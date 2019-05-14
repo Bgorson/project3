@@ -80,9 +80,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
-                        <Modal show={this.state.show} handleClose={this.hideModal}>
-                        <p>Log-in Error. Please check username/password</p>
-                        </Modal>
+
 
                     <img src={logo} className="wildlyfe-logo" alt="wildlyfe" />
                     <h2>WILDLYFE</h2>
@@ -111,6 +109,7 @@ class Login extends Component {
                             />
                         </div>
                         <div className="form-group ">
+<<<<<<< HEAD
                             <div className="login-btn">
                                 <Button
                                     variant="contained" 
@@ -129,6 +128,30 @@ class Login extends Component {
                                         </Link>
                                 </Button>    
                             </div>
+=======
+                            <Button
+                                variant="contained" 
+                                color="primary"
+                                onClick={this.handleSubmit}
+                                type="submit"
+                                show={this.state.show}
+                                >Login
+                            </Button>
+
+                            <Button 
+                                variant="contained" 
+                                color="primary">    
+                                    <Link 
+                                        to="/signup" 
+                                        className="btn btn-link">
+                                    Sign Up 
+                                    </Link>
+                            </Button>    
+                            
+                            <Modal show={this.state.show} handleClose={this.hideModal}>
+                                <p>Either the username or password is incorrect. Please try again.</p>
+                            </Modal>
+>>>>>>> modals
                         </div>
                     </form>
                 </div>

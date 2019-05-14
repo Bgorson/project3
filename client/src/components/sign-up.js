@@ -87,9 +87,6 @@ class Signup extends Component {
 			} else {
 		return (
 			<div className="SignupForm">
-		<Modal show={this.state.show} handleClose={this.hideModal}>
-		<p>{this.state.modalMessage}</p>
-		</Modal>
 				<h2>Sign up</h2>
 				<form className="signup-form">
 					<div className="form-group">	
@@ -128,6 +125,10 @@ class Signup extends Component {
 						</Button>
 					</div>
 				</form>
+				
+				<Modal show={this.state.show} handleClose={this.hideModal}>
+					<p>{this.state.modalMessage}</p>
+				</Modal>
 			</div>
 		)}
 	}
