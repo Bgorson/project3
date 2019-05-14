@@ -1,0 +1,15 @@
+.story-content {
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.storyBtn {
+    margin: 25px 0 0;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px;
+    color: #FFFFFF;
+}
