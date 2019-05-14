@@ -14,8 +14,8 @@
 
 .stat-box {
   display: grid;
-  /* grid-template-columns: repeat(2, 2fr); */
   justify-content: end;
+  opacity: .70;
 }
 
 .stat-content {

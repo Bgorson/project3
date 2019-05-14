@@ -140,9 +140,7 @@ class App extends Component {
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
             />
-    {this.state.loggedIn &&
-      <p>Join the party, {this.state.username}!</p>
-    }
+    {this.state.loggedIn}
 
 {/* ===================================== */}
         {/* Routes to different components */}
