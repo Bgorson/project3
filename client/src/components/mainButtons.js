@@ -10,7 +10,9 @@ import One from '../images/icon01.png'
 import Two from '../images/icon02.png'
 import Three from '../images/icon03.png'
 import Four from '../images/icon04.png'
-import Cs from '../images/cs01.png'
+import Five from '../images/icon05.png'
+import Six from '../images/icon06.png'
+
 
 
 const styles = {
@@ -25,15 +27,15 @@ const styles = {
 const images = [
   {
     title: "minigame1",
-    img: Two,
+    img: Three,
     link: "/miniGame1"
   }, {
     title: "minigame2",
-    img: Four,
+    img: Five,
     link: "/miniGame2"
   }, {
     title: "minigame3",
-    img: Three,
+    img: Two,
     link: "/miniGame3"
   }, {
     title: "minigame4",
@@ -41,22 +43,13 @@ const images = [
     link: "/miniGame4"
   }, {
     title: "coming",
-      img: Cs,
+      img: Six,
       link: "/main"
   }, {
     title: "coming",
-      img: Cs,
-      link: "/main"
-  }, {
-    title: "coming",
-      img: Cs,
-      link: "/main"
-  }, {
-    title: "coming",
-      img: Cs,
+      img: Four,
       link: "/main"
   }
-
 ];
 
 function MediaCard(props) {
