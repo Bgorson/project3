@@ -305,7 +305,6 @@ class Tower extends Component {
                                     </div>
                             </div>
                         </div>
-                    </div>
                         <div>
                             <div>
                                 <div>
