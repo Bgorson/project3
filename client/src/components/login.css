@@ -7,6 +7,11 @@
     text-decoration: none;
 }
 
+#username-input,
+#password-input {
+    color: #FFFFFF;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
