@@ -90,6 +90,7 @@ class MiniGame2 extends PureComponent {
   render() {
     return (
       <div>
+        <h2>Match the Cards</h2>
         <Header restartGame={this.restartGame} />
         {this.isGameOver() ? (
           <GameOver restartGame={this.restartGame} />
