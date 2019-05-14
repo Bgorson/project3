@@ -186,7 +186,7 @@ class App extends Component {
         path="/main"
         render={()=>
           <React.Fragment>
-        <StatInfo
+        {/* <StatInfo
         // Send the current state of stats to be read by the block
         userId= {this.state.userId}
         getStats= {this.getStats}
@@ -198,12 +198,21 @@ class App extends Component {
         lose= {this.state.lose}
         getUser= {this.getUser}
         petname= {this.state.petname}
-        />
+        /> */}
         <Main
        petname= {this.state.petname}
        petType= {this.state.petType}
        petColor= {this.state.petColor}
        petAccess= {this.state.petAccess}
+       userId= {this.state.userId}
+       getStats= {this.getStats}
+       hp= {this.state.stat.hp}
+       strength= {this.state.stat.strength}
+       magic= {this.state.stat.magic}
+       agility= {this.state.stat.agility}
+       win= {this.state.win}
+       lose= {this.state.lose}
+       getUser= {this.getUser}
                 />
 </React.Fragment>
         }

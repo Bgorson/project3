@@ -48,19 +48,17 @@ class Navbar extends Component {
                     <div className="col-4" >
                     {/* checks if user is logged in and changes nav links to reflect status */}
                         {loggedIn ? (
-                            <section className="navbar-section">
+                            <section className="navbar-main">
                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span></Link>
+                                <span className="logout">LOGOUT</span></Link>
                                 <Link to="/main" className="btn btn-link text-secondary">
-                                <span className="text-secondary">Main</span></Link>
-
+                                <span className="main">MAIN</span></Link>
                             </section>
                         ) : (
-                                <section className="navbar-section">
+                                <section className="navbar-home">
                                 {/* Matches links to app Routes */}
-                                    <Link to="/" className="btn btn-link text-secondary">
-                                        <span className="text-secondary">home</span>
-                                        </Link>
+                                    <Link to="/" className="btn-home btn btn-link text-secondary">
+                                    <span className="home-btn"></span>HOME</Link>
                                     {/* <Link to="/login" className="btn btn-link text-secondary">
                                     <span className="text-secondary">login</span>
 				</Link>

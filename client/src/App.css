@@ -1,17 +1,26 @@
 .App {
   text-align: center;
-  margin: 50px 25px;
+  margin: 50px;
 }
 
 .navbar {
-  margin-top: auto;
-}
-#top-filler {
-  margin-bottom: auto;
+  margin: 40px 0;
 }
 
-#nav-container {
-  align-items: flex-end;
+.main,
+.logout,
+.btn-home {
+  margin: 15px;
+  border: solid 2px #FFFFFF;
+  padding: 10px 30px;
+  font-weight: bold;
+  letter-spacing: 7px;
+}
+
+
+
+#top-filler {
+  margin-bottom: auto;
 }
 
 
