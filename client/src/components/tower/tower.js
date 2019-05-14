@@ -365,10 +365,10 @@ class Tower extends Component {
                             
                                 <div className= {this.state.visible}>
                                 <div className="button-wrapper">
-                                    <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
-                                    <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
-                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">Special</button>
-                                    <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">Heal</button>
+                                    <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">ATTACK</button>
+                                    <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">DEFEND</button>
+                                    <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">SPECIAL</button>
+                                    <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">HEAL</button>
                                     </div>
                                     </div>
                             </div>
@@ -384,92 +384,55 @@ class Tower extends Component {
                                
                                     <div className= "enemyHp">
                                     {/* {this.state.enemyHp} */}
-
-                                    <div className='HpBar'>
-                                    <div className='balanceSection currentHealth' 
-                                    style={{'width':
-                                     Math.max((this.state.enemyHp/this.state.enemyMaxHp)*100,0)+'%'
-                                     }}></div>
-                                    <div className='balanceSection damage' 
-                                    style={{'width': 
-                                    Math.min(((this.state.enemyMaxHp-this.state.enemyHp)/this.state.enemyMaxHp)*100,100)+'%'
-                                    }}></div>
+                                        <div className='HpBar'>
+                                            <div className='balanceSection currentHealth' 
+                                                style={{'width':
+                                                Math.max((this.state.enemyHp/this.state.enemyMaxHp)*100,0)+'%'
+                                            }}></div>
+                                            <div className='balanceSection damage' 
+                                                style={{'width': 
+                                                Math.min(((this.state.enemyMaxHp-this.state.enemyHp)/this.state.enemyMaxHp)*100,100)+'%'
+                                            }}></div>
+                                        </div>
                                 </div>
-                                    </div>
-                                    <hr/>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                                    
-                            <div className="playerStatus">Enemy HP</div>
+                            {/* <div className="playerStatus">Enemy HP</div>
                                 <div className= "enemyHp">
                                 {this.enemyHp}
-                                </div>
+                                </div> */}
                             </div>
                         
-                    <div>
-
-
-
-                    <div>
-                            <div>Chat with your opponent
-                            <div>
-                                    {this.state.messages.map(message => {
-                                        return (
-                                            <div key = {message.id} >{message.author} {message.message}</div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="footer">
-                                    <br/>
-                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                                    <br/>
-                                    <button onClick={this.sendMessage}>Send</button>
-                                </div>
-                                </div>
-                                <div>Battle Log
-                            <div>
-                                    {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
-                                        return (
-                                            <div key = {message.id}>{message.message}</div>
-                                        )
-                                    })}
-                                </div>
-                                </div>
-                                </div>
-
-
-
-{/* 
-
-                            <div>
-
-                                <div className="footer">Battle Log
-                                    <div>
-                                        {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-6,0)).reverse().map(message => {
-                                            return (
-                                                <div key = {message.id}>{message.message}</div>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-
-                                <div className="message-display">
-                                    {this.state.messages.map(message => {
-                                        return (
-                                            <div key = {message.id} >{message.author} {message.message}</div>
-                                        )
-                                    })}
-                                </div>
-
-                                <div className="chat-box">
-                                    <input type="text" placeholder="Chat with your opponent." className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                                    <button onClick={this.sendMessage}>SEND</button>
-                            </div>
-                                
-                                </div> */}
-
-                                </div>
+                <div className="message-container">
+                <div className="footer">
+                        <br/>
+                        <input type="text" placeholder="Chat with your opponent" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                        
+                        <button onClick={this.sendMessage}>Send</button>
+                    </div>
+                    <div className="message-area">
+                        {this.state.messages.slice().reverse().map(message => {
+                            return (
+                                <div key = {message.id} >{message.author} {message.message}</div>
+                            )
+                        })}
+                    </div>
                 </div>
+            
+                    <div className="battleLog-area">Battle Log<div>
+                        {this.state.battleLogs.slice(Math.max(this.state.battleLogs.length-11,0)).reverse().map(message => {
+                            return (
+                                <div key = {message.id}>{message.message}</div>
+                            )
+                        })}
+            </div>
+        </div>
+    </div>
+
+
+
+                  
                 
         );
     }
