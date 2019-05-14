@@ -277,11 +277,7 @@ class Tower extends Component {
                                
                                
                                 <div className="mp">
-<<<<<<< HEAD
                                 {this.state.mp} Magic
-=======
-                                    {this.state.mp} MP
->>>>>>> ui/tower
                                 </div>
                              
 
@@ -300,7 +296,6 @@ class Tower extends Component {
                                 </div>
                             
                                 <div className= {this.state.visible}>
-<<<<<<< HEAD
                                 <div className="button-wrapper">
                                     <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">Attack</button>
                                     <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">Defend</button>
@@ -331,13 +326,6 @@ class Tower extends Component {
                                 </div>
                                     </div>
                                     <hr/>
-=======
-                                    <div className="button-wrapper">
-                                        <button onClick= {this.buttonListener} id="attack" disabled = {this.state.healClick}  className="turn">ATTACK</button>
-                                        <button onClick= {this.buttonListener} id="defend" disabled = {this.state.healClick}  className="turn">DEFEND</button>
-                                        <button onClick = {this.buttonListener} id="special" disabled = {this.state.mp <= 0 || this.state.specialClick|| this.state.healClick} className="turn">SPECIAL</button>
-                                        <button onClick = {this.buttonListener} id="heal" disabled = {this.state.mp <= 0 || this.state.specialClick || this.state.healClick} className="turn">HEAL</button>                                    </div>
->>>>>>> ui/tower
                                     </div>
                                 </div>
                                    
