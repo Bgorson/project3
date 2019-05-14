@@ -198,8 +198,6 @@ class App extends Component {
         lose= {this.state.lose}
         getUser= {this.getUser}
         petname= {this.state.petname}
-
-
         />
         <Main
        petname= {this.state.petname}

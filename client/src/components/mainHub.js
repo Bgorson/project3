@@ -91,7 +91,7 @@ class Main extends Component {
                 Your pet info:
                 <br></br>
                 
-                Name: <div>{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
+                Name: <div className="pet-img">{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
                 Type: {this.props.petType}
                 Color:{this.props.petColor}
                 Accessory:{this.props.petAccess}
