@@ -321,8 +321,10 @@ class Tower extends Component {
 
                     <div className="playerInfo">
                     <div>
-                    Your pet: {this.props.petname}
-                    {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
+                    {this.props.petname}
+                    <br/>
+                    {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}
+                    </div>
                             <div className="playerStatus">
 
                                 <div className= "hp">
