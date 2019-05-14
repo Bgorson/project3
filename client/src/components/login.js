@@ -111,7 +111,8 @@ class Login extends Component {
                         </div>
                         <div className="btn-login">
                             <Button
-                                variant="contained" 
+                                className="log"
+                                variant="raised" 
                                 size="large"
                                 color="primary"
                                 onClick={this.handleSubmit}
@@ -122,11 +123,11 @@ class Login extends Component {
                             </div>
                             <div className="signup-btn">
                             <Button 
-                                variant="contained" 
-                                color="primary">    
+                                variant="outlined" 
+                                >    
                                     <Link 
                                         to="/signup" 
-                                        className="btn btn-link">
+                                        className="btn btn-link signup">
                                     SIGN UP
                                     </Link>
                             </Button>    

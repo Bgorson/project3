@@ -87,7 +87,7 @@ class Signup extends Component {
 			} else {
 		return (
 			<div className="SignupForm">
-				<h2>Sign up</h2>
+				<h2>SIGN UP</h2>
 				<form className="signup-form">
 					<div className="form-group">	
 						<TextField 
@@ -114,14 +114,15 @@ class Signup extends Component {
 							margin="normal"
 						/>
 					</div>
-					<div className="form-group">
+					<div className="form-button">
 						<Button 
+							className="signup"
 							variant="contained" 
 							color="primary"
 							onClick={this.handleSubmit}
 							type="submit" 
 							>
-							Sign up
+							SIGN UP
 						</Button>
 					</div>
 				</form>
