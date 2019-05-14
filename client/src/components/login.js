@@ -111,22 +111,24 @@ class Login extends Component {
                             />
                         </div>
                         <div className="form-group ">
-                            <Button
-                                variant="contained" 
-                                color="primary"
-                                onClick={this.handleSubmit}
-                                type="submit">Login
-                            </Button>
-
-                            <Button 
-                                variant="contained" 
-                                color="primary">    
-                                    <Link 
-                                        to="/signup" 
-                                        className="btn btn-link">
-                                    Sign Up 
-                                    </Link>
-                            </Button>    
+                            <div className="login-btn">
+                                <Button
+                                    variant="contained" 
+                                    color="primary"
+                                    onClick={this.handleSubmit}
+                                    type="submit"
+                                    >Login
+                                </Button>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary">    
+                                        <Link 
+                                            to="/signup" 
+                                            className="btn-link">
+                                        Sign Up 
+                                        </Link>
+                                </Button>    
+                            </div>
                         </div>
                     </form>
                 </div>
