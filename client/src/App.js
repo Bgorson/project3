@@ -132,9 +132,7 @@ class App extends Component {
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
             />
-    {this.state.loggedIn &&
-      <p>Join the party, {this.state.username}!</p>
-    }
+    {this.state.loggedIn}
 
 {/* ===================================== */}
         {/* Routes to different components */}
@@ -200,8 +198,6 @@ class App extends Component {
         lose= {this.state.lose}
         getUser= {this.getUser}
         petname= {this.state.petname}
-
-
         />
         <Main
        petname= {this.state.petname}

@@ -88,13 +88,13 @@ class Main extends Component {
                 <h1>Currently at the top of the Tower: {this.state.topPlayerName}
                     </h1></div>
             <div>
-                Your pet info:
-                <br></br>
+                {/* Your pet info:
+                <br></br> */}
                 
-                Name: <div>{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
-                Type: {this.props.petType}
+                <div className="pet-img">{this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}</div>
+                {/* Type: {this.props.petType}
                 Color:{this.props.petColor}
-                Accessory:{this.props.petAccess}
+                Accessory:{this.props.petAccess} */}
             </div>
             <div className = "row">        
                 <MainButtons />

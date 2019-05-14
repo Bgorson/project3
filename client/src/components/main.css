@@ -14,11 +14,15 @@
 
 .stat-box {
   display: grid;
-  /* grid-template-columns: repeat(2, 2fr); */
   justify-content: end;
+  opacity: .70;
 }
 
 .stat-content {
   text-align: left;
   padding: 0 30px;
+}
+
+img {
+  width: 200px;
 }

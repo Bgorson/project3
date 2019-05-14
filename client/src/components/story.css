@@ -12,9 +12,6 @@
 .btn-link {
     text-decoration: none;
     color: #FFFFFF;
-}
-
-.btn {
-    padding: 5px;
-    
+    letter-spacing: 2px;
+    font-size: 16px;
 }

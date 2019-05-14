@@ -24,7 +24,7 @@ class StatInfo extends Component {
           <div className="stat-box"> 
             <Card className="stat-content">
                 <CardContent>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant="h3" component="h3">
                         STATS
                     </Typography>
 
@@ -46,6 +46,7 @@ class StatInfo extends Component {
 
                     <Typography component="p">
                         Wins: {this.props.win}
+                        <br/>
                         Loses: {this.props.lose}
                     </Typography>
           
@@ -57,10 +58,6 @@ class StatInfo extends Component {
             </Card>
           </div> 
         );
-
-
-      
-
     }
 }
  
