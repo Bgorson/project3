@@ -127,7 +127,7 @@ class Login extends Component {
                                     <Link 
                                         to="/signup" 
                                         className="btn btn-link">
-                                    Sign Up 
+                                    SIGN UP
                                     </Link>
                             </Button>    
                             
