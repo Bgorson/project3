@@ -17,24 +17,24 @@ class Main extends Component {
                 if(color === 'white'){
                     if(access === 'bell'){
                         console.log("White cat with a bell")
-                        return <img src={pet[2].image} />
+                        return <img alt="whitecatBell" src={pet[2].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("White cat with a bandana")
-                        return <img src={pet[3].image} />
+                        return <img alt="whitecatBandana" src={pet[3].image} />
                     }
 
                 }
                 else if(color === 'orange'){
                     if(access === 'bell'){
                         console.log("Orange cat with a bell")
-                        return <img src={pet[5].image} />
+                        return <img  alt="orangecatBell" src={pet[5].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("Orange cat with a bandana")
-                        return <img src={pet[4].image} />
+                        return <img  alt="orangecatbandana"src={pet[4].image} />
                         
                     }
                 }
@@ -44,23 +44,23 @@ class Main extends Component {
                 if(color === 'white'){
                     if(access === 'bell'){
                         console.log("White dog with a bell")
-                        return <img src={pet[1].image} />
+                        return <img  alt="whitedogBell" src={pet[1].image} />
                         
                     }
                     else if (access === 'bandana'){
                         console.log("White dog with a bandana")
-                        return <img src={pet[0].image} />
+                        return <img alt="whitedogBandana"src={pet[0].image} />
                     }
                     
                 }
                 else if(color === 'orange'){
                     if(access === 'bell'){
                         console.log("Orange dog with a bell")
-                        return <img src={pet[5].image} />
+                        return <img alt="orangedogBell"src={pet[5].image} />
                     }
                     else if (access === 'bandana'){
                         console.log("Orange dog with a bandana")
-                        return <img src={pet[6].image} />
+                        return <img  alt="orangedogBell" src={pet[6].image} />
                     }
                 }
             }
