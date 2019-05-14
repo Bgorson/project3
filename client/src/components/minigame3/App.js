@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import MiniGame3 from "./components/MiniGame3"
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import './index.css'
+function App() {return <MiniGame3 />}
+   
 
-render(
-    <Game boardSize={20} playerSize={25}/>, root);
+export default App;
