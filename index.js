@@ -13,9 +13,14 @@ const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-// io.set('transports', ['websocket']);
+
+
+const server = app.listen(port, () => {
+    console.log("Listening on port: " + port);
+});
+
+
+
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -61,8 +66,7 @@ require("./client/src/server/routes/userRoute")(app);
 
 // const app = require('express')();
 
-
-
+const io = require('socket.io')(server);
 
 
 //=============================================
@@ -78,7 +82,6 @@ var username1;
 io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
-	
 	socket.on('name',function(data){
 		username= data
 		if (waitingPlayer) {
@@ -136,4 +139,6 @@ function onConnection(socket) {
 		console.log(socket.id, "Disconnected")
 	})
 	}
+
+	
 	server.listen(port);

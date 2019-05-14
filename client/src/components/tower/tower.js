@@ -27,12 +27,12 @@ class Tower extends Component {
             enemyMaxHp:200,
             enemyDamageReceived:0
         };
-
+    
         this.socket = io();
-
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
+
         this.socket.on('enemy',function(data){
             addOpponent(data)
         })
@@ -232,7 +232,7 @@ class Tower extends Component {
         this.socket.emit('name',this.props.userName)
         this.setState({
             hp:this.props.hp
-        })
+        })     
 
         
     }
