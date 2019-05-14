@@ -104,8 +104,8 @@ class MiniGame2 extends PureComponent {
         <h2>Match the Cards</h2>
         <Header restartGame={this.restartGame} />
         {this.isGameOver() ? (
-          <GameOver 
-          levelUp= {this.props.levelUp}
+        <GameOver 
+        levelUp= {this.props.levelUp}
           restartGame={this.restartGame}
           userName={this.props.userName} />
         ) : (
