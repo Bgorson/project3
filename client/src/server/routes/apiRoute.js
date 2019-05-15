@@ -4,7 +4,7 @@ const User = require('../database/models/user')
 module.exports = function (app) {
 //Route to restrive all information on a username
     app.get('/stats/:id', (req,res)=>{
-	username= req.params.id
+	let username= req.params.id
 	console.log(username)
 	console.log("This is the username we are searching",username)
 	User.findOne({ username:username}, (err,data)=> {
@@ -39,22 +39,23 @@ app.post("/pets/:id",(req,res)=>{
 })
 
 //Route to signal a win in the Tower
-app.post('/tower/win/:id', (req,res)=>{
-	username= req.params.id
+app.put('/tower/win/:id', (req,res)=>{
+	let username = req.params.id
 	console.log("hitting win route for:" + username)
-	User.findOneAndUpdate({username:username}, { $inc: {"ratio.win" : 1}}, {new:true}, function(err,response){
+	User.updateOne({username:username}, { $inc: {"ratio.win" : 1}},(err,response) => {
 		if (err) {
 			(err);
 		} else {
 			(response)
 		}
 	})
+	console.log("Win call complete")
 })
 //Route to signal a lose in the Tower
-app.post('/tower/lose/:id', (req,res)=>{
-	username= req.params.id
+app.put('/tower/lose/:id', (req,res)=>{
+	let username= req.params.id
 	console.log("hitting lose route for:" + username)
-	User.findOneAndUpdate({username:username}, { $inc: {"ratio.lose" : 1}}, {new:true}, function(err,response){
+	User.update({username:username}, { $inc: {"ratio.lose" : 1}},(err,response) => {
 		if (err) {
 			(err);
 		} else {

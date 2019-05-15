@@ -90,25 +90,83 @@ let rooms={}
 // const io = socketio(server);
 var username;
 var username1;
+var petNumber=0
+var petNumber1=0
+
+// let petNumber= function(type,color,access){
+// 	if (type=== 'cat'){
+// 		if(color === 'white'){
+// 			if(access === 'bell'){
+
+// 				return 2
+				
+// 			}
+// 			else if (access === 'bandana'){
+// 				return 3
+// 			}
+
+// 		}
+// 		else if(color === 'orange'){
+// 			if(access === 'bell'){
+// 				return 5
+				
+// 			}
+// 			else if (access === 'bandana'){
+// 				return 4
+				
+// 			}
+// 		}
+// 	}
+// 	else if (type ==='dog'){
+// 		if(color === 'white'){
+// 			if(access === 'bell'){
+// 				return 1
+				
+// 			}
+// 			else if (access === 'bandana'){
+// 				return 0
+// 			}
+			
+// 		}
+// 		else if(color === 'orange'){
+// 			if(access === 'bell'){
+// 				return 5
+// 			}
+// 			else if (access === 'bandana'){
+// 				return 6
+// 			}
+// 		}
+// 	}
+// 	else {
+// 		return 0
+// 	}
+// }
+
 
 io.on('connection',onConnection);
 function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
-		username= data
-	console.log("the user is", username)
+		username= data.name
+		// petNumber = petNumber(data.petType,data.petColor,data.petAccess)
+		console.log("the image index is " + petNumber)
+		console.log("the user is", username)
 	if (waitingPlayer) {
 		socket.emit('room',roomKey)
 		socket.join(roomKey)
 		io.to(roomKey).emit('msg', {message: "The match of " + username1 +' VS ' + username+ " is starting NOW! Choose your move on each turn"});
 		io.to(roomKey).emit('enemy', {
 			playerOne:username1,
-			playerTwo:username
+			petOne:petNumber1,
+			playerTwo:username,
+			petTwo:petNumber
 		});
+		
 		rooms[roomKey] = new BattleLogic(waitingPlayer,username1,socket,username,roomKey)
 		waitingPlayer = null;
 		roomKey = null
 	} else {
+		petNumber1 = petNumber
 		roomKey = username
 		rooms[roomKey] = {}
 		socket.join(roomKey)
@@ -133,9 +191,9 @@ function onConnection(socket) {
 	socket.on("gameover", function(data){
 		let roomId = data.roomKey
 		console.log("game is over")
-		io.in(rooms[roomId].roomKey).emit("gameover", data)
+		socket.to(rooms[roomId].roomKey).emit("winner", data)
 	})
-	socket.on("hp", function(data){
+	socket.on("hp-client", function(data){
 		console.log("sending hp from server")
 		let roomId = data.roomKey
 		io.to(rooms[roomId].roomKey).emit("hp",data)
@@ -148,6 +206,10 @@ function onConnection(socket) {
 
 	socket.on('disconnect', function(){
 		console.log(socket.id, "Disconnected")
+	})
+	socket.on('end', function(){
+		console.log("disconnecting socket")
+		socket.disconnect();
 	})
 	}
 
