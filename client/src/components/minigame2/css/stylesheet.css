@@ -21,6 +21,10 @@ body {
     color: #fff;
   }
   
+  .instruct-2 {
+    color: #FFFFFF;
+    margin: 10px 350px;
+  }
   .grid-item {
     border: 1px solid rgba(0, 0, 0, 0.8);
   }

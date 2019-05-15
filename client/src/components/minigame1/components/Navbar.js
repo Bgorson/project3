@@ -10,11 +10,11 @@ class NavbarInfo extends Component {
         return (
             <Card className="score">
                 <CardContent>
-                    <Typography>
+                    <Typography variant="h4" component="h4">
                         Score: {this.props.score}
                     </Typography>
-                
-                    <Typography>
+                    <br/>
+                    <Typography variant="h4" component="h4">
                         Top Score:{this.props.topScore}
                     </Typography>
                 </CardContent>
