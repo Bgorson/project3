@@ -237,7 +237,7 @@ _decodeTurn(turn){
     case 'special':
       return {
         name:"special",
-        damage:350};
+        damage:50};
 
     case 'heal':
     return {
