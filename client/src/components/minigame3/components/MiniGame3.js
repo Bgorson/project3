@@ -4,8 +4,8 @@ import '../index.css'
 
 class MiniGame3 extends Component {
 //Can Agility be leveled up here?
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
             winner: undefined
         };
@@ -16,9 +16,11 @@ class MiniGame3 extends Component {
             board: Array(9).fill(''),
             totalMoves: 0
         }
+
     }
 
     clicked(box) {
+        
         if(this.gameState.gameEnded || this.gameState.gameLocked) 
         return;
 
@@ -35,26 +37,26 @@ class MiniGame3 extends Component {
             var result = this.checkWinner();
 
             if(result == 'X') {
-
-
+                this.props.levelUp(this.props.userName,"agility")
+                console.log("leveling up ", this.props.userName)
                 this.gameState.gameEnded = true;
                 this.setState({
                     winner: 'X',
-                    winnerLine: 'this match won by X, Agility XP earned',
-                    
-
+                    winnerLine: <div class='won'><h1> Match won by {this.props.userName}  10XP  earned for agility</h1></div> 
                 });
+                
+                
             } else if(result === 'O') {
                 this.gameState.gameEnded = true;
                 this.setState({
                     winner: 'O',
-                    winnerLine: 'this match won by O'
+                    winnerLine: <div class='lost'> <h1> Match won by AI </h1> </div>
                 });
             } else if(result === 'draw') {
                 this.gameState.gameEnded = 'true';
                 this.setState({
                     winner: 'draw',
-                    winnerLine: ' this match is a draw'
+                    winnerLine: <div class='draw'><h1> Match is a Draw</h1></div>
                 })
             }
             if(this.gameState.turn === 'O' && !this.gameState.gameEnded) {
@@ -84,6 +86,7 @@ class MiniGame3 extends Component {
             return 'draw';
         }
     }
+  
     render() {
         return (
           <div id="game">
@@ -102,7 +105,8 @@ class MiniGame3 extends Component {
                   <div className="square" data-square="7"></div>
                   <div className="square" data-square="8"></div>
               </div>
-          </div>      
+              <div id="button"> Play again</div>
+          </div>    
         );
       } 
 }
