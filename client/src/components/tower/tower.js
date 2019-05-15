@@ -27,7 +27,7 @@ class Tower extends Component {
             damage:0,
             enemyMaxHp:200,
             enemyDamageReceived:0,
-            opponentPet:0,
+            opponentPet:8,
         };
         let self=this
         this.socket = io();
@@ -206,6 +206,7 @@ class Tower extends Component {
     }
 
     const addOpponent=(opp)=>{
+        console.log("adding opponent")
         console.log(opp)
         if (opp.playerOne===props.userName){
             this.setState({
@@ -221,7 +222,7 @@ class Tower extends Component {
         }
        
     }
-
+    
     this.displayPet= (type,color,access) => {
         if (type=== 'cat'){
             if(color === 'white'){
@@ -273,7 +274,7 @@ class Tower extends Component {
         }
 
         this.enemyPet= () => {
-            return <img className="pet" alt="pet" src={pet[0].image} />
+            return <img className="pet" alt="pet" src={pet[this.state.opponentPet].image} />
         }
 
     }
@@ -420,8 +421,9 @@ class Tower extends Component {
                             <div>
                                 <div>
                                     <div className="ePet">Enemy Pet
+                                    <div>{this.state.opponent}
                                    <div>{this.enemyPet()}</div> 
-
+                                    </div>
                                     </div>
                                     <div className="eHp">Enemy Health</div>
                                
