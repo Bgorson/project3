@@ -72,9 +72,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Brandon Gorson** - *Back-End* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jessica Chen** - *Front-End/Back-End* - [Portfolio](jchen211.github.io)
+* **Brandon Gorson** - *Back-End* - [Portfolio](bgorson.github.io)
+* **Marques Gaston** - *Back-End* - [Portfolio](gastonm1.github.io/Portfolio)
+* **Alex Leo Reyes** - *Back-End* - [Portfolio](alreyes15.github.io/portfolio)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
@@ -82,6 +84,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thank you Jamie Barton for your boilerplate
