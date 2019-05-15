@@ -361,7 +361,7 @@ class Tower extends Component {
                 }
 
                     <div className="playerInfo">
-                    <div>
+                    <div className="myPet">
                     {this.props.petname}
                     <br/>
                     {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}
@@ -419,11 +419,11 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
-                                    <div>Enemy Pet
+                                    <div className="ePet">Enemy Pet
                                    <div>{this.enemyPet()}</div> 
 
                                     </div>
-                                    <div>Enemy Health</div>
+                                    <div className="eHp">Enemy Health</div>
                                
                                     <div className= "enemyHp">
                                     {/* {this.state.enemyHp} */}
