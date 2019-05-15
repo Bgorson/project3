@@ -83,10 +83,10 @@ The creation of a functional and efficient React inspired application. Through t
 
 ## Authors
 
-* **Jessica Chen** - *Front-End/Back-End* - [Portfolio](jchen211.github.io)
-* **Brandon Gorson** - *Front-End/Back-End* - [Portfolio](bgorson.github.io)
-* **Marques Gaston** - *Back-End* - [Portfolio](gastonm1.github.io/Portfolio)
-* **Alex Leo Reyes** - *Back-End* - [Portfolio](alreyes15.github.io/portfolio)
+* **Jessica Chen** - *Front-End/Back-End* - [Portfolio](https://jchen211.github.io/)
+* **Brandon Gorson** - *Front-End/Back-End* - [Portfolio](https://bgorson.github.io/)
+* **Marques Gaston** - *Back-End* - [Portfolio](https://gastonm1.github.io/Portfolio/)
+* **Alex Leo Reyes** - *Back-End* - [Portfolio](https://alreyes15.github.io/portfolio)
 
 
 ## License
