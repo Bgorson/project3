@@ -62,6 +62,17 @@ https://the-wildlyfe.herokuapp.com/
 * [Socket.io](https://socket.io/) - Real time communication between users
 
 
+## Challenges
+
+A frequent challenge was learning new technologies. Each member of the group had to encounter a new technology to incorporate into the application. recognizing the importance of React we wanted to make sure we implemented into our application.\
+
+Tower: socket.io
+Front-end: material-ui
+Mini games: React-Card-Flipper
+
+## Successes
+
+The creation of a functional and efficient React inspired application. Through the dedication of the team all challenges were overcome through perseverance through long nights. The vision of the team was to create a fun and functional game.
 
 ## Authors
 
