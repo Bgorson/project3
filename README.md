@@ -1,7 +1,5 @@
 
-![alt text](https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png)
-
-<p align="center"><a href="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png"><img src="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png" title="Wildlyfe" alt="Wildlyfe logo" width="900"></a></p>
+<p align="center"><a href="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png"><img src="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png" title="Wildlyfe" alt="Wildlyfe logo" width="90"></a></p>
 
 # The Wildlyfe
 
