@@ -3,6 +3,8 @@
 
 # The Wildlyfe
 
+https://the-wildlyfe.herokuapp.com/
+
 This web application contains multiple “mini-games” which utilizes react.js components for individuality in each mini game. These games provide a challenge for the user in order to increase the stats of their avatar. The user has an opportunity to compete with other players in the “Tower”, a player versus player battle space.
 
 ## Getting Started
@@ -11,7 +13,6 @@ This web application contains multiple “mini-games” which utilizes react.js 
 ```bash
 git clone https://github.com/Bgorson/project3.git
 cd project3
-yarn
 ```
 
 ### Prerequisites
@@ -19,7 +20,7 @@ yarn
 Install
 
 ```
-npm i
+$ npm i
 ```
 
 ### Installing
@@ -32,14 +33,14 @@ $ mongod
 
 Second open a second terminal
 ```bash
-node index.js
+$ node index.js
 ```
 
 Last open a third terminal
 
 ```bash
 cd client
-yarn start
+$ yarn start
 ```
 
 
