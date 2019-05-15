@@ -1,6 +1,8 @@
 
 ![alt text](https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png)
 
+<p align="center"><a href="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png"><img src="https://github.com/Bgorson/project3/blob/develop/client/public/favicon.png" title="Wildlyfe" alt="Wildlyfe logo" width="900"></a></p>
+
 # The Wildlyfe
 
 This web application contains multiple “mini-games” which utilizes react.js components for individuality in each mini game. These games provide a challenge for the user in order to increase the stats of their avatar. The user has an opportunity to compete with other players in the “Tower”, a player versus player battle space.
