@@ -363,9 +363,9 @@ class Tower extends Component {
 
                     <div className="playerInfo">
                     <div className="myPet">
-                    {this.props.petname}
-                    <br/>
-                    {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}
+                        {this.displayPet(this.props.petType,this.props.petColor,this.props.petAccess)}
+                        <br/>
+                        {this.props.petname}
                     </div>
                             <div className="playerStatus">
 
@@ -420,10 +420,11 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
-                                    <div className="ePet">Enemy Pet
-                                    <div>{this.state.opponent}
-                                   <div>{this.enemyPet()}</div> 
-                                    </div>
+                                    <div className="ePet">
+                                    
+                                    <div>{this.enemyPet()}</div> 
+                                    <div>{this.state.opponent}</div>
+                                    
                                     </div>
                                     <div className="eHp">Enemy Health</div>
                                
@@ -439,7 +440,7 @@ class Tower extends Component {
                                                 Math.min(((this.state.enemyMaxHp-this.state.enemyHp)/this.state.enemyMaxHp)*100,100)+'%'
                                             }}></div>
                                         </div>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                                    

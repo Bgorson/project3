@@ -27,9 +27,18 @@
   padding: 10px;
 }
 
+.battleLog-area {
+  margin-top: 80px;
+}
+
 .disable {
     display:none
 }
+
+.playerStatus {
+  margin-top: 20px;
+}
+
 .HpBar, .MpBar {
     width: 45%;
     height: 10px;
@@ -46,6 +55,7 @@
 .ePet {
   font-size: 25px;  
   font-weight: 700;
+  color: #ffffff;
 }
 
   .balanceSection {
