@@ -3,7 +3,7 @@ import Clickcard from "./Clickcard";
 import Navbar from "./Navbar";
 import cards from "../cards.json"
 import "./style.css"
-
+import GameOver from "./GameOver"
 import Instructions from "./Instructions"
 
 
@@ -14,7 +14,8 @@ class Clickygame extends Component {
         score: 0,
         topScore: 0,
         clicked: [],
-        headerText: "Click an Image to Begin"
+        headerText: "Click an Image to Begin",
+        leveled:false
     }
 
 handleClick = event => {
@@ -29,13 +30,17 @@ handleClick = event => {
         this.setState({
             score: localScore,
             headerText:"That is correct!",
-            topScore: Math.max(this.state.topScore, localScore)
+            topScore: Math.max(this.state.topScore, localScore),
+            leveled:false
         })
     } 
 
     else {
         if (this.state.score > 5) {
             this.props.levelUp(this.props.userName, "strength")
+            this.setState({
+                leveled:true
+            })
         }
         this.setState({
             score:0,
@@ -68,8 +73,10 @@ shuffleCards = array => {
                         topScore= {this.state.topScore}
                         text= {this.state.headerText}
                     />
-                    
                 </div>
+                {this.state.leveled ? (
+                       <GameOver></GameOver>
+                    ): (<div></div>)}
                 <div className= "collection">
                     <Clickcard 
                         className="image-cards"
