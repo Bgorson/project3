@@ -7,15 +7,22 @@ This web application contains multiple “mini-games” which utilizes react.js 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+```
+git clone https://github.com/Bgorson/project3.git
+cd project3
+yarn
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Install the following:
 
 ```
-Give examples
+npm i
+
 ```
+
 
 ### Installing
 
