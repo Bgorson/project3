@@ -4,7 +4,7 @@ import "./tower.css"
 import axios from 'axios'
 import Sound from 'react-sound';
 import pet from "../pets.json"
-
+const apiEndpoint = '/tower';
 class Tower extends Component {
 
     constructor(props){
@@ -27,10 +27,11 @@ class Tower extends Component {
             damage:0,
             enemyMaxHp:200,
             enemyDamageReceived:0,
-            opponentPet:0
+            opponentPet:0,
         };
-    
+        let self=this
         this.socket = io();
+        
         this.socket.on('room', function(data){
             setRoomKey(data)
         })
@@ -71,22 +72,21 @@ class Tower extends Component {
             console.log("new data")
             updateEnemyHp(data)
             }
+            else {
+                console.log('not new')
+            }
             }
             catch(error){
                 console.log(error)
             }
         })
-  
-        this.socket.on("gameover", function(data){
+        
+
+        this.socket.on("winner", function(data){
+            console.log("receiving win socket")
             console.log(data)
                 toggleButton();
-            if (data.winner === props.userName){
-                handleWin(props.userName)
-            }
-            else {
-                handleLose(props.userName)
-            }
-                   
+                handleWinState(props.userName)
         })
     
         const addMessage = data => {
@@ -125,9 +125,6 @@ class Tower extends Component {
             else {
         this.socket.emit('turn', name.target.id);
 
-        console.log(this.props.hp)
-        console.log(name.target.id)
-
             }
     }
     const damageCounter= (damage)=>{
@@ -138,10 +135,14 @@ class Tower extends Component {
          })
         //if player's HP gets to zero or lower, send out an emit saying you lost
         if (this.state.hp <=0) {
-            handleLoseEmit(this.props.userName)
-
+            this.socket.emit("gameover", {
+                winner:this.state.opponent,
+                roomKey:this.state.roomKey
+            })
+                handleLose(props.userName)
+            // handleLoseEmit(this.props.userName)
         }
-        else {this.socket.emit('hp',{
+        else {this.socket.emit('hp-client',{
             username:this.props.userName,
             hp:this.state.hp,
             roomKey:this.state.roomKey,
@@ -149,24 +150,11 @@ class Tower extends Component {
         })
     }
     }
-
-    const handleLoseEmit =(user)=> {
-           console.log('hitting emit route')
-             this.socket.emit('SEND_MESSAGE', {
-             author: '',
-             message: "Game Over " +this.state.opponent+ " won!",
-             roomKey:this.state.roomKey
-             })
-            this.socket.emit("gameover", {
-                loser:user,
-                winner:this.state.opponent,
-                roomKey:this.state.roomKey
-            })
-    }
-
     const handleLose = (username)=>{
         console.log('handling lose', username)
-        axios.post("/tower/lose/"+ username)
+        this.handleLoseAxios();
+        self.socket.emit('end')
+        self.socket.close()
         toggleButton();
     }
     const enableButtons = () => {
@@ -175,10 +163,14 @@ class Tower extends Component {
         })
     }
 
-    const handleWin = (username)=>{
-        this.setState({victory:true})
-        console.log('handling win', username)
-        axios.post("/tower/win/"+ username)
+    const handleWinState = ()=>{
+        this.handleWinAxios();
+        this.setState({
+            victory:true,
+            enemyHp: 0,
+        })
+        self.socket.close()
+        self.socket.emit('end')
         toggleButton();
     }
     const updateEnemyHp= (eHp)=>{
@@ -202,15 +194,11 @@ class Tower extends Component {
             healClick:true
         })
     }
+ 
 
     const toggleButton=()=>{
         this.setState({visible: "disable"})
-        // this.socket.emit("SEND_MESSAGE", {
-        //     author: '',
-        //     message: "Game Over",
-        //     roomKey:this.state.roomKey
-        // }
-        // )
+     
     }
     const setRoomKey=(key)=>{
         console.log("settingroom key", key)
@@ -220,38 +208,39 @@ class Tower extends Component {
     const addOpponent=(opp)=>{
         console.log(opp)
         if (opp.playerOne===props.userName){
-            this.setState({opponent:opp.playerTwo})
+            this.setState({
+                opponent:opp.playerTwo,
+                opponentPet:opp.petTwo
+            })
         }
         else {
-            this.setState({opponent:opp.playerOne})
+            this.setState({
+                opponent:opp.playerOne,
+                opponentPet:opp.petOne
+            })
         }
        
     }
-    this.socket.on("pet", function(data){
-        this.setState({opponentPet:data})
-    })
+
     this.displayPet= (type,color,access) => {
         if (type=== 'cat'){
             if(color === 'white'){
                 if(access === 'bell'){
-                    console.log("White cat with a bell")
+
                     return <img className="pet" alt="whitecatBell" src={pet[2].image} />
                     
                 }
                 else if (access === 'bandana'){
-                    console.log("White cat with a bandana")
                     return <img className="pet" alt="whitecatbanda" src={pet[3].image} />
                 }
 
             }
             else if(color === 'orange'){
                 if(access === 'bell'){
-                    console.log("Orange cat with a bell")
                     return <img className="pet" alt="orangecatbell" src={pet[5].image} />
                     
                 }
                 else if (access === 'bandana'){
-                    console.log("Orange cat with a bandana")
                     return <img className="pet" alt="orangecatbandana" src={pet[4].image} />
                     
                 }
@@ -261,24 +250,19 @@ class Tower extends Component {
         else if (type ==='dog'){
             if(color === 'white'){
                 if(access === 'bell'){
-                    console.log("White dog with a bell")
                     return <img className="pet" alt="whitedogBell" src={pet[1].image} />
                     
                 }
                 else if (access === 'bandana'){
-                    console.log("White dog with a bandana")
                     return <img className="pet" alt="whitedogbandan" src={pet[0].image} />
                 }
                 
             }
             else if(color === 'orange'){
                 if(access === 'bell'){
-                    console.log("Orange dog with a bell")
-                    this.socket.emit('pet', 5);
                     return <img className="pet" alt="orangedogbell" src={pet[5].image} />
                 }
                 else if (access === 'bandana'){
-                    console.log("Orange dog with a bandana")
                     return <img className="pet" alt="orangedogbanda" src={pet[6].image} />
                 }
             }
@@ -289,20 +273,76 @@ class Tower extends Component {
         }
 
         this.enemyPet= () => {
-            return <img className="pet" alt="pet" src={pet[this.state.opponentPet].image} />
+            return <img className="pet" alt="pet" src={pet[0].image} />
         }
 
     }
-    
+
+
     componentDidMount(){
-        this.socket.emit('name',this.props.userName)
+        this.socket.emit('name',{
+            name:this.props.userName,
+            petType:this.props.petType,
+            petColor:this.props.petColor,
+            petAccess:this.props.petAccess
+        })
         console.log("emiting name")
         this.setState({
             hp:this.props.hp
-        })     
-
-        
+        })  
     }
+    componentWillUnmount(){
+        console.log("unmounting")
+        this.socket.destroy();
+        this.socket.close()
+        this.socket.off('room')
+        this.socket.off('enemy')
+        this.socket.off('RECEIVE_MESSAGE')
+        this.socket.off('RECEIVE_LOG')
+        this.socket.off('msgLog')
+        this.socket.off('msg')
+        this.socket.off('damage')
+        this.socket.off('hp')
+        this.socket.off('winner')
+    }
+
+    handleWinAxios =  () => {
+        axios({
+            method: "put",
+            url: apiEndpoint + '/win/' + this.props.userName,
+            timeout: 1000 * 5, // Wait for 5 seconds
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(response => {
+              console.log("done")
+            })
+            .catch(error => {
+              console.log(error);
+          });
+        // axios.put(apiEndpoint + '/win/' + this.props.userName);
+ 
+    };
+    handleLoseAxios =  () => {
+        axios({
+            method: "put",
+            url: apiEndpoint + '/lose/' + this.props.userName,
+            timeout: 1000 * 5, // Wait for 5 seconds
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(response => {
+              console.log("done")
+            })
+            .catch(error => {
+              console.log(error);
+          });
+    //    axios.put(apiEndpoint + '/lose/' + this.props.userName);
+       
+    };
+
 
     render() { 
 
