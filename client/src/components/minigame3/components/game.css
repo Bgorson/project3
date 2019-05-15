@@ -21,7 +21,7 @@
     cursor: pointer;
     user-select: none;
   }
-  
+
   result.winnerline {
     color: #fff;
   }
@@ -59,3 +59,31 @@
       border-right: 0;
   }
   
+  /* h1{
+    color: #fff;
+  } */
+
+  .won{
+    color: #1EFE62;
+  }
+
+  .lost{
+    color: #FE0101;
+  }
+
+
+.draw {
+  color: #BFC0C0;
+}
+
+
+element.style {
+}
+
+
+.btn, .btn-link {
+    text-decoration: none;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
