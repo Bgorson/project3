@@ -64,10 +64,12 @@ https://the-wildlyfe.herokuapp.com/
 
 ## Challenges
 
-A frequent challenge was learning new technologies. Each member of the group had to encounter a new technology to incorporate into the application. recognizing the importance of React we wanted to make sure we implemented into our application.\
+A frequent challenge was learning new technologies. Each member of the group had to encounter a new technology to incorporate into the application. recognizing the importance of React we wanted to make sure we implemented into our application.
 
 Tower: socket.io
+<br>
 Front-end: material-ui
+<br>
 Mini games: React-Card-Flipper
 
 ## Successes
