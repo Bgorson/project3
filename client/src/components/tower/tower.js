@@ -135,6 +135,7 @@ class Tower extends Component {
          })
         //if player's HP gets to zero or lower, send out an emit saying you lost
         if (this.state.hp <=0) {
+            addMessage({message: this.state.opponent+ " is the winner!"})
             this.socket.emit("gameover", {
                 winner:this.state.opponent,
                 roomKey:this.state.roomKey
@@ -165,6 +166,7 @@ class Tower extends Component {
 
     const handleWinState = ()=>{
         this.handleWinAxios();
+        addMessage({message: "You are the winner!"})
         this.setState({
             victory:true,
             enemyHp: 0,
@@ -276,7 +278,11 @@ class Tower extends Component {
         this.enemyPet= () => {
             return <img className="pet" alt="pet" src={pet[this.state.opponentPet].image} />
         }
-
+        this.handleSongFinishedPlaying= () => {
+            this.setState({
+                victory:false
+            })  
+        }
     }
 
 

@@ -193,6 +193,7 @@ function onConnection(socket) {
 		let roomId = data.roomKey
 		console.log("game is over")
 		socket.to(rooms[roomId].roomKey).emit("winner", data)
+		io.to(rooms[roomId].roomKey).emit('msg', {message: "Game Over!"});
 	})
 	socket.on("hp-client", function(data){
 		console.log("sending hp from server")
