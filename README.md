@@ -52,23 +52,15 @@ https://the-wildlyfe.herokuapp.com/
 
 ## Built With
 
-* [css](https://developer.mozilla.org/en-US/docs/Web/CSS) - Cascading Style Sheets
-* [heroku](https://www.heroku.com/home) - Deployment
-* [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Hypertext Markup Language
-* [mongoDB](https://www.mongodb.com/) - Database
-* [node.js](https://nodejs.org/en/) - Handle resquests
-* [react.js](https://reactjs.org/) -  JavaScript library for building User Interfaces
-* [socket.io](https://socket.io/) - Real time communication between users
+* [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) - Cascading Style Sheets
+* [Heroku](https://www.heroku.com/home) - Deployment
+* [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML) - Hypertext Markup Language
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Node.js](https://nodejs.org/en/) - Handle resquests
+* [React.js](https://reactjs.org/) -  JavaScript library for building User Interfaces
+* [Socket.io](https://socket.io/) - Real time communication between users
 
 
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
