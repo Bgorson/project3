@@ -19,9 +19,9 @@ class Clickygame extends Component {
     }
 
 handleClick = event => {
-        console.log("clicked")
+        // console.log("clicked")
     let localScore = this.state.score
-        console.log(this.state.topScore)
+        // console.log(this.state.topScore)
     //check if its in the array
     //make this ternerary operator?
     if (this.state.clicked.indexOf(event.target.alt) === -1) {

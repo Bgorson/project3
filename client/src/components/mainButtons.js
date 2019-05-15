@@ -40,7 +40,7 @@ const images = [
   }, {
     title: "minigame4",
     img: One,
-    link: "/miniGame4"
+    link: "/main"
   }, {
     title: "coming",
       img: Six,

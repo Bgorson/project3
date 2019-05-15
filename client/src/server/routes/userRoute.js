@@ -3,7 +3,7 @@ const User = require('../database/models/user')
 
 module.exports = function (app) {
     app.post('/user', (req, res) => {
-        console.log('user signup');
+        // console.log('user signup');
         const { username, password, stat, ratio } = req.body
        
         // ADD VALIDATION
@@ -28,7 +28,7 @@ module.exports = function (app) {
                 })
                 newUser.save((err, savedUser) => {
                     if (err) return res.json(err)
-                    console.log("ssaved User",savedUser)
+                    // console.log("ssaved User",savedUser)
                     res.json(savedUser)
                 })
             }

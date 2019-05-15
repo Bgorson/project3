@@ -18,13 +18,12 @@ class Story extends Component {
                 <div  className="story-content">
                     You had a great day at school and you’re in a rush to return home to hang out 
                     with your faithful companion {this.props.petname}. To save on time, you decide to take a shortcut 
-                    through Kingsthon Hallow, even though it’s against your parents’ wishes. How hard could 
+                    through Kingsthon Hallow, even though it’s against your parents’ wishes. How bad could 
                     it be? It wasn’t long before you got lost. You look around but all you could see were 
-                    trees. Nervously, you felt into your bag for {this.props.petname}'s favorite toy , but {this.props.petname} 
-                    was nowhere to be found! You begin to panic. You are sure you packed {this.props.petname}. 
-                    To make matters worse, you begin hear the growls of a wild animal nearby. You begin 
-                    to run through Kingthon Hallow looking for any sanctuary you can find! Luckily, you 
-                    stumble upon a cave in the forest. This is where your journey begins . . .  
+                    trees. Nervously, you felt into your bag for {this.props.petname}'s favorite toy ,
+                     even though {this.props.petname} was nowhere to be found! You begin to panic. To make matters worse, you begin to hear the growls of a wild animal nearby. You  
+                    run through Kingthon Hallow looking for any sanctuary you can find! Luckily, you 
+                    stumble upon a cave in the forest with {this.props.petname} there to greet you. This is where your journey begins . . .  
                 <br />
                     <div className="storyBtn">
                     <Button 

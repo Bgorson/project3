@@ -46,14 +46,14 @@ class Tower extends Component {
             addLog(data);
         })
         this.socket.on("msgLog", function(data){
-            console.log(data)
+            // console.log(data)
             if(data.heal === false){
                 enableButtons();
             }
             addLog(data);
         })
         this.socket.on("msg", function(data){
-            console.log(data)
+            // console.log(data)
             if(data.heal === false){
                 enableButtons();
             }
@@ -66,10 +66,10 @@ class Tower extends Component {
 
         this.socket.on('hp', function(data){
             console.log(data.username)
-            console.log(data.hp)
+            // console.log(data.hp)
             try {
             if (data.username !== props.userName){
-            console.log("new data")
+            // console.log("new data")
             updateEnemyHp(data)
             }
             else {
@@ -83,8 +83,8 @@ class Tower extends Component {
         
 
         this.socket.on("winner", function(data){
-            console.log("receiving win socket")
-            console.log(data)
+            // console.log("receiving win socket")
+            // console.log(data)
                 toggleButton();
                 handleWinState(props.userName)
         })
@@ -152,7 +152,7 @@ class Tower extends Component {
     }
     }
     const handleLose = (username)=>{
-        console.log('handling lose', username)
+        // console.log('handling lose', username)
         this.handleLoseAxios();
         self.socket.emit('end')
         self.socket.close()
@@ -176,7 +176,7 @@ class Tower extends Component {
         toggleButton();
     }
     const updateEnemyHp= (eHp)=>{
-        console.log("Receiving",eHp)
+        // console.log("Receiving",eHp)
         this.setState({
             enemyHp: eHp.hp,
             enemyMaxHp:eHp.maxhp
@@ -203,13 +203,13 @@ class Tower extends Component {
      
     }
     const setRoomKey=(key)=>{
-        console.log("settingroom key", key)
+        // console.log("settingroom key", key)
         this.setState({roomKey:key})
     }
 
     const addOpponent=(opp)=>{
-        console.log("adding opponent")
-        console.log(opp)
+        // console.log("adding opponent")
+        // console.log(opp)
         if (opp.playerOne===props.userName){
             this.setState({
                 opponent:opp.playerTwo,
@@ -293,13 +293,13 @@ class Tower extends Component {
             petColor:this.props.petColor,
             petAccess:this.props.petAccess
         })
-        console.log("emiting name")
+        // console.log("emiting name")
         this.setState({
             hp:this.props.hp
         })  
     }
     componentWillUnmount(){
-        console.log("unmounting")
+        // console.log("unmounting")
         this.socket.destroy();
         this.socket.close()
         this.socket.off('room')

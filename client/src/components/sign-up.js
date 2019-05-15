@@ -40,8 +40,8 @@ class Signup extends Component {
         this.setState({show:false})
     }
 	handleSubmit(event) {
-		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
+		// console.log('sign-up handleSubmit, username: ')
+		// console.log(this.state.username)
 		event.preventDefault()
 		
 		//request to server to add a new username/password
@@ -55,7 +55,7 @@ class Signup extends Component {
 			}
 		})
 			.then(response => {
-				console.log("post response",response)
+				// console.log("post response",response)
 				
 				if (!response.data.error) {
 					console.log('successful signup')
@@ -67,12 +67,12 @@ class Signup extends Component {
 						redirectTo: "/petChoice",
 					})
 				} else {
-					console.log('username already taken')
+					// console.log('username already taken')
 					this.showModal("Error signing up. Check password/username or this username exists.")
 				}
 			}).catch(error => {
-				console.log('signup error: ')
-				console.log(error)
+				// console.log('signup error: ')
+				// console.log(error)
 				this.showModal("Error signing up. Check password/username or this username exists.")
 
 			})

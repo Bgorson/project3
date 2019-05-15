@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
 const GameOver = ({ restartGame,levelUp,userName }) => (
 
     <div className="justify-center">
-    {console.log("this ran?")}
+    {/* {console.log("this ran?")} */}
      {levelUp(userName, "magic")}
     <h2> You Win!</h2>
     <br/>

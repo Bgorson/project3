@@ -4,7 +4,7 @@ const User = require('../database/models/user')
 const passport = require('../passport')
 
 router.post('/', (req, res) => {
-    console.log('user signup');
+    // console.log('user signup');
     const { username, password, stat, ratio } = req.body
    console.log(req.body)
     // ADD VALIDATION
@@ -40,13 +40,13 @@ router.post('/', (req, res) => {
 router.post(
     '/login',
     function (req, res, next) {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
+        // console.log('routes/user.js, login, req.body: ');
+        // console.log(req.body)
         next()
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
+        // console.log('logged in', req.user);
         var userInfo = {
             username: req.user.username,
             stat: req.user.stat,
@@ -57,10 +57,10 @@ router.post(
 )
 
 router.get('/', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user)
-    console.log("above")
-    console.log(req.body)
+    // console.log('===== user!!======')
+    // console.log(req.user)
+    // console.log("above")
+    // console.log(req.body)
     if (req.user) {
         res.json({ user: req.user })
     } else {

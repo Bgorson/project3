@@ -7,8 +7,8 @@ const BattleLogic = require( "./client/src/server/battle")
 const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./client/src/server/database') 
 // Route requires
-const user = require('./client/src/server/routes/user')
-const db = require('./client/src/server/database//models/user')
+// const user = require('./client/src/server/routes/user')
+// const db = require('./client/src/server/database//models/user')
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 5000;
@@ -145,12 +145,12 @@ let petNumberFun= function(type,color,access){
 
 io.on('connection',onConnection);
 function onConnection(socket) {
-	console.log('New client connected', socket.id)
+	// console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data.name
 		petNumber = petNumberFun(data.petType,data.petColor,data.petAccess)
-		console.log("the image index is " + petNumber)
-		console.log("the user is", username)
+		// console.log("the image index is " + petNumber)
+		// console.log("the user is", username)
 	if (waitingPlayer) {
 		socket.emit('room',roomKey)
 		socket.join(roomKey)
@@ -180,37 +180,37 @@ function onConnection(socket) {
 	socket.on('SEND_MESSAGE_CHAT', function(data){
 		let roomId = data.roomKey
 		io.in(rooms[roomId].roomKey).emit('RECEIVE_MESSAGE', data)
-		console.log((rooms[roomId].roomKey))
+		// console.log((rooms[roomId].roomKey))
 
 	})
 	socket.on('SEND_MESSAGE', function(data){
 		let roomId = data.roomKey
 		io.in(rooms[roomId].roomKey).emit('RECEIVE_LOG', data)
-		console.log((rooms[roomId].roomKey))
+		// console.log((rooms[roomId].roomKey))
 
 	})
 	socket.on("gameover", function(data){
 		let roomId = data.roomKey
-		console.log("game is over")
+		// console.log("game is over")
 		socket.to(rooms[roomId].roomKey).emit("winner", data)
 		io.to(rooms[roomId].roomKey).emit('msg', {message: "Game Over!"});
 	})
 	socket.on("hp-client", function(data){
-		console.log("sending hp from server")
+		// console.log("sending hp from server")
 		let roomId = data.roomKey
 		io.to(rooms[roomId].roomKey).emit("hp",data)
 	})
 	socket.on("damage", function(data){
-		console.log("sending damage from server")
+		// console.log("sending damage from server")
 		let roomId = data.roomKey
 		io.to(rooms[roomId].roomKey).emit("damage",data)
 	})
 
 	socket.on('disconnect', function(){
-		console.log(socket.id, "Disconnected")
+		// console.log(socket.id, "Disconnected")
 	})
 	socket.on('end', function(){
-		console.log("disconnecting socket")
+		// console.log("disconnecting socket")
 		socket.disconnect();
 	})
 	}

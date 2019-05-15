@@ -10,7 +10,7 @@ import PetChoice from "./components/PetChoice"
 import Story from './components/Story'
 
 import Main from './components/mainHub'
-import StatInfo from './components/statinfo'
+// import StatInfo from './components/statinfo'
 
 //mini games + tower imports
 import Minigame1 from "./components/minigame1/components/Clickygame"

@@ -32,13 +32,13 @@ class MiniGame3 extends Component {
             this.gameState.totalMoves++;
             }
 
-            console.log(this.gameState.totalMoves)
+            // console.log(this.gameState.totalMoves)
 
             var result = this.checkWinner();
 
-            if(result == 'X') {
+            if(result === 'X') {
                 this.props.levelUp(this.props.userName,"agility")
-                console.log("leveling up ", this.props.userName)
+                // console.log("leveling up ", this.props.userName)
                 this.gameState.gameEnded = true;
                 this.setState({
                     winner: 'X',

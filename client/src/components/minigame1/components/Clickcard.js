@@ -21,8 +21,10 @@ function Clickcard (props) {
   const { classes } = props;
     return (
       props.shuffle(props.cards).map(characters => (
-        <Card className={classes.card}>
-          <CardActionArea>
+        <Card className={classes.card}
+        key = {characters.id}>
+          <CardActionArea
+          key = {characters.id}>
             <CardMedia key = {characters.id}>   
               <img 
                   onClick= {props.handleClick} 

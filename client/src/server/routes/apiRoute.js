@@ -5,8 +5,8 @@ module.exports = function (app) {
 //Route to restrive all information on a username
     app.get('/stats/:id', (req,res)=>{
 	let username= req.params.id
-	console.log(username)
-	console.log("This is the username we are searching",username)
+	// console.log(username)
+	// console.log("This is the username we are searching",username)
 	User.findOne({ username:username}, (err,data)=> {
 		if (err) {
 			console.log("Some kind of err",err)
@@ -22,7 +22,7 @@ module.exports = function (app) {
 app.post("/pets/:id",(req,res)=>{
     passport.authenticate('local')
 	let username = req.params.id
-    console.log("posting pet info", req.body)
+    // console.log("posting pet info", req.body)
     const { petname, petType, petColor, petAccess } = req.body
     User.findOneAndUpdate({ username:username}, 
         {$set:{
@@ -41,7 +41,7 @@ app.post("/pets/:id",(req,res)=>{
 //Route to signal a win in the Tower
 app.put('/tower/win/:id', (req,res)=>{
 	let username = req.params.id
-	console.log("hitting win route for:" + username)
+	// console.log("hitting win route for:" + username)
 	User.updateOne({username:username}, { $inc: {"ratio.win" : 1}},(err,response) => {
 		if (err) {
 			(err);
@@ -54,7 +54,7 @@ app.put('/tower/win/:id', (req,res)=>{
 //Route to signal a lose in the Tower
 app.put('/tower/lose/:id', (req,res)=>{
 	let username= req.params.id
-	console.log("hitting lose route for:" + username)
+	// console.log("hitting lose route for:" + username)
 	User.update({username:username}, { $inc: {"ratio.lose" : 1}},(err,response) => {
 		if (err) {
 			(err);
@@ -67,7 +67,7 @@ app.put('/tower/lose/:id', (req,res)=>{
 app.post('/levelUp/:id/strength', (req, res)=>{
 	let user = req.params.id 
 	let stat= req.params.stat
-	console.log(stat)
+	// console.log(stat)
 	User.findOneAndUpdate({username:user}, { $inc: { "stat.strength" : 10 } }, {new:true}, function(err,response){
 		if (err) {
 			(err);
@@ -80,7 +80,7 @@ app.post('/levelUp/:id/strength', (req, res)=>{
 app.post('/levelUp/:id/magic', (req, res)=>{
 	let user = req.params.id 
 	let stat= req.params.stat
-	console.log(stat)
+	// console.log(stat)
 	User.findOneAndUpdate({username:user}, { $inc: { "stat.magic" : 10 } }, {new:true}, function(err,response){
 		if (err) {
 			(err);
@@ -94,7 +94,7 @@ app.post('/levelUp/:id/magic', (req, res)=>{
 app.post('/levelUp/:id/hp', (req, res)=>{
 	let user = req.params.id 
 	let stat= req.params.stat
-	console.log(stat)
+	// console.log(stat)
 	User.findOneAndUpdate({username:user}, { $inc: { "stat.hp" : 10 } }, {new:true}, function(err,response){
 		if (err) {
 			(err);
@@ -107,7 +107,7 @@ app.post('/levelUp/:id/hp', (req, res)=>{
 app.post('/levelUp/:id/agility', (req, res)=>{
 	let user = req.params.id 
 	let stat= req.params.stat
-	console.log(stat)
+	// console.log(stat)
 	User.findOneAndUpdate({username:user}, { $inc: { "stat.agility" : 10 } }, {new:true}, function(err,response){
 		if (err) {
 			(err);
@@ -120,7 +120,7 @@ app.post('/levelUp/:id/agility', (req, res)=>{
     //Route to find leader
 app.get('/leaderboard', (req, res)=>{
 	User.findOne().sort({'ratio.win':-1}).then(function(data){
-		console.log(data)
+		// console.log(data)
 		res.json(data)
 		})
 	})
