@@ -29,12 +29,15 @@ $ yarn install
 
 In  first terminal
 
-```
+```bash
+cd project3
 $ mongod
 ```
 
 Second open a second terminal
+
 ```bash
+cd project3 
 $ node index.js
 ```
 
