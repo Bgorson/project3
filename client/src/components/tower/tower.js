@@ -27,7 +27,7 @@ class Tower extends Component {
             damage:0,
             enemyMaxHp:200,
             enemyDamageReceived:0,
-            opponentPet:0,
+            opponentPet:8,
         };
         let self=this
         this.socket = io();
@@ -274,7 +274,7 @@ class Tower extends Component {
         }
 
         this.enemyPet= () => {
-            return <img className="pet" alt="pet" src={pet[self.state.opponentPet].image} />
+            return <img className="pet" alt="pet" src={pet[this.state.opponentPet].image} />
         }
 
     }

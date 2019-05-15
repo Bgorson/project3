@@ -138,7 +138,7 @@ let petNumberFun= function(type,color,access){
 		}
 	}
 	else {
-		return 0
+		return 7
 	}
 }
 

@@ -38,5 +38,10 @@
       "id": 7,
       "name": "Orange Cat with Bell",
       "image": "/imgs/pets/pets-08.png"
+    },
+    {
+      "id": 8,
+      "name": "Default",
+      "image": "/imgs/pets/pets-09.png"
     }
 ]
