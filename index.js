@@ -90,57 +90,57 @@ let rooms={}
 // const io = socketio(server);
 var username;
 var username1;
-var petNumber=0
-var petNumber1=0
+var petNumber;
+var petNumber1;
 
-// let petNumber= function(type,color,access){
-// 	if (type=== 'cat'){
-// 		if(color === 'white'){
-// 			if(access === 'bell'){
+let petNumberFun= function(type,color,access){
+	if (type=== 'cat'){
+		if(color === 'white'){
+			if(access === 'bell'){
 
-// 				return 2
+				return 2
 				
-// 			}
-// 			else if (access === 'bandana'){
-// 				return 3
-// 			}
+			}
+			else if (access === 'bandana'){
+				return 3
+			}
 
-// 		}
-// 		else if(color === 'orange'){
-// 			if(access === 'bell'){
-// 				return 5
+		}
+		else if(color === 'orange'){
+			if(access === 'bell'){
+				return 5
 				
-// 			}
-// 			else if (access === 'bandana'){
-// 				return 4
+			}
+			else if (access === 'bandana'){
+				return 4
 				
-// 			}
-// 		}
-// 	}
-// 	else if (type ==='dog'){
-// 		if(color === 'white'){
-// 			if(access === 'bell'){
-// 				return 1
+			}
+		}
+	}
+	else if (type ==='dog'){
+		if(color === 'white'){
+			if(access === 'bell'){
+				return 1
 				
-// 			}
-// 			else if (access === 'bandana'){
-// 				return 0
-// 			}
+			}
+			else if (access === 'bandana'){
+				return 0
+			}
 			
-// 		}
-// 		else if(color === 'orange'){
-// 			if(access === 'bell'){
-// 				return 5
-// 			}
-// 			else if (access === 'bandana'){
-// 				return 6
-// 			}
-// 		}
-// 	}
-// 	else {
-// 		return 0
-// 	}
-// }
+		}
+		else if(color === 'orange'){
+			if(access === 'bell'){
+				return 5
+			}
+			else if (access === 'bandana'){
+				return 6
+			}
+		}
+	}
+	else {
+		return 0
+	}
+}
 
 
 io.on('connection',onConnection);
@@ -148,13 +148,14 @@ function onConnection(socket) {
 	console.log('New client connected', socket.id)
 	socket.on('name',function(data){
 		username= data.name
-		// petNumber = petNumber(data.petType,data.petColor,data.petAccess)
+		petNumber = petNumberFun(data.petType,data.petColor,data.petAccess)
 		console.log("the image index is " + petNumber)
 		console.log("the user is", username)
 	if (waitingPlayer) {
 		socket.emit('room',roomKey)
 		socket.join(roomKey)
-		io.to(roomKey).emit('msg', {message: "The match of " + username1 +' VS ' + username+ " is starting NOW! Choose your move on each turn"});
+		io.to(roomKey).emit('msg', {message: "***The match of " + username1 +' VS ' + username+ " is starting NOW! Choose your move on each turn***"});
+		io.to(roomKey).emit('msg', {message: "FIGHT!"});
 		io.to(roomKey).emit('enemy', {
 			playerOne:username1,
 			petOne:petNumber1,
@@ -172,7 +173,7 @@ function onConnection(socket) {
 		socket.join(roomKey)
 		username1 = username
 		waitingPlayer = socket;
-		socket.emit('msg', {message:'You are waiting for an opponent to join, '+username1+'.'});
+		socket.emit('msg', {message:'You are waiting for an opponent to join, '+username1+'...'});
 		socket.emit('room',roomKey)
 	  }
 	})
