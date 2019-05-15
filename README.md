@@ -13,14 +13,16 @@ This web application contains multiple “mini-games” which utilizes react.js 
 ```bash
 git clone https://github.com/Bgorson/project3.git
 cd project3
+
 ```
 
 ### Prerequisites
 
 Install
 
-```
-$ npm i
+```bash
+cd client
+$ yarn install
 ```
 
 ### Installing
@@ -79,7 +81,7 @@ The creation of a functional and efficient React inspired application. Through t
 ## Authors
 
 * **Jessica Chen** - *Front-End/Back-End* - [Portfolio](jchen211.github.io)
-* **Brandon Gorson** - *Back-End* - [Portfolio](bgorson.github.io)
+* **Brandon Gorson** - *Front-EndBack-End* - [Portfolio](bgorson.github.io)
 * **Marques Gaston** - *Back-End* - [Portfolio](gastonm1.github.io/Portfolio)
 * **Alex Leo Reyes** - *Back-End* - [Portfolio](alreyes15.github.io/portfolio)
 
