@@ -101,7 +101,9 @@ class MiniGame2 extends PureComponent {
   render() {
     return (
       <div>
-        <h2>MATCH THE CARDS</h2>
+        <h2>PEDAL PICKER</h2>
+        <p className="instruct-2">Increase your magic on your voyage through Kingsthon Hallow! To do so, you must match 
+          each flower with its twin. If you can’t match the twins, then you will not receive the magic. </p>
         <Header restartGame={this.restartGame} />
         {this.isGameOver() ? (
         <GameOver 

@@ -6,11 +6,14 @@ function ModalInstructions(props) {
     return(
         <Card className="instructions">       
             <Typography variant="h3" component="h3">
-                CLICKY GAME
+                SPIRIT MEMORY
             </Typography>
+            <br/>
             <Typography component="p">
-                Click an image below to earn points. Don't click duplicates!
-                Earn more than 5 points to increase your stat!
+                Increase your strength on your voyage through Kingsthon Hallow! To do so,
+                you must remember each spirit you come across! But be warned! If you click 
+                on the same spirit twice, the spirits will not let you pass and you will 
+                not acquire the strength needed to face the Tower!
             </Typography>
         </Card>
     )

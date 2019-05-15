@@ -90,10 +90,16 @@ class MiniGame3 extends Component {
     render() {
         return (
           <div id="game">
+              
+              <div id="head">NOUGHTS & CROSSES</div>
+              <p className="instruct-2">Did you see that?! The goul of Noughts & Crosses is here 
+                  and she believes that you are a worthy adversary! She is a 
+                  master of her own game and you must move quickly against the her! 
+                  Get three crosses in arow before she is able to get three noughts in 
+                  a row! This will increase you agility and she will let you pass.</p>
+              <br/>
               <div id="status">{this.state.winnerLine}</div>
-              <div id="head">
-                  Tic Tac Toe
-              </div>
+              <br/>
               <div id="board" onClick={(e)=>this.clicked(e.target)}>
                   <div className="square" data-square="0"></div>
                   <div className="square" data-square="1"></div>
@@ -105,7 +111,7 @@ class MiniGame3 extends Component {
                   <div className="square" data-square="7"></div>
                   <div className="square" data-square="8"></div>
               </div>
-              <div id="button"> Play again</div>
+            
           </div>    
         );
       } 

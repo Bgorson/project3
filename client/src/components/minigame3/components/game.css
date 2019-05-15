@@ -58,11 +58,7 @@
   .square:nth-child(3n) {
       border-right: 0;
   }
-  
-  /* h1{
-    color: #fff;
-  } */
-
+ 
   .won{
     color: #1EFE62;
   }
