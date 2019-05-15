@@ -8,7 +8,7 @@ This web application contains multiple “mini-games” which utilizes react.js 
 ## Getting Started
 
 
-```
+```bash
 git clone https://github.com/Bgorson/project3.git
 cd project3
 yarn
@@ -16,31 +16,32 @@ yarn
 
 ### Prerequisites
 
-Install the following:
+Install
 
 ```
 npm i
-
 ```
-
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+In  first terminal
 
 ```
-Give the example
+$ mongod
 ```
 
-And repeat
-
+Second open a second terminal
+```bash
+node index.js
 ```
-until finished
+
+Last open a third terminal
+
+```bash
+cd client
+yarn start
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
