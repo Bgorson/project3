@@ -43,35 +43,24 @@ yarn start
 ```
 
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Heroku Deployment
+
+https://the-wildlyfe.herokuapp.com/
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [css](https://developer.mozilla.org/en-US/docs/Web/CSS) - Cascading Style Sheets
+* [heroku](https://www.heroku.com/home) - Deployment
+* [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Hypertext Markup Language
+* [mongoDB](https://www.mongodb.com/) - Database
+* [node.js](https://nodejs.org/en/) - Handle resquests
+* [react.js](https://reactjs.org/) -  JavaScript library for building User Interfaces
+* [socket.io](https://socket.io/) - Real time communication between users
+
+
 
 ## Contributing
 
@@ -83,7 +72,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Brandon Gorson** - *Back-End* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
