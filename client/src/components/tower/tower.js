@@ -206,6 +206,7 @@ class Tower extends Component {
     }
 
     const addOpponent=(opp)=>{
+        console.log("adding opponent")
         console.log(opp)
         if (opp.playerOne===props.userName){
             this.setState({
@@ -221,7 +222,7 @@ class Tower extends Component {
         }
        
     }
-
+    
     this.displayPet= (type,color,access) => {
         if (type=== 'cat'){
             if(color === 'white'){
@@ -273,7 +274,7 @@ class Tower extends Component {
         }
 
         this.enemyPet= () => {
-            return <img className="pet" alt="pet" src={pet[0].image} />
+            return <img className="pet" alt="pet" src={pet[self.state.opponentPet].image} />
         }
 
     }
@@ -419,7 +420,7 @@ class Tower extends Component {
                         <div>
                             <div>
                                 <div>
-                                    <div>Enemy Pet
+                                    <div>{this.state.opponent}
                                    <div>{this.enemyPet()}</div> 
 
                                     </div>
