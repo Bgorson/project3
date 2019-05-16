@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  margin: 50px;
+}
+
+.navbar {
+  margin: 40px 0;
+}
+
+.main,
+.logout,
+.btn-home {
+  margin: 15px;
+  border: solid 2px #FFFFFF;
+  padding: 10px 30px;
+  font-weight: bold;
+  letter-spacing: 7px;
+}
+
+
+
+#top-filler {
+  margin-bottom: auto;
+}
+
+

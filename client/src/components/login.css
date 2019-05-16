@@ -1,0 +1,40 @@
+.wildlyfe-logo {
+    width: 90px;
+    margin-bottom: 30px;
+}
+
+.btn-login {
+    margin: 20px;
+  
+}
+
+.log {
+    letter-spacing: 4px;
+    width: 250px;
+}
+
+.signup {
+    width: 200px;
+    letter-spacing: 5px;
+}
+
+.form-button {
+    margin-top: 30px;
+}
+
+#username-input,
+#password-input {
+    color: #FFFFFF;
+    width: 230px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #FFFFFF;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}

@@ -1,0 +1,43 @@
+.row {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-column-gap: 15px;
+  margin-top: 30px;
+}
+
+.cards-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+    
+}
+
+.statPet {
+  display: grid;
+  grid-template-columns: 35% 33% 25%;
+  margin-bottom: 30px;
+}
+
+.stat-content {
+  text-align: left;
+  padding: 0 30px;
+  opacity: .7;
+}
+
+.pet {
+  width: 250px;
+}
+.topPlayer-box {
+  background-color: #FFFFFF;
+  opacity: .7;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.topPlayer {
+  color: #000000;
+  border: 5px solid #000000;
+  margin: 0 30px;
+  padding: 20px;
+}
